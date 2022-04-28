@@ -158,20 +158,20 @@ CREATE TABLE Reply
 
 CREATE TABLE FavRestaurant
 (
-    idRestaurant INT REFERENCES Restaurant(idRestaurant),
-    username INT REFERENCES User(username),
+    idRestaurant INT NOT NULL REFERENCES Restaurant(idRestaurant),
+    username INT NOT NULL REFERENCES User(username),
     PRIMARY KEY(idRestaurant, username)
 );
 
 CREATE TABLE FavDish(
-    idDish INT REFERENCES Dish(idDish),
-    username INT REFERENCES User(username),
+    idDish INT NOT NULL REFERENCES Dish(idDish),
+    username INT NOT NULL REFERENCES User(username),
     PRIMARY KEY (idDish, username)
 );
 
 CREATE TABLE DishCategory(
-    idDish INT REFERENCES Dish(idDish), 
-    idCategory INT REFERENCES Category(idCategory),
+    idDish INT NOT NULL REFERENCES Dish(idDish), 
+    idCategory INT NOT NULL REFERENCES Category(idCategory),
     PRIMARY KEY(idDish, idCategory)
 );
 
