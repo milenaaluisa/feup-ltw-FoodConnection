@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS RestaurantShift;
 DROP TABLE IF EXISTS Menu;
 DROP TABLE IF EXISTS FoodOrder;
 DROP TABLE IF EXISTS Dish;
+DROP TABLE IF EXISTS RateDish;
 DROP TABLE IF EXISTS Review;
 DROP TABLE IF EXISTS Photo;
 DROP TABLE IF EXISTS MenuDish;
@@ -98,14 +99,21 @@ CREATE TABLE Dish
     idRestaurant INT NOT NULL REFERENCES Restaurant(idRestaurant)
 );
 
+CREATE TABLE RateDish
+(
+    rate INT NOT NULL CHECK(rate >= 1 and rate <= 5),
+    idFoodOrder INT NOT NULL REFERENCES FoodOrder(idFoodOrder),
+    idDish INT NOT NULL REFERENCES Dish(idDish),
+    PRIMARY KEY (idFoodOrder, idDish)
+);
+
 CREATE TABLE Review
 (
     idReview INTEGER PRIMARY KEY,
     comment VARCHAR, 
     rate INT NOT NULL CHECK(rate >= 1 and rate <= 5),
     reviewDate DATE NOT NULL,
-    idFoodOrder INT REFERENCES FoodOrder(idFoodOrder),
-    idDish INT REFERENCES Dish(idDish)
+    idFoodOrder INT NOT NULL REFERENCES FoodOrder(idFoodOrder)
 );
 
 CREATE TABLE Photo
@@ -181,7 +189,6 @@ CREATE TABLE DishCategory(
 ---Trigger that updates the restaurant average rating every time the users review their order  
 CREATE TRIGGER IF NOT EXISTS RestaurantRate
 AFTER INSERT ON Review
-WHEN (new.idFoodOrder NOT NULL)
 
 BEGIN
     UPDATE Restaurant
@@ -198,15 +205,14 @@ BEGIN
                                                  WHERE FoodOrder.idFoodOrder = new.idFoodOrder LIMIT 1));
 END;
 
----Trigger that updates the dish average rating every time a new review is inserted
+---Trigger that updates the dish average rating every time a new RateDish is inserted
 CREATE TRIGGER IF NOT EXISTS DishRate
-AFTER INSERT ON Review  
-WHEN (new.idDish NOT NULL)
+AFTER INSERT ON RateDish  
 
 BEGIN
     UPDATE Dish
     SET averageRate = (SELECT avg(rate) 
-                       FROM Review
+                       FROM RateDish
                        WHERE idDish = new.idDish)
     WHERE idDish = new.idDish;
 END;
