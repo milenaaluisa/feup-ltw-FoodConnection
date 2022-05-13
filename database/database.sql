@@ -40,8 +40,6 @@ CREATE TABLE Restaurant
     averagePrice REAL(2,1) NOT NULL DEFAULT(0),
     phoneNum INT NOT NULL,
     address VARCHAR NOT NULL,
-    zipCode VARCHAR NOT NULL,
-    city VARCHAR NOT NULL,
     averageRate INT NOT NULL DEFAULT(0),
     owner VARCHAR NOT NULL REFERENCES User(username)
 );
@@ -79,14 +77,13 @@ CREATE TABLE Menu
     idMenu INTEGER PRIMARY KEY,
     price REAL(5, 2) NOT NULL,
     idRestaurant INT NOT NULL REFERENCES Restaurant(idRestaurant)
-);    
+);
 
 CREATE TABLE FoodOrder
 ( 
     idFoodOrder INTEGER PRIMARY KEY,     
     state VARCHAR NOT NULL CHECK(state = 'received' OR state = 'preparing' OR state = 'ready' OR state = 'delivered'),  
     orderDate DATE NOT NULL,   
-    notes VARCHAR,
     username VARCHAR NOT NULL REFERENCES User(username)
 );
 
@@ -107,8 +104,8 @@ CREATE TABLE Review
     comment VARCHAR, 
     rate INT NOT NULL CHECK(rate >= 1 and rate <= 5),
     reviewDate DATE NOT NULL,
-    idRestaurant INT REFERENCES Restaurant(idRestaurant),
-    idDish INT REFERENCES Dish(idDish)
+    idDish INT REFERENCES Dish(idDish),
+    idFoodOrder INT REFERENCES FoodOrder(idFoodOrder)
 );
 
 CREATE TABLE Photo
@@ -145,6 +142,7 @@ CREATE TABLE Selection
 (
     quantity INT NOT NULL,
     extras VARCHAR,
+    notes VARCHAR,
     idFoodOrder INT NOT NULL REFERENCES FoodOrder(idFoodOrder),
     idDish INT NOT NULL REFERENCES Dish(idDish),
     PRIMARY KEY (idFoodOrder, idDish)
@@ -183,7 +181,7 @@ CREATE TABLE DishCategory(
 ---Trigger that updates the restaurant average rating every time the users review their order  
 CREATE TRIGGER IF NOT EXISTS RestaurantRate
 AFTER INSERT ON Review
-WHEN (new.idRestaurant NOT NULL)
+WHEN (new.idFoodOrder NOT NULL)
 
 BEGIN
     UPDATE Restaurant
@@ -270,37 +268,37 @@ INSERT INTO User(name, username, email, phoneNum, address, zipCode, city, passwo
 INSERT INTO User(name, username, email, phoneNum, address, zipCode, city, password) VALUES ('Nuno Amaro', 'nunoamaro13', 'nunoamaro13@gmail.com' , 919789369, "Tv. de Sao Cristovao 1", "4050-101", "Porto", "80df6758cdb8b27fd2ab3077e4016679");
 INSERT INTO User(name, username, email, phoneNum, address, zipCode, city, password) VALUES ('Andreia Silva', 'dreiasilva', 'andreiasilava08@gmail.com', 934518743, "Rua das Andresas 306", "4100-051", "Porto","4cab2a2db6a3c31b01d804def28276e6");
 
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(1, 'Camélia Brunch Garden', 226170009, 'Rua do Passeio Alegre, 368', "4150-571", "Porto", 'saradias');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(2, 'Eleven Lab Concept', 910550994, 'Rua do Ouro nº 418', "4150-553", "Porto", 'saradias');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(3, 'Starbucks', 220437782, 'Rua Mouzinho da Silveira, 196', "4050-417", "Porto", 'saradias');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(4, 'DeGema', 221116336, 'Rua Fonte da Luz, 217', "4150-753", "Porto", 'lluislima');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(5, 'Noshi Healthy Food', 222053034, 'Rua do Carmo, 11/12', "4050-164", "Porto", 'lluislima');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(6, 'Apuro', 224024756, 'Rua do Breiner, 236', "4050-124", "Porto", 'lluislima');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(7, 'Fava Tonka', 915343494, 'Rua de Santa Catarina, 100', "4450-631", "Leça da Palmeira", 'lluislima');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(8, 'Manna', 223161536, 'Rua da Conceicao 60', "4050-213", "Porto", 'mariaa12');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(9, 'Nola Kitchen', 910595015, 'Praça Dona Filipa de Lencastre, 25', "4050-259", "Porto", 'mariaa12');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(10, 'Subenshi', 964097707, 'Campo Dos Martires da Patria, 65', "4050-456", "Porto", 'mariaa12');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(11, 'Sushihana', 916551972, 'Rua Professor Mota Pinto, 138', "4100-354", "Porto", 'dav_soares');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(12, 'Noodles by RO', 967307887, 'Norteshopping, Rua Sara Afonso, 105-117', "4460-841", "Sra. da Hora", 'dav_soares');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(13, 'Taco Bell', 932160090, 'Norteshopping, Rua Sara Afonso, 105-117', "4460-841", "Sra. da Hora", 'dav_soares');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(14, 'Guaka', 910153794, 'Rua de Santo Ildefonso, 305', "4000-507", "Porto", 'dav_soares');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(15, 'Boteco Mexicano', 964249974, 'Campo dos Mártires da Pátria 38-41', "4050-366", "Porto", 'nicoleolive');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(16, 'Real Indiana', 226162107, 'Avenida de Montevideu, 26', "4150-516", "Porto", 'nicoleolive');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(17, 'Chutnify Canteen', 229542114, 'Norteshopping, Rua Sara Afonso, 105-117', "4460-841", "Sra. da Hora", 'nicoleolive');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(18, 'Indi Go Indian Flavours', 226065136, 'Arrábida Shopping, Praceta Henrique Moreira, 244', "4400-346", "Vila Nova de Gaia", 'nicoleolive');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(19, 'Bocca', 226170004, 'Rua do Passeio Alegre, Jardim das Sobreiras, Lj 1', "4150-714", "Porto", 'fpereira');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(20, "Casad'oro", 226106012, 'Rua do Ouro, 797', "4150-555", "Porto", 'fpereira');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(21, 'Modì', 223186690, 'Praça Cidade do Salvador, 296', "4450-096", "Matosinhos", 'fpereira');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(22, 'Capa Negra II', 226078383, 'Rua do Campo Alegre, 191', "4150-177", "Porto", 'ruisousa4'); 
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(23, "Madureira's", 220138373, 'Rua da Praia, 9950', "4400-554", "Vila Nova de Gaia", 'ruisousa4');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(24, 'Taberna Londrina', 221119320, 'Estrada da Circunvalação, 7964', "4200-537", "Porto", 'ruisousa4');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(25, 'Tâmaras - Pastelaria Saudável', 912345678, 'R. de José Falcão 157 Loja 10', "4050-317", "Porto", 'rute5martins');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(26, 'Cremosi', 935401378, 'Rua do Passeio Alegre, 372', "4150-572", "Porto", 'rute5martins');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(27, 'Tavi', 226180152, 'Rua da Senhora da Luz, 363', "4150-689", "Porto", 'rute5martins');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(28, 'Padaria Ribeiro', 222005067, 'Praça Guilherme Gomes Fernandes, 21', "4050-526", "Porto", 'henricosta45');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(29, 'Rooftop Santa Catarina', 915452459, 'La Vie, Rua de Fernandes Tomás, 508', "4000-211", "Porto", 'henricosta45');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(30, "B'Artist, The Artist - Porto Hotel e Bistrô", 220132700, 'Rua da Firmeza, 49', "4000-228", "Porto", 'henricosta45');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, zipCode, city, owner) VALUES(31, "Daikiri Bar" , 918424324, "Rua da Praia, 907", "4405-780", "Vila Nova de Gaia", 'henricosta45');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(1, 'Camélia Brunch Garden', 226170009, 'Rua do Passeio Alegre, 368', 'saradias');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(2, 'Eleven Lab Concept', 910550994, 'Rua do Ouro nº 418', 'saradias');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(3, 'Starbucks', 'Rua Mouzinho da Silveira, 188', 220437782, 'saradias');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(4, 'DeGema', 221116336, 'Rua Fonte da Luz, 217', 'lluislima');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(5, 'Noshi Healthy Food', 222053034, 'Rua do Carmo, 11/12', 'lluislima');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(6, 'Apuro', 224024756, 'Rua do Breiner, 236', 'lluislima');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(7, 'Fava Tonka', 915343494, 'Rua de Santa Catarina, 100', 'lluislima');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(8, 'Manna', 223161536, 'Rua da Conceicao 60', 'mariaa12');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(9, 'Nola Kitchen', 910595015, 'Praça Dona Filipa de Lencastre, 25', 'mariaa12');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(10, 'Subenshi', 964097707, 'Campo Dos Martires da Patria, 65', 'mariaa12');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(11, 'Sushihana', 916551972, 'Rua Professor Mota Pinto, 138', 'dav_soares');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(12, 'Noodles by RO', 967307887, 'Norteshopping, Rua Sara Afonso, 105-117', 'dav_soares');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(13, 'Taco Bell', 932160090, 'Norteshopping, Rua Sara Afonso, 105-117', 'dav_soares');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(14, 'Guaka', 910153794, 'Rua de Santo Ildefonso, 305', 'dav_soares');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(15, 'Boteco Mexicano', 964249974, 'Campo dos Mártires da Pátria 38-41', 'nicoleolive');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(16, 'Real Indiana', 226162107, 'Avenida de Montevideu, 26', 'nicoleolive');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(17, 'Chutnify Canteen', 229542114, 'The Cook Book, Norteshopping Piso 1, Rua Sara Afonso', 'nicoleolive');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(18, 'Indi Go Indian Flavours', 226065136, 'Arrábida Shopping, Praceta Henrique Moreira, 244', 'nicoleolive');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(19, 'Bocca', 226170004, 'Rua do Passeio Alegre, Jardim das Sobreiras, Lj 1', 'fpereira');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(20, "Casad'oro", 226106012, 'Rua do Ouro, 797', 'fpereira');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(21, 'Modì', 223186690, 'Praça Cidade do Salvador, 296', 'fpereira');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(22, 'Capa Negra II', 226078383, 'Rua do Campo Alegre, 191', 'ruisousa4'); 
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(23, "Madureira's", 220138373, 'Rua da Praia, 9950', 'ruisousa4');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(24, 'Taberna Londrina', 221119320, 'Estrada da Circunvalação, 7964', 'ruisousa4');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(25, 'Tâmaras - Pastelaria Saudável', 912345678, 'R. de José Falcão 157 Loja 10', 'rute5martins');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(26, 'Cremosi', 935401378, 'Rua do Passeio Alegre, 372-380', 'rute5martins');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(27, 'Tavi', 226180152, 'Rua da Senhora da Luz, 368', 'rute5martins');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(28, 'Padaria Ribeiro', 222005067, 'Praça Guilherme Gomes Fernandes, 21', 'henricosta45');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(29, 'Rooftop Santa Catarina', 915452459, 'La Vie, Rua de Fernandes Tomás, 508', 'henricosta45');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(30, "B'Artist, The Artist - Porto Hotel e Bistrô", 220132700, 'Rua da Firmeza, 49', 'henricosta45');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(31, "Daikiri Bar" , 918424324, "Rua da Praia, 907", 'henricosta45');
 
 INSERT INTO Category(idCategory, name) VALUES(1, 'Breakfast');
 INSERT INTO Category(idCategory, name) VALUES(2, 'Vegetarian');
