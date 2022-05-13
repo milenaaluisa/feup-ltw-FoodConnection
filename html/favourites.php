@@ -42,7 +42,7 @@
             <header>
                 <h1>My Favourites</h1>
             </header>
-            <section id="restaurants">
+            <section id="restaurants" class = "light_bg_color">
                 <header>
                     <h2>Restaurants</h2>
                 </header>
@@ -77,7 +77,7 @@
                 </article>
             </section>
 
-            <section id= "dishes">
+            <section id= "dishes" class = "light_bg_color">
                 <header>
                     <h2>Dishes</h2>
                 </header> 

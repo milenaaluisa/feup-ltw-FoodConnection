@@ -38,7 +38,7 @@
             </nav>
         </header>
 
-        <nav id="categories">
+        <nav id="categories" class = "main_page">
             <h2><a href="index.php">Categories</a></h2>
             <ul>
                 <li><a href="category.php">All restaurants</a></li>

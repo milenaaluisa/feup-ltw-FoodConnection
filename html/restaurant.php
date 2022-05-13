@@ -57,7 +57,7 @@
         </nav>
 
         <main>
-            <section id="restaurants">
+            <section id="restaurants" class="main_page">
                 <article class="restaurant">
                     <header>
                         <h1><a href="restaurant.php">Restaurant 1</a></h1>

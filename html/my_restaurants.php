@@ -38,7 +38,7 @@
             </nav>
         </header>
 
-        <section id="restaurants">
+        <section id="restaurants" class="my_restaurants_page">
             <header>
                 <h2>My Restaurants</h2>
             </header>
