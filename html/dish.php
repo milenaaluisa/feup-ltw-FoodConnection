@@ -3,7 +3,7 @@
     <head>
         <title>UberEats 9<!--mudar--></title>
         <meta charset="UTF-8">
-        <link href="style.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
         <link href="layout.css" rel="stylesheet">
     </head>
     <body>
@@ -60,6 +60,7 @@
                             Add to cart <img src="https://picsum.photos/600/300?city" alt="">
                         </button>
                     </form>
+                    <a href=restaurant.php class="close"></a>
                 </article>
             </section>
         </main>
