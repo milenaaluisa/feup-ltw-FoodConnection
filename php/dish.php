@@ -1,5 +1,5 @@
 <?php
-    $db = new PDO('sqlite:database.db');
+    $db = new PDO('sqlite:database/database.db');
     
     $all_dishes = $stmt->fetchAll();
 
@@ -60,7 +60,7 @@
 
         <main>
             <section id=dish>
-                <img src="images\<?= $dish['file'] ?>">
+                <img src="..\images\<?= $dish['file'] ?>">
 
                 <!---TODO: Like button-->
                 

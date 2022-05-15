@@ -1,5 +1,5 @@
 <?php
-    $db = new PDO('sqlite:database.db');
+    $db = new PDO('sqlite:database/database.db');
 
     $stmt = $db->prepare('SELECT FavRestaurant.username, Restaurant.*
                           FROM FavRestaurant
@@ -99,7 +99,7 @@
                             <h1><a href="dish.php?id=<?= $favourite_dish['idDish'] ?>"><?= $favourite_dish['name'] ?></a></h1>
                         </header>
 
-                        <img src="images\<?= $favourite_dish['file'] ?>">
+                        <img src="..\images\<?= $favourite_dish['file'] ?>">
 
                         <span class="price"><?= $favourite_dish['price'] ?></span>
 
