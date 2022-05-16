@@ -3,8 +3,9 @@
     <head>
         <title>UberEats 9<!--mudar--></title>
         <meta charset="UTF-8">
-        <link href="style.css" rel="stylesheet">
-        <link href="layout.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
+        <link href="../css/layout.css" rel="stylesheet">
+        <link href="../css/forms.css" rel="stylesheet">
     </head>
     <body>
         <header>
