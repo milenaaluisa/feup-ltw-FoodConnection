@@ -46,6 +46,10 @@
                 <li><a href="category.php">Category 2</a></li>
                 <li><a href="category.php">Category 3</a></li>
                 <li><a href="category.php">Category 4</a></li>
+                <li><a href="category.php">Category 4</a></li>
+                <li><a href="category.php">Category 4</a></li>
+                <li><a href="category.php">Category 4</a></li>
+                <li><a href="category.php">Category 4</a></li>  
             </ul>
         </nav>
         

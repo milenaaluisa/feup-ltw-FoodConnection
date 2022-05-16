@@ -39,7 +39,7 @@
         </header>
 
         <main>
-            <section id = "dishes">
+            <section id ="dishes" class ="main_page">
                 <article>
                     <header>
                         <h2><a href="dish.php">Dish 1</a></h2>

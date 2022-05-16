@@ -82,6 +82,36 @@
                     <a class="rate" href=restaurant.php#reviews> 4 </a>   
                     <!---TODO: LIKE BUTTON-->
                 </article>
+
+                <article>
+                    <header>
+                        <h2><a href="restaurant.php">Restaurant 3</a></h2>
+                    </header>
+                    <a href="restaurant.php"><img src="https://picsum.photos/id/237/200/300" alt=""></a>
+                    <span class="avgPrice"> €€ </span>
+                    <a class="rate" href=restaurant.php#reviews> 4 </a>   
+                    <!---TODO: LIKE BUTTON-->
+                </article>
+
+                <article>
+                    <header>
+                        <h2><a href="restaurant.php">Restaurant 3</a></h2>
+                    </header>
+                    <a href="restaurant.php"><img src="https://picsum.photos/id/237/200/300" alt=""></a>
+                    <span class="avgPrice"> €€ </span>
+                    <a class="rate" href=restaurant.php#reviews> 4 </a>   
+                    <!---TODO: LIKE BUTTON-->
+                </article>
+
+                <article>
+                    <header>
+                        <h2><a href="restaurant.php">Restaurant 3</a></h2>
+                    </header>
+                    <a href="restaurant.php"><img src="https://picsum.photos/id/237/200/300" alt=""></a>
+                    <span class="avgPrice"> €€ </span>
+                    <a class="rate" href=restaurant.php#reviews> 4 </a>   
+                    <!---TODO: LIKE BUTTON-->
+                </article>
             </section>
         </main>
 
