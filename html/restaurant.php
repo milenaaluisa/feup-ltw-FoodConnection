@@ -154,9 +154,9 @@
                                 <input name="quantity" type="number" value="1" min="0" step="1">
                             </label>
                             <span class="price">3.50</span>
+                            <textarea name="notes" placeholder="notes"></textarea>
                             <h2>Subtotal: </h2>
                             <span class="subtotal">10.5</span>
-                            <textarea name="notes" placeholder="extras"></textarea>
                             <button type="submit">Place Order</button>
                         </form>
                     </section>
@@ -164,21 +164,35 @@
                     <section id="reviews">
                         <h2>Reviews</h2>
                         <article class="review">
-                            <span class="user">user1</span>
-                            <span class="date">1m</span>
-                            <p>Aliquam maximus commodo dui, ut viverra urna vulputate et. Donec posuere vitae sem sed vehicula. Sed in erat eu diam fringilla sodales. Aenean lacinia vulputate nisl, dignissim dignissim nisl. Nam at nibh mollis, facilisis nibh sit amet, mattis urna. Maecenas.</p>
+                            <div class = "comment"> 
+                                <img src="https://picsum.photos/600/300?city" class ="profile_photo" alt = "profile photo">
+                                <span class="user">user1</span>
+                                <span class="rate">3</span>
+                                <span class="date">1m</span>
+                                <p>Aliquam maximus commodo dui, ut viverra urna vulputate et. Donec posuere vitae sem sed vehicula. Sed in erat eu diam fringilla sodales. Aenean lacinia vulputate nisl, dignissim dignissim nisl. Nam at nibh mollis, facilisis nibh sit amet, mattis urna. Maecenas.</p>
+                            </div> 
                         </article> 
 
                         <article class="review">
-                            <span class="user">user2</span>
-                            <span class="date">1m</span>
-                            <p>Aliquam maximus commodo dui, ut viverra urna vulputate et. Donec posuere vitae sem sed vehicula. Sed in erat eu diam fringilla sodales. Aenean lacinia vulputate nisl, dignissim dignissim nisl. Nam at nibh mollis, facilisis nibh sit amet, mattis urna. Maecenas.</p>
+                            <div class = "comment"> 
+                                <img src="https://picsum.photos/600/200?city" class ="profile_photo" alt = "profile photo">
+                                <span class="user">user2</span>
+                                <span class="rate">4</span>
+                                <span class="date">3w</span>
+                                <p>Aliquam maximus commodo dui, ut viverra urna vulputate et. Donec posuere vitae sem sed vehicula. Sed in erat eu diam fringilla sodales. Aenean lacinia vulputate nisl, dignissim dignissim nisl. Nam at nibh mollis, facilisis nibh sit amet, mattis urna. Maecenas.</p>
+                            </div>
+                            <img src= "https://picsum.photos/300/200?city" alt = "review photo">
                         </article> 
 
                         <article class="review">
-                            <span class="user">user3</span>
-                            <span class="date">1m</span>
-                            <p>Aliquam maximus commodo dui, ut viverra urna vulputate et. Donec posuere vitae sem sed vehicula. Sed in erat eu diam fringilla sodales. Aenean lacinia vulputate nisl, dignissim dignissim nisl. Nam at nibh mollis, facilisis nibh sit amet, mattis urna. Maecenas.</p>
+                            <div class = "comment"> 
+                                <img src="https://picsum.photos/600/200?city" class ="profile_photo" alt = "profile photo">
+                                <span class="user">user3</span>
+                                <span class="rate">4</span>
+                                <span class="date">1m</span>
+                                <p>Aliquam maximus commodo dui, ut viverra urna vulputate et. Donec posuere vitae sem sed vehicula. Sed in erat eu diam fringilla sodales. Aenean lacinia vulputate nisl, dignissim dignissim nisl. Nam at nibh mollis, facilisis nibh sit amet, mattis urna. Maecenas.</p>
+                            </div>
+                            <img src= "https://picsum.photos/300/200?city" alt = "review photo">
                         </article> 
                     </section>
 
