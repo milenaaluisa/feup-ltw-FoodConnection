@@ -45,7 +45,7 @@
                     <header>
                         <h2><a href="dish.php">Dish 1</a></h2>
                     </header>
-                    <img src="https://picsum.photos/600/300?city" alt="">
+                    <a href="dish.php"><img src="https://picsum.photos/600/300?city" alt=""></a>
                     <span class="price">7.00</span>
                     <span class="rate"> 4</span>
                     <!---TODO: Like button-->

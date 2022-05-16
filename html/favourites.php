@@ -86,7 +86,7 @@
                     <header>
                         <h3><a href="dish.php">Dish 1</a></h3>
                     </header>
-                    <img src="https://picsum.photos/600/300?city" alt=""> <!---TODO: Add link to dish page-->
+                    <a href="dish.php"><img src="https://picsum.photos/600/300?city" alt=""></a>
                     <span class="price">7.00</span>
                     <span class="rate"> 4</span>
                     <!---TODO: like button-->
@@ -96,7 +96,7 @@
                     <header>
                         <h3><a href="dish.php">Dish 2</a></h3>
                     </header>
-                    <img src="https://picsum.photos/600/300?city" alt="">
+                    <a href="dish.php"><img src="https://picsum.photos/600/300?city" alt=""></a>
                     <span class="price">6.00</span>
                     <span class="rate">5</span>
                     <!---TODO: like button-->
@@ -106,7 +106,7 @@
                     <header>
                         <h3><a href="dish.php">Dish 3</a></h3>
                     </header>
-                    <img src="https://picsum.photos/600/300?city" alt="">
+                    <a href="dish.php"><img src="https://picsum.photos/600/300?city" alt=""></a>
                     <span class="price">5.00</span>
                     <span class="rate">4</span>
                     <!---TODO: like button-->
