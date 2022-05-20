@@ -1,17 +1,10 @@
 <?php
-    $db = new PDO('sqlite:database/database.db');
+    require_once('./database/connection.db.php');
+    require_once('./database/restaurants.db.php');
+  
+    $db = getDatabaseConnection();
 
-    $stmt = $db->prepare('SELECT *
-                          FROM Restaurant
-                          WHERE username /*QUANDO TRATAR DAS SESSOES*/');
-    $stmt->execute(array($_GET['id']));
-    $my_restaurants = $stmt->fetchAll();
-
-    $stmt = $db->prepare('SELECT idRestaurant, Shift.*
-                          FROM Shift
-                          JOIN RestaurantShift USING (idShift)');
-    $stmt->execute(array($_GET['id']));
-    $shifts = $stmt->fetchAll();
+    $my_restaurants = getUserRestaurants($db, $_GET['id']);
 ?>
 
 <!DOCTYPE html>
@@ -65,12 +58,6 @@
                     </header>
                     <a href="restaurant.php"><img src="https://picsum.photos/id/237/200/300" alt=""></a>
                     <section class="info">
-                        <h2>Shift:</h2>
-                        <?php foreach($shifts as $shift) {
-                            if($shift['idRestaurant'] == $my_restaurant['idRestaurant']) { ?>
-                                <p><?= $shift['day'] ?>: <?= $shift['openingTime'] ?><?= $shift['closingTime'] ?>-</p>
-                            <?php } ?>
-                        <?php } ?>
                         <h2>Tel.:</h2>
                         <p><?= $my_restaurant['phoneNum'] ?></p>
                         <h2>Address: </h2>

@@ -1,22 +1,12 @@
 <?php
-    $db = new PDO('sqlite:database/database.db');
+    require_once('./database/connection.db.php');
+    require_once('./database/orders.db.php');
 
-    $stmt = $db->prepare('SELECT FoodOrder.*, Restaurant.name as restName
-                          FROM FoodOrder
-                          JOIN Selection USING (idFoodOrder)
-                          JOIN Dish USING (idDish)
-                          JOIN Restaurant USING (idRestaurant)
-                          WHERE username /*QUANDO TRATAR DAS SESSOES*/');
-    $stmt->execute(array($_GET['id']));
-    $my_orders = $stmt->fetchAll();
+    $db = getDatabaseConnection();
 
-    $stmt = $db->prepare('SELECT Dish.*, Selection.*, FoodOrder.*
-                          FROM Dish
-                          JOIN Selection USING (idDish)
-                          JOIN FoodOrder USING (idFoodOrder)
-                          WHERE username /*QUANDO TRATAR DAS SESSOES*/');
-    $stmt->execute(array($_GET['id']));
-    $ordered_dishes = $stmt->fetchAll();
+    $my_orders = getUserOrders($db, $_GET['id']);
+
+    $ordered_dishes = getOrderDishes($db, $_GET['id'])
     
     $subtotal = 0;
 ?>

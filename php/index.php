@@ -1,9 +1,10 @@
 <?php
-  $db = new PDO('sqlite:database/database.db');
+  require_once('./database/connection.db.php');
+  require_once('./database/categories.db.php');
+  
+  $db = getDatabaseConnection();
 
-  $stmt = $db->prepare('SELECT * FROM Category');
-  $stmt->execute();
-  $categories = $stmt->fetchAll();
+  $categories = getAllCategories($db);
 ?>
 
 <!DOCTYPE html>

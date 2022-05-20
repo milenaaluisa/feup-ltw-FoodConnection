@@ -1,21 +1,12 @@
 <?php
-    $db = new PDO('sqlite:database/database.db');
-    
-    $all_dishes = $stmt->fetchAll();
+    require_once('./database/connection.db.php');
+    require_once('./database/dishes.db.php');
+      
+    $db = getDatabaseConnection();
 
-    $stmt = $db->prepare('SELECT Dish.*, file
-                          FROM Dish
-                          JOIN Photo USING (idDish)
-                          WHERE Dish.idDish = ?');
-    $stmt->execute(array($_GET['id']));
-    $dish = $stmt->fetch();
+    $dish = getSelectedDish($db, $_GET['id']);
 
-    $stmt = $db->prepare('SELECT name
-                          FROM DishAllergen
-                          JOIN Allergen Using (idAllergen)
-                          WHERE idDish = ?');
-    $stmt->execute(array($_GET['id']));
-    $allergens = $stmt->fetchAll();
+    $allergens = getDishAllergens($db, $_GET['id']);
 ?>
 
 <!DOCTYPE html>

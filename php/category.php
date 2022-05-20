@@ -1,29 +1,14 @@
 <?php
-  $db = new PDO('sqlite:database/database.db');
+  require_once('./database/connection.db.php');
+  require_once('./database/categories.db.php');
+  require_once('./database/restaurants.db.php');
+  
+  $db = getDatabaseConnection();
 
-  $stmt = $db->prepare('SELECT *
-                        FROM Category 
-                        WHERE idCategory <> ?');
-  $stmt->execute(array($_GET['id']));
-  $categories = $stmt->fetchAll();
+  $categories = getAllOtherCategories($db, $_GET['id']);
 
-  $id = $_GET['id'];
-
-  if($id == 0) {
-    $stmt = $db->prepare('SELECT Restaurant.idRestaurant as idRest, name, averagePrice, averageRate
-                          FROM Restaurant');
-    $stmt->execute();
-    $restaurants = $stmt->fetchAll();
-  }
-
-  else {
-    $stmt = $db->prepare('SELECT Restaurant.idRestaurant as idRest, name, averagePrice, averageRate
-                          FROM Restaurant
-                          JOIN RestaurantCategory USING (idRestaurant) 
-                          WHERE idCategory = ?');
-    $stmt->execute(array($_GET['id']));
-    $restaurants = $stmt->fetchAll();
-  }
+  if($_GET['id'] == 0) $restaurants = getAllRestaurants($db);
+  else $restaurants = getCategoryRestaurants($db, $_GET['id']);
 ?>
 
 <!DOCTYPE html>
@@ -89,7 +74,7 @@
 
                         <img src="https://picsum.photos/id/237/200/300">
 
-                        <?php if($restaurant['averagePrice'] =< 10) { ?> <!-- TODO: definir estes valores -->
+                        <?php if($restaurant['averagePrice'] <= 10) { ?>
                                 <span class="avgPrice"> € </span>
                         <?php }
                               else if($restaurant['averagePrice'] > 10 && $restaurant['averagePrice'] <= 45) { ?>

@@ -1,40 +1,20 @@
 <?php
-    $db = new PDO('sqlite:database/database.db');
+    require_once('./database/connection.db.php');
+    require_once('./database/categories.db.php');
+    require_once('./database/restaurants.db.php');
+    require_once('./database/dishes.db.php');
+  
+    $db = getDatabaseConnection();
 
-    $stmt = $db->prepare('SELECT *
-                          FROM Restaurant
-                          WHERE idRestaurant = ?');
-    $stmt->execute(array($_GET['id']));
-    $restaurant = $stmt->fetch();
+    $restaurant = getRestaurant($db, $_GET['id']);
 
-    $stmt = $db->prepare('SELECT *
-                          FROM Category
-                          JOIN RestaurantCategory USING (idCategory)
-                          WHERE idRestaurant = ?');
-    $stmt->execute(array($_GET['id']));
-    $categories = $stmt->fetchAll();
+    $categories = getRestaurantCategories($db, $_GET['id']);
 
-    $stmt = $db->prepare('SELECT Shift.*
-                          FROM Shift
-                          JOIN RestaurantShift USING (idShift)
-                          WHERE idRestaurant = ?');
-    $stmt->execute(array($_GET['id']));
-    $shifts = $stmt->fetchAll();
+    $shifts = getRestaurantShifts($db, $_GET['id']);
 
-    $stmt = $db->prepare('SELECT idDish, name, price, averageRate, file
-                          FROM Dish
-                          JOIN Photo USING (idDish)
-                          WHERE Dish.idRestaurant = ?');
-    $stmt->execute(array($_GET['id']));
-    $dishes = $stmt->fetchAll();
+    $dishes = getRestaurantDishes($db, $_GET['id']);
 
-    $stmt = $db->prepare('SELECT Review.*
-                          FROM Review
-                          JOIN Dish USING (idDish)
-                          JOIN Restaurant USING (idRestaurant)
-                          WHERE Dish.idRestaurant = ?');
-    $stmt->execute(array($_GET['id']));
-    $reviews = $stmt->fetchAll();
+    $reviews = getRestaurantReviews($db, $_GET['id']);
 ?>
 
 <!DOCTYPE html>
@@ -44,6 +24,7 @@
         <meta charset="UTF-8">
         <link href="style.css" rel="stylesheet">
         <link href="layout.css" rel="stylesheet">
+        <script src="script.js"></script>
     </head>
     <body>
         <header>
@@ -86,7 +67,7 @@
 
                     <img src= "https://picsum.photos/600/300?city">
 
-                    <!---TODO: Like button-->
+                    <img id="fav_button" src="fav_button.jpg" alt=""> 
 
                     <nav id="categories">
                         <ul>
@@ -126,7 +107,22 @@
                         <?php } ?>
                     </section>
 
-                    <!-- acrescentar codigo order -->
+                    <section id="order">
+                        <header>
+                            <h1>Your Order</h1>
+                        </header>
+                        <form action = "new_order.php" method="post">
+                            <?php foreach($selected_dishes as $selected_dish) { ?>
+                                <label>
+                                    <?= $selected_dish['name'] ?>
+                                    <input name="quantity" type="number" value="1" min="0" step="1">
+                                </label>
+                                <span class="price"><?= $selected_dish['price'] ?></span>
+                            <?php } ?>
+    
+                            <button type="submit">Place Order</button>
+                        </form>
+                    </section>
 
                     <section id="reviews">
                         <h1>Reviews</h1>

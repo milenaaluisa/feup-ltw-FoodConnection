@@ -1,19 +1,13 @@
 <?php
-    $db = new PDO('sqlite:database/database.db');
+    require_once('./database/connection.db.php');
+    require_once('./database/restaurants.db.php');
+    require_once('./database/dishes.db.php');
+  
+    $db = getDatabaseConnection();
 
-    $stmt = $db->prepare('SELECT FavRestaurant.username, Restaurant.*
-                          FROM FavRestaurant
-                          JOIN Restaurant USING (idRestaurant)
-                          WHERE username /* QUANDO TRATAR DAS SESSOES*/');
-    $stmt->execute(array($_GET['id']));
-    $favourite_restaurants = $stmt->fetchAll();
+    $favourite_restaurants = getUserFavouriteRestaurants($db, $_GET['id']);
 
-    $stmt = $db->prepare('SELECT FavDish.username, Dish.*
-                          FROM FavDish
-                          JOIN Dish USING (idDish)
-                          WHERE username /* QUANDO TRATAR DAS SESSOES*/');
-    $stmt->execute(array($_GET['id']));
-    $favourite_dishes = $stmt->fetchAll();
+    $favourite_dishes = getUserFavouriteDishes($db, $_GET['id']);
 ?>
 
 <!DOCTYPE html>
