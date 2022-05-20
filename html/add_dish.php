@@ -1,15 +1,11 @@
-<?php
-  $db = new PDO('sqlite:database.db');
-
-?>
-
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
         <title>UberEats 9<!--mudar--></title>
         <meta charset="UTF-8">
-        <link href="style.css" rel="stylesheet">
-        <link href="layout.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
+        <link href="../css/layout.css" rel="stylesheet">
+        <link href="../css/forms.css" rel="stylesheet">
     </head>
     <body>
         <header>
@@ -44,13 +40,13 @@
         </header>
 
         <main>
-            <section id=form>
-                <h1>Add new restaurant</h1>
+            <section id="form">
+                <h1>Add new dish</h1>
                 <form action="action_add_restaurant.php" method="post">
                     <input type="file" name="file" accept="image/png,image/jpeg">
                     <input type="text" name="name" placeholder="name" required="required">
-                    <input type="text" name="price" placeholder="price" required="required">
-                    <input type="text" name="ingredients" placeholder="ingredients" required="required">
+                    <input type="number" name="price" placeholder="price" step = 0.01 required="required">
+                    <input type="text" name="ingredients" placeholder="ingredients">
                     <select name="allergens" multiple>
                         <option value="" disabled selected>allergens</option>
                         <option value="Celery">Celery</option>
