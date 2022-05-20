@@ -6,6 +6,8 @@
         <link href="../css/style.css" rel="stylesheet">
         <link href="../css/layout.css" rel="stylesheet">
         <link href="../css/forms.css" rel="stylesheet">
+        <link href="../css/dishes_list.css" rel="stylesheet">
+        <link href="../css/restaurant.css" rel="stylesheet">
     </head>
     <body>
         <header>
@@ -59,7 +61,7 @@
 
         <main>
             <section id="restaurants" class="main_page">
-                <article class="restaurant">
+                <article>
                     <header>
                         <h1><a href="restaurant.php">Restaurant 1</a></h1>
                     </header>
@@ -144,20 +146,20 @@
                             <h2>Your Order</h2>
                         </header>
                         <form action = "action_new_order.php" method="post">
-                            <label>
-                                Ovos Benedict
-                                <input name="quantity" type="number" value="1" min="0" step="1">
-                            </label>
+                            <label> Ovos Benedict </label>
+                            <input name="quantity" type="number" value="1" min="0" step="1">
                             <span class="price">7.00</span>
 
-                            <label>
-                                Sumo de laranja 
-                                <input name="quantity" type="number" value="1" min="0" step="1">
-                            </label>
+                            <label> Sumo de laranja </label>
+                            <input name="quantity" type="number" value="1" min="0" step="1">
                             <span class="price">3.50</span>
+
                             <textarea name="notes" placeholder="notes"></textarea>
-                            <h2>Subtotal: </h2>
-                            <span class="subtotal">10.5</span>
+
+                            <div>
+                                <h2>Subtotal: </h2>
+                                <span class="price">10.5</span>
+                            </div>
                             <button type="submit">Place Order</button>
                         </form>
                     </section>
