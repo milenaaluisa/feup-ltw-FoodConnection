@@ -6,7 +6,6 @@
         <link href="../css/style.css" rel="stylesheet">
         <link href="../css/layout.css" rel="stylesheet">
         <link href="../css/forms.css" rel="stylesheet">
-        <link href="../css/dishes_list.css" rel="stylesheet">
         <link href="../css/restaurant.css" rel="stylesheet">
     </head>
     <body>

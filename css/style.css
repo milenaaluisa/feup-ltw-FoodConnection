@@ -1,0 +1,382 @@
+/*constants*/
+body {
+    --dark-bg-color: #C4C4C4;
+    --light-bg-color: #E7E7E7;
+    --star-color: #F8CF66;
+    --default-border-radius: 15px;
+}
+/*----------------------------------*/
+
+
+/*font, align, decoration*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Lora&display=swap');
+
+html {
+    box-sizing: border-box;
+}
+
+body, main {
+    margin: 0 auto;
+    background-color: white;
+}
+
+*, *::after, *::before  {
+    box-sizing: border-box;
+}
+
+* {
+    font-family: "Inter", sans-serif;
+    text-decoration: none;
+    font-size: medium;
+    color: inherit;  
+    background-color: inherit; 
+    padding: 0;
+    margin: 0;
+}
+
+body > :not(footer) {
+    margin: 0 10%;
+}
+
+body > header {
+    margin: 1em;
+}
+
+#menu a {
+    font-size: x-large;
+}
+
+p {
+    text-align: justify;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    display: block;
+    width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
+
+nav > header, section > header, form > header {
+    text-align: center;
+}
+
+img {
+    object-fit: cover;
+}
+
+i {
+    margin: 0; padding: 0; display: inline;
+}/*----------------------------------*/
+
+/*body and footer*/
+body{ 
+    height:100vh; 
+}
+
+body > :nth-last-child(2){
+    margin-bottom: 64px;
+}
+
+body{ 
+  display:flex; 
+  flex-direction:column; 
+}
+
+footer {
+    padding: 1em;
+    margin-top: auto;
+}
+
+footer img {
+    height: 1em;
+    width: auto;
+}/*----------------------------------*/
+
+/*background-color*/ 
+.dark-bg-color,  #sign > *, body > nav li, footer, #restaurants.my_restaurants_page + a {
+    background-color: var(--dark-bg-color);
+}
+
+.light-bg-color, .composition, #restaurants.main_page #order, #favorites > #restaurants, #favorites > #dishes  {
+    background-color: var(--light-bg-color);
+    padding: 1em;
+}/*----------------------------------*/
+
+
+/*radius*/
+.dark-bg-color, .light-bg-color,img, #sign > *, body > nav li, #restaurants.my_restaurants_page + a, .composition,  #restaurants.main_page #order, #favorites > #restaurants, #favorites > #dishes { 
+    border-radius: var(--default-border-radius);
+}
+
+footer img, img.logo, img.profile_photo {
+    border-radius: 0%;
+}/*----------------------------------*/
+
+
+/*main header*/
+body > header {
+    border-bottom: 1px solid var(--dark-bg-color);
+    padding-bottom: 0.5em;
+    margin-bottom: 48px;
+}
+
+body > header img:first-of-type {
+    height: 5em;
+    width: 15em;
+    margin: auto;
+    display: block;
+}
+
+/*search bar*/
+body > header #search_bar {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+body > header #search_bar img {
+    display: none;  /*--TODO*/
+}
+
+body > header #search_bar input {
+    padding: 0.5em 0;
+    font-size:x-small;  
+    width: 100%; 
+}/*----------------------------------*/
+
+
+/*sidebar menu*/
+#menu ul, #menu #hamburger{
+    display: none;
+}
+
+#menu .hamburger:before {
+    content:'\2630';
+    font-size: xx-large;
+}
+
+#menu .hamburger{
+    margin: 0 32px;
+}
+
+#menu #hamburger:checked + .hamburger::before{
+    content:'\2715';
+    z-index: 99999;
+    font-size: xx-large;
+    position: fixed;
+    width: 100vw;
+}
+
+/*----------------blur-------------------*/
+
+#menu #hamburger:checked + .hamburger::before, #menu .hamburger:before {
+    cursor: pointer;
+}
+
+#menu #hamburger:checked + .hamburger + ul{
+    display: flex;
+    flex-direction: column;
+}
+
+#menu ul {   
+    left: 0;
+    top: 0;
+    background-color: wheat; /*--TODO: Altear*/
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    width: 100vw;
+    height: 100vh;
+}
+
+#menu li{
+    padding: 1em;
+    margin: 0;
+    background-color: var(--light-bg-color);
+    width: 20vw;
+}
+
+#menu ul > li img:first-of-type {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+}
+
+.profile_photo {
+    width: 20%;
+}/*----------------------------------*/
+
+
+/* sign */
+#sign {
+    margin: 0 32px;
+}
+
+#sign > * {
+    padding: 0.3em 1em;
+}/*----------------------------------*/
+
+
+/*categories*/
+body > nav {   
+    margin-bottom: 3em;
+}
+
+body > nav li {
+    text-align: center;
+    padding: 1em 0;
+    width: calc(12.5% - 14px);
+    margin: 7px;
+}
+
+body > nav:nth-last-child(2) li { /*index page*/
+    padding: 3em 0;
+    width: calc(25% - 20px);
+    margin: 10px;
+}/*----------------------------------*/
+
+
+/*restaurants and dishes*/
+#dishes > article > .edit_options, #restaurants > article > .edit_options {
+    display: none;
+}
+
+.rate::after {
+    content: ' \2605';      
+    color : var(--star-color);
+    font-size: larger;
+}
+
+.price::after {
+    content: ' €';
+}
+
+#restaurants > article > .avgPrice, #dishes > article > header, #dishes > article > .price {
+    margin-left: 0.5em;
+}
+
+#restaurants > article > .rate, #dishes > article > .rate {
+    margin-right: 0.5em;
+}/*----------------------------------*/
+
+
+/* dish */
+#dishes > article > header > * {
+    text-align: left;
+}
+
+.close::after{
+    content:'\26D2';
+    padding: 8px;
+    color: var(--dark-bg-color);
+    background-color: var(--light-bg-color);  
+    border-radius: 1em;
+}/*----------------------------------*/
+
+
+/* dish main page */
+#dishes > article > .composition p {
+    margin-bottom: 1em;
+}
+
+#dishes > article form button > img {
+    display: none; /*TODO*/
+}
+
+#dishes > article > .composition{
+    margin: 1em 0;
+}
+
+#dishes.main_page img:first-of-type{
+    margin-top: 16px;
+}/*----------------------------------*/
+
+
+/* restaurant main page */
+.info > *{
+    text-align: left;
+}
+
+.info p {
+    margin-bottom: 1em;
+}
+
+div.subtotal {
+    border-top: 5px dashed var(--dark-bg-color);
+}/*----------------------------------*/
+
+
+/* reviews */
+.rate {
+    text-align: right;
+}
+
+.user::before {
+    content: '@';
+}
+
+#reviews .user::after {
+    content: ' said:';
+}
+
+#reviews .date::after {
+    content: ' ago';
+}
+
+#reviews > article > div{
+    border-radius: var(--default-border-radius);
+    border: 2px solid var(--dark-bg-color);
+}
+
+#reviews .profile_photo {
+    border-radius: 20px;
+}/*----------------------------------*/
+
+
+/* favorites page */
+#favorites {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2em;
+}
+
+#favorites > #dishes, #favorites > #restaurants{
+    padding: 2em;
+    row-gap: 30px;
+}
+
+#favorites > #dishes > article, #favorites > #restaurants > article{
+    margin-bottom: 0;
+    margin-top: 0;
+}/*----------------------------------*/
+
+
+/*order form in restaurant main page and user orders page*/
+#orders .price {
+    text-align: right;
+}/*----------------------------------*/
+
+
+/*user and restaurant orders*/
+.quantity::after {
+    content: 'x';
+    padding-right: 0.5em;
+}
+
+.date {
+    color: grey;
+}
+
+#orders > article > p:first-of-type {
+    font-weight: bold;
+}
+
+.quantity::before {
+    content: '\25CF  ';
+}/*----------------------------------*/

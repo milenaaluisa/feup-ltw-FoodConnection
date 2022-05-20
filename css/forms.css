@@ -1,0 +1,75 @@
+/*constants*/
+body {
+    --dark-bg-color: #C4C4C4;
+    --light-bg-color: #E7E7E7;
+    --star-color: #F8CF66;
+    --default-border-radius: 15px;
+}/*----------------------------------*/
+
+form, form > *{
+    width: 100%;
+    justify-content: center;
+}
+
+form * {
+    border-radius: var(--default-border-radius);
+    padding: 0.5em;
+    margin: 0.5em 0 ;
+    justify-content: center;
+}
+
+button {
+    padding: 1em;
+    background-color:var(--dark-bg-color);
+    border: none;
+    cursor: pointer;
+}
+
+input, textarea {
+    background-color: var(--light-bg-color);
+    border: 2px solid var(--dark-bg-color);
+    display: block;
+    box-sizing: border-box;
+}
+
+input[name=ingredients] {
+    height: 100px;
+}
+
+#search_bar input {
+    opacity: 50%;
+}
+
+input:focus, button, textarea {
+    outline: none;
+}
+
+#rate_order > form, #login > form, #register > form, #form > form {
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#form > form {
+    width: 40%;
+}
+
+#rate_order > form > :nth-last-child(2), #login > form > :nth-last-child(2), #register > form > :nth-last-child(2), #form > form > :nth-last-child(2) {
+    width: auto;
+}
+
+#rate_order > form > button, #login > form > button, #register > form > button, #form > form > button {
+    width: 40%;
+}
+
+#rate_order > *, #login > *, #register > *, #form > * {
+    margin: 0 auto;
+}
+
+
+
+
+
+
