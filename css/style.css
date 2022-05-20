@@ -93,22 +93,22 @@ footer img {
 }/*----------------------------------*/
 
 /*background-color*/ 
-.dark-bg-color,  #sign > *, body > nav li, footer, #restaurants.my_restaurants_page + a {
+.dark-bg-color, body > nav li, footer, #restaurants.my_restaurants_page + a {
     background-color: var(--dark-bg-color);
 }
 
-.light-bg-color, .composition, #restaurants.main_page #order, #favorites > #restaurants, #favorites > #dishes  {
+.light-bg-color, .composition, #favorites > #restaurants, #favorites > #dishes  {
     background-color: var(--light-bg-color);
     padding: 1em;
 }/*----------------------------------*/
 
 
 /*radius*/
-.dark-bg-color, .light-bg-color,img, #sign > *, body > nav li, #restaurants.my_restaurants_page + a, .composition,  #restaurants.main_page #order, #favorites > #restaurants, #favorites > #dishes { 
+.dark-bg-color, .light-bg-color,img, body > nav li, #restaurants.my_restaurants_page + a, .composition, #favorites > #restaurants, #favorites > #dishes { 
     border-radius: var(--default-border-radius);
 }
 
-footer img, img.logo, img.profile_photo {
+footer img, header img , img.profile_photo {
     border-radius: 0%;
 }/*----------------------------------*/
 
@@ -128,16 +128,16 @@ body > header img:first-of-type {
 }
 
 /*search bar*/
-body > header #search_bar {
+body > header > div:nth-child(3) {
     margin-left: 10%;
     margin-right: 10%;
 }
 
-body > header #search_bar img {
+body > header > div:nth-child(3) img {
     display: none;  /*--TODO*/
 }
 
-body > header #search_bar input {
+body > header > div:nth-child(3) input {
     padding: 0.5em 0;
     font-size:x-small;  
     width: 100%; 
@@ -165,8 +165,6 @@ body > header #search_bar input {
     position: fixed;
     width: 100vw;
 }
-
-/*----------------blur-------------------*/
 
 #menu #hamburger:checked + .hamburger::before, #menu .hamburger:before {
     cursor: pointer;
@@ -207,12 +205,14 @@ body > header #search_bar input {
 
 
 /* sign */
-#sign {
+body > header > div:nth-child(2) {
     margin: 0 32px;
 }
 
-#sign > * {
+body > header > div:nth-child(2) > * {
     padding: 0.3em 1em;
+    background-color: var(--dark-bg-color);
+    border-radius: var(--default-border-radius);
 }/*----------------------------------*/
 
 
@@ -284,10 +284,6 @@ body > nav:nth-last-child(2) li { /*index page*/
 
 #dishes > article > .composition{
     margin: 1em 0;
-}
-
-#dishes.main_page img:first-of-type{
-    margin-top: 16px;
 }/*----------------------------------*/
 
 

@@ -10,14 +10,14 @@
     </head>
     <body>
         <header>
-            <a href="index.php"><img class="logo" src="https://picsum.photos/600/300?city" alt="Logo"></a>
+            <a href="index.php"><img src="https://picsum.photos/600/300?city" alt="Logo"></a>
 
-            <div id="sign">
+            <div>
                 <a href="login.php">Sign in</a> 
                 <a href="register.php">Sign up</a>
             </div>
 
-            <div id="search_bar">
+            <div>
                 <form action="action_page.php">
                     <img src="https://picsum.photos/600/300?city" alt="search icon">
                     <input type="text" placeholder="Search..." name="search">
@@ -41,7 +41,7 @@
         </header>
 
         <main>
-            <section id ="dishes" class ="main_page">
+            <section id ="dishes">
                 <article>
                     <header>
                         <h2><a href="dish.php">Dish 1</a></h2>

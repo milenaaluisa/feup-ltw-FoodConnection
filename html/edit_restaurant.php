@@ -10,14 +10,14 @@
     </head>
     <body>
         <header>
-            <a href="index.php"><img id="logo" src="https://picsum.photos/600/300?city" alt="Logo"></a>
+            <a href="index.php"><img src="https://picsum.photos/600/300?city" alt="Logo"></a>
 
-            <div id="sign">
+            <div>
                 <a href="login.php">Sign in</a> 
                 <a href="register.php">Sign up</a>
             </div>
 
-            <div id="search_bar">
+            <div>
                 <form action="action_page.php">
                     <img src="https://picsum.photos/600/300?city" alt="search icon">
                     <input type="text" placeholder="Search..." name="search">
@@ -29,7 +29,7 @@
                 <label class="hamburger" for="hamburger"></label>
                 <ul>
                     <li><a href="user_profile.php"><img src="https://picsum.photos/600/300?city" class ="profile_photo" alt = "profile photo"></a></li>
-                    <li><a href="user_profile.php">LuÃ­s Lima</a></li>
+                    <li><a href="user_profile.php">Luís Lima</a></li>
                     <li><a href="index.php">Home</a></li>
                     <li><a href="favourites.php">Favourites</a></li>
                     <li><a href="order_history.php">Order History</a></li>
@@ -40,7 +40,7 @@
             </nav>
         </header>
         
-        <nav id="categories">
+        <nav>
                 <ul>
                     <li><a href="category.php">Category 1</a></li>
                     <li><a href="category.php">Category 2</a></li>
@@ -59,7 +59,7 @@
         </nav>
 
         <main>
-            <section id="restaurants" class="edit_page">
+            <section id="restaurants">
                 <article>
                     <header>
                         <h1><a href="restaurant.php">Restaurant 1</a></h1>
@@ -82,7 +82,7 @@
                     <section id="dishes"> 
                         <header>Dishes</header>
                     
-                        <article class="dish">
+                        <article>
                             <header>
                                 <h1><a href="dish.php">Dish 1</a></h1>
                             </header>
@@ -94,7 +94,7 @@
                             </div>
                         </article>
 
-                        <article class="dish">
+                        <article>
                             <header>
                                 <h1><a href="dish.php">Dish 2</a></h1>
                             </header>
@@ -106,7 +106,7 @@
                             </div>
                         </article>
 
-                        <article class="dish">
+                        <article>
                             <header>
                                 <h1><a href="dish.php">Dish 3</a></h1>
                             </header>
@@ -118,7 +118,7 @@
                             </div>
                         </article>
 
-                        <article class="dish">
+                        <article>
                             <header>
                                 <h1><a href="dish.php">Dish 4</a></h1>
                             </header>
@@ -130,7 +130,7 @@
                             </div>
                         </article>
 
-                        <article class="dish">
+                        <article>
                             <header>
                                 <h1><a href="dish.php">Dish 5</a></h1>
                             </header>
@@ -142,7 +142,7 @@
                             </div>
                         </article>
 
-                        <article class="dish">
+                        <article>
                             <header>
                                 <h1><a href="dish.php">Dish 6</a></h1>
                             </header>
@@ -157,8 +157,8 @@
 
                     <section id="reviews">
                         <h2>Reviews</h2>
-                        <article class="review">
-                            <div class = "comment"> 
+                        <article>
+                            <div> 
                                 <img src="https://picsum.photos/600/300?city" class ="profile_photo" alt = "profile photo">
                                 <span class="user">user1</span>
                                 <span class="rate">3</span>
@@ -167,8 +167,8 @@
                             </div> 
                         </article> 
 
-                        <article class="review">
-                            <div class = "comment"> 
+                        <article>
+                            <div> 
                                 <img src="https://picsum.photos/600/200?city" class ="profile_photo" alt = "profile photo">
                                 <span class="user">user2</span>
                                 <span class="rate">4</span>
@@ -178,8 +178,8 @@
                             <img src= "https://picsum.photos/300/200?city" alt = "review photo">
                         </article> 
 
-                        <article class="review">
-                            <div class = "comment"> 
+                        <article>
+                            <div> 
                                 <img src="https://picsum.photos/600/200?city" class ="profile_photo" alt = "profile photo">
                                 <span class="user">user3</span>
                                 <span class="rate">4</span>
@@ -188,11 +188,9 @@
                             </div>
                             <img src= "https://picsum.photos/300/200?city" alt = "review photo">
                         </article> 
+                    </section> 
                 </article> 
-                        </article> 
-                </article> 
-                        </article> 
-                    </section>
+            </section> 
         </main>
 
         <footer>

@@ -4,7 +4,7 @@
 
 /*restaurant article in main page*/
 /*-----------STYLE---------------*/
-#restaurants > article > #order {
+#restaurants > article > #orders {
     display: none;
 }
 

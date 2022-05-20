@@ -60,17 +60,3 @@
 #reviews > article > div > .date {
     grid-column: 3; grid-row: 3;
 }
-
-
-/*order form in restaurant main page*/
-#restaurants > article > #order > form {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-#restaurants > article > #order > form > div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}

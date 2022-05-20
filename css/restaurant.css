@@ -34,27 +34,33 @@
 
 
 /*order form in restaurant main page*/
-#restaurants > article > #order > form > * {
+#restaurants > article > #orders > form > * {
     margin: 0;
 }
 
-#restaurants > article > #order > form > div {
+#restaurants > article > #orders {
+    background-color: var(--light-bg-color);
+    border-radius: var(--default-border-radius);
+    padding: 1em;
+}
+
+#restaurants > article > #orders > form > div {
     border-top: dashed 2px #000;
     margin-top: 4em;
     border-radius: 0px;
 }
 
-#restaurants > article > #order > form > label,  
-#restaurants > article > #order > form > textarea, 
-#restaurants > article > #order > form > button {
+#restaurants > article > #orders > form > label,  
+#restaurants > article > #orders > form > textarea, 
+#restaurants > article > #orders > form > button {
     margin-top: 2em;
 }
 
-#restaurants > article > #order > form > label::before {
+#restaurants > article > #orders > form > label::before {
     content: '\25CF';
 }
 
-#restaurants > article > #order > form > .price, #restaurants > article > #order > form > input {
+#restaurants > article > #orders > form > .price, #restaurants > article > #orders > form > input {
     width: 50%;
 }/*------------------------------------*/
 
@@ -85,7 +91,7 @@
     grid-column: 2; grid-row: 3;
 }
 
-#restaurants > article > #order {
+#restaurants > article > #orders {
     grid-column: 3; grid-row: 3;
 }
 
@@ -93,4 +99,16 @@
     grid-column: 1/4; grid-row: 4;
     width: 100%;
 }
-/*----------------------------------*/
+
+/*order form in restaurant main page*/
+#restaurants > article > #orders > form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#restaurants > article > #orders > form > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}/*----------------------------------*/

@@ -9,14 +9,14 @@
     </head>
     <body>
         <header>
-            <a href="index.php"><img id="logo" src="https://picsum.photos/600/300?city" alt="Logo"></a>
+            <a href="index.php"><img src="https://picsum.photos/600/300?city" alt="Logo"></a>
 
-            <div id="sign">
+            <div>
                 <a href="login.php">Sign in</a> 
                 <a href="register.php">Sign up</a>
             </div>
 
-            <div id="search_bar">
+            <div>
                 <form action="action_page.php">
                     <img src="https://picsum.photos/600/300?city" alt="search icon">
                     <input type="text" placeholder="Search..." name="search">
@@ -28,7 +28,7 @@
                 <label class="hamburger" for="hamburger"></label>
                 <ul>
                     <li><a href="user_profile.php"><img src="https://picsum.photos/600/300?city" class ="profile_photo" alt = "profile photo"></a></li>
-                    <li><a href="user_profile.php">LuÃ­s Lima</a></li>
+                    <li><a href="user_profile.php">Luís Lima</a></li>
                     <li><a href="index.php">Home</a></li>
                     <li><a href="favourites.php">Favourites</a></li>
                     <li><a href="order_history.php">Order History</a></li>

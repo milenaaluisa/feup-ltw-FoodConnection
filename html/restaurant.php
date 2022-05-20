@@ -10,14 +10,14 @@
     </head>
     <body>
         <header>
-            <a href="index.php"><img class="logo" src="https://picsum.photos/600/300?city" alt="Logo"></a>
+            <a href="index.php"><img src="https://picsum.photos/600/300?city" alt="Logo"></a>
 
-            <div id="sign">
+            <div>
                 <a href="login.php">Sign in</a> 
                 <a href="register.php">Sign up</a>
             </div>
 
-            <div id="search_bar">
+            <div>
                 <form action="action_page.php">
                     <img src="https://picsum.photos/600/300?city" alt="search icon">
                     <input type="text" placeholder="Search..." name="search">
@@ -40,7 +40,7 @@
             </nav>
         </header>
 
-        <nav id="categories">
+        <nav>
                 <ul>
                     <li><a href="category.php">Category 1</a></li>
                     <li><a href="category.php">Category 2</a></li>
@@ -59,7 +59,7 @@
         </nav>
 
         <main>
-            <section id="restaurants" class="main_page">
+            <section id="restaurants">
                 <article>
                     <header>
                         <h1><a href="restaurant.php">Restaurant 1</a></h1>
@@ -140,7 +140,7 @@
                         </article>
                     </section>
 
-                    <section id="order">
+                    <section id="orders">
                         <header>
                             <h2>Your Order</h2>
                         </header>
@@ -165,8 +165,8 @@
 
                     <section id="reviews">
                         <h2>Reviews</h2>
-                        <article class="review">
-                            <div class = "comment"> 
+                        <article>
+                            <div> 
                                 <img src="https://picsum.photos/600/300?city" class ="profile_photo" alt = "profile photo">
                                 <span class="user">user1</span>
                                 <span class="rate">3</span>
@@ -175,8 +175,8 @@
                             </div> 
                         </article> 
 
-                        <article class="review">
-                            <div class = "comment"> 
+                        <article>
+                            <div> 
                                 <img src="https://picsum.photos/600/200?city" class ="profile_photo" alt = "profile photo">
                                 <span class="user">user2</span>
                                 <span class="rate">4</span>
@@ -186,8 +186,8 @@
                             <img src= "https://picsum.photos/300/200?city" alt = "review photo">
                         </article> 
 
-                        <article class="review">
-                            <div class = "comment"> 
+                        <article>
+                            <div> 
                                 <img src="https://picsum.photos/600/200?city" class ="profile_photo" alt = "profile photo">
                                 <span class="user">user3</span>
                                 <span class="rate">4</span>
