@@ -42,31 +42,49 @@
             </nav>
         </header>
 
-        <section id= "title">
-            <h1><a href="restaurant.php">Restaurant 1</a></h1>
-            <img src="images\restaurant1.jpg">
-        </section>
+        <section id = "restaurants">
+            <article>
+                <header>
+                    <h1><a href="restaurant.php">Restaurant 1</a></h1>
+                </header>
+                <a href="restaurant.php"><img src="https://picsum.photos/id/237/200/300" alt=""></a>
 
-        <section id = "orders">
-            <h1>Orders</h1>
-            <article class="order">
-                <p><span class="quantity">2</span> copo 1 bola </p>
-                <span class="price">4.80</span>
-                <h2>Subtotal: </h2>
-                <span class="price">4.80</span>
-                <span class="date">27/04/2022</span>
+                <section id ="orders">
+                    <header> 
+                        <h2>Orders: </h2> 
+                    </header>
+                    <article class="order">
+                        <div>
+                            <article>
+                                <p><span class="quantity">2</span> copo 1 bola </p>
+                                <span class="price">4.80</span>
+                            </article>
+                        </div>
+                        <p>Subtotal: </p>
+                        <span class="price">4.80</span>
+                        <span class="date">27/04/2022</span>
+                        <span class="state">delivered</span>  
                 <span class="state">delivered</span>  
-            </article>
-            
-            <article class="order">
-                <p><span class="quantity">1</span>Pizza Diavola</p>
-                <span class="price">13.00</span>
-                <p><span class="quantity">1</span>Cheesecake de Framboesa</p>
-                <span class="price">5.00</span>
-                <h2>Subtotal: </h2>
-                <span class="price">18.00</span>
-                <span class="date">29/04/2022</span>
-                <span class="state">ready</span>
+                        <span class="state">delivered</span>  
+                    </article>
+                
+                    <article class="order">
+                        <div>
+                            <article>
+                                <p><span class="quantity">1</span>Pizza Diavola</p>
+                                <span class="price">13.00</span>
+                            </article>
+
+                            <article>
+                                <p><span class="quantity">1</span>Cheesecake de Framboesa</p>
+                                <span class="price">5.00</span>
+                            </article>
+                        </div>
+                        <p>Subtotal: </p>
+                        <span class="price">18.00</span>
+                        <span class="date">29/04/2022</span>
+                        <span class="state">ready</span>
+                    </article>
             </article>
         </section>
 

@@ -49,14 +49,13 @@
                 </header>
                 <a href="restaurant.php"><img src="https://picsum.photos/id/237/200/300" alt=""></a>
                 <section class="info">
-                    <h2>Shift:</h2>
-                    <p> Business days: 8h00- 12h00 </p>
-                    <p> Saturday: 13h00 - 14h30 </p>
                     <h2>Tel.:</h2>
                     <p>226170009</p>
                     <h2>Address: </h2>
                     <p>Rua do Passeio Alegre,368</p>    
                 </section>   
+                <a href="restaurant_orders.php"> List Orders </a>
+                <a href="edit_restaurant.php"> Edit restaurant </a>
             </article>
 
             <article>
@@ -65,19 +64,16 @@
                 </header>
                 <a href="restaurant.php"><img src="https://picsum.photos/id/237/200/300" alt=""></a>
                 <section class="info">
-                    <h2>Shift:</h2>
-                    <p> Business days: 12h00- 14h30 </p>
-                    <p> Saturday: 13h00 - 14h30 </p>
-                    <p> Sunday: 13h00 - 15h00 </p>
                     <h2>Tel.:</h2>
                     <p>967307887</p>
                     <h2>Address: </h2>
                     <p>Norteshopping, Rua Sara Afonso, 105-117</p>    
-                </section>   
+                </section>  
+                <a href="restaurant_orders.php"> List Orders </a>
+                <a href="edit_restaurant.php">  Edit restaurant </a> 
             </article>
         </section>
-        <a href="action_register_restaurant.php">Add new restaurant</a>
-
+        <a href="add_restaurant.php">Add new restaurant</a>
         <footer>
             <img src="https://picsum.photos/600/300?city" alt="FB Logo">
             <img src="https://picsum.photos/600/300?city" alt="IG Logo">
