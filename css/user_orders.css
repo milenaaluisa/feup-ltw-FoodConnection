@@ -1,10 +1,6 @@
+@import url(constants.css);
+
 /*-----------user orders-------------*/
-body {
-    --dark-bg-color: #C4C4C4;
-    --light-bg-color: #E7E7E7;
-    --star-color: #F8CF66;
-    --default-border-radius: 15px;
-}
 
 /*-----------------STYLE------------*/
 #orders > article{

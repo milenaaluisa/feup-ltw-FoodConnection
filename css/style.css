@@ -1,12 +1,5 @@
 /*constants*/
-body {
-    --dark-bg-color: #C4C4C4;
-    --light-bg-color: #E7E7E7;
-    --star-color: #F8CF66;
-    --default-border-radius: 15px;
-}
-/*----------------------------------*/
-
+@import url(constants.css);
 
 /*font, align, decoration*/
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Lora&display=swap');

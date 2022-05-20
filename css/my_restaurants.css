@@ -1,9 +1,4 @@
-body {
-    --dark-bg-color: #C4C4C4;
-    --light-bg-color: #E7E7E7;
-    --star-color: #F8CF66;
-    --default-border-radius: 15px;
-}
+@import url(constants.css);
 
 /*----------------STYLE----------------*/
 #restaurants > article > header > *{
