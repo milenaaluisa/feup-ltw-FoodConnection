@@ -39,32 +39,36 @@ input:focus, button, textarea {
     outline: none;
 }
 
-#rate_order > form, #login > form, #register > form, #form > form {
-    width: 20%;
+/*-----------form pages----------------*/
+#user_forms > *, #owner_forms > * {
+    margin: 0 auto;
+}
+
+#user_forms > article {
+    width: 25%;
+}
+
+#owner_forms > article {
+    width: 40%;
+}
+
+#user_forms > article > header, #owner_forms > article > header {
+    margin-bottom: 1.5em;
+}
+
+#user_forms > article > form, #owner_forms > article > form { 
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
+    
 }
 
-#form > form {
-    width: 40%;
-}
-
-#rate_order > form > :nth-last-child(2), #login > form > :nth-last-child(2), #register > form > :nth-last-child(2), #form > form > :nth-last-child(2) {
+#user_forms > article > form > :nth-last-child(2), #owner_forms > article > form > :nth-last-child(2) { /*Cancel option*/
     width: auto;
 }
 
-#rate_order > form > button, #login > form > button, #register > form > button, #form > form > button {
+#user_forms > article > form > button, #owner_forms > article > form > button {
     width: 40%;
 }
-
-#rate_order > *, #login > *, #register > *, #form > * {
-    margin: 0 auto;
-}
-
-
-
-
-
-

@@ -40,33 +40,37 @@
         </header>
 
         <main>
-            <section id="form">
-                <h1>Add new restaurant</h1>
-                <form action="action_add_restaurant.php" method="post">
-                    <input type="file" name="file" accept="image/png,image/jpeg">
-                    <input type="text" name="name" placeholder="name" required="required">
-                    <input type="number" name="number" placeholder="phone number" required="required">
-                    <input type="text" name="address" placeholder="address" required="required">
-                    <input type="text" name="city" placeholder="city" required="required">
-                    <input type="text" name="zipCode" placeholder="zip code" required="required">
-                    <select name="category" multiple>
-                        <option value="" disabled selected>category</option>
-                        <option value="Breakfast">Breakfast</option>
-                        <option value="Vegetarian">Vegetarian</option>
-                        <option value="Vegan">Vegan</option>
-                        <option value="Japanese">Japanese</option>
-                        <option value="Mexican">Mexican</option>
-                        <option value="Indian">Indian</option>
-                        <option value="Portuguese">Portuguese</option>
-                        <option value="Fast-food">Fast-food</option>
-                        <option value="Healthy">Healthy</option>
-                        <option value="Dessert">Dessert</option>
-                        <option value="Bakery">Bakery</option>
-                        <option value="Drinks">Drinks</option>
-                    </select>
-                    <a href="my_restaurants.php">Cancel</a>
-                    <button type="submit">Save</button>
-                </form>
+            <section id="owner_forms">
+                <article>
+                    <header>
+                        <h1>Add new restaurant</h1>
+                    </header>
+                    <form action="action_add_restaurant.php" method="post">
+                        <input type="file" name="file" accept="image/png,image/jpeg">
+                        <input type="text" name="name" placeholder="name" required="required">
+                        <input type="number" name="number" placeholder="phone number" required="required">
+                        <input type="text" name="address" placeholder="address" required="required">
+                        <input type="text" name="city" placeholder="city" required="required">
+                        <input type="text" name="zipCode" placeholder="zip code" required="required">
+                        <select name="category" multiple>
+                            <option value="" disabled selected>category</option>
+                            <option value="Breakfast">Breakfast</option>
+                            <option value="Vegetarian">Vegetarian</option>
+                            <option value="Vegan">Vegan</option>
+                            <option value="Japanese">Japanese</option>
+                            <option value="Mexican">Mexican</option>
+                            <option value="Indian">Indian</option>
+                            <option value="Portuguese">Portuguese</option>
+                            <option value="Fast-food">Fast-food</option>
+                            <option value="Healthy">Healthy</option>
+                            <option value="Dessert">Dessert</option>
+                            <option value="Bakery">Bakery</option>
+                            <option value="Drinks">Drinks</option>
+                        </select>
+                        <a href="my_restaurants.php">Cancel</a>
+                        <button type="submit">Save</button>
+                    </form>
+                </article>
             </section>
         </main>
 

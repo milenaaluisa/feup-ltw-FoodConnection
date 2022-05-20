@@ -41,14 +41,18 @@
 
         <main>
             <!--LOGIN FORM-->
-            <section id="login">
-                <h1><a href="login.php">Login</a></h1>
+            <section id="user_forms">
+            <article>
+                <header>
+                    <h1><a href="login.php">Login</a></h1>
+                </header>
                 <form action="action_login.php" method="post">
                     <input type="text" name="username" placeholder="username" required="required">
                     <input type="password" name="password" placeholder="password" required="required">
                     <a href="index.php">Cancel</a>
                     <button type="submit">Login</button>
                 </form>
+            </article>
             </section>
         </main>
 
