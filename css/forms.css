@@ -44,6 +44,23 @@ input:focus, button, textarea {
     margin: 0 auto;
 }
 
+#user_forms, #owner_forms {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    top: 0;     left: 0;
+    width: 100vw;   height: 100vh;
+    background-color: rgba(225, 225, 225, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+#user_forms > article, #owner_forms > article {
+    padding: 3em;
+    background-color: white;
+    border-radius: var(--default-border-radius);
+    box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 #user_forms > article {
     width: 25%;
 }
