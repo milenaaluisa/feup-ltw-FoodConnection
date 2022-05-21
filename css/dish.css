@@ -4,7 +4,7 @@
 
 /*-------------STYLE----------------*/
 #dishes > article {
-    width: 40%;
+    width: 35%;
     margin: 0 auto;
 }
 
@@ -27,8 +27,25 @@
     width: 100%;
 }
 
-#dishes > article > form > button{
+#dishes > article > form > button {
     width: 100%;
+}
+
+#dishes {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    top: 0;     left: 0;
+    width: 100vw;   height: 100vh;
+    background-color: rgba(225, 225, 225, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+#dishes > article {
+    padding: 2em;
+    background-color: white;
+    border-radius: var(--default-border-radius);
+    box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }/*----------------------------------*/
 
 
