@@ -18,10 +18,7 @@
 
     $reviews = getRestaurantReviews($db, $_GET['id']);
     
-    output_header(); ?>
-    <main>
-        <?php output_single_restaurant($restaurant, $categories, $dishes, $shifts, $reviews); ?>
-    </main>    
-
-    <?php output_footer();
+    output_header();
+    output_single_restaurant($restaurant, $categories, $dishes, $shifts, $reviews, True); 
+    output_footer();
 ?>

@@ -10,5 +10,5 @@
 
   output_header();
   output_categories($categories);
-  output_footer()
+  output_footer();
 ?>

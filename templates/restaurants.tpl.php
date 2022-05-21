@@ -1,10 +1,10 @@
 <?php 
     require_once('../templates/dishes.tpl.php');
 
-    function output_single_restaurant($restaurant, $categories, $dishes, $shifts, $reviews) { ?>
+    function output_single_restaurant($restaurant, $categories, $dishes, $shifts, $reviews, $output_order_form = False) { ?>
         <main>
             <section id="restaurants">
-                <?php output_restaurant($restaurant, $categories, $dishes, $shifts, $reviews); ?>
+                <?php output_restaurant($restaurant, $categories, $dishes, $shifts, $reviews, $output_order_form); ?>
             </section>
         </main>  
     <?php }
@@ -57,7 +57,7 @@
         </section>
     <?php }
 
-    function output_restaurant($restaurant, $categories = null, $dishes = null, $shifts = null, $reviews = null) { ?>
+    function output_restaurant($restaurant, $categories = null, $dishes = null, $shifts = null, $reviews = null, $output_order_form = False) { ?>
         <article>
             <header>
                 <h1><a href="restaurant.php?id=<?= $restaurant['idRest'] ?>"><?= $restaurant['name'] ?></a></h1>
@@ -87,22 +87,61 @@
             
             if(isset($dishes)) {
                 output_dish_list($dishes);
-            } ?>
+            }
 
-            <section id="order">
-                <header>
-                    <h1>Your Order</h1>
-                </header>
-                <form action = "new_order.php" method="post">
-                    <button type="submit">Place Order</button>
-                </form>
-            </section>
+            if($output_order_form === True) { ?>
+                <section id="order">
+                    <header>
+                        <h1>Your Order</h1>
+                    </header>
+                    <form action = "new_order.php" method="post">
+                        <button type="submit">Place Order</button>
+                    </form>
+                </section>
 
-            <?php if(isset($reviews)) {
-                output_reviews($reviews);
-            } ?>
-        </article>
+                <?php if(isset($reviews)) {
+                    output_reviews($reviews);
+                } ?>
+            <?php } ?>
 
         <!---TODO: LIKE BUTTON-->
+        </article>
+    <?php }
+
+    function output_my_restaurant($my_restaurant) { ?>
+         <article>
+            <header>
+                <h2><a href="restaurant.php"><?= $my_restaurant['name'] ?></a></h2>
+            </header>
+            <a href="restaurant.php"><img src="https://picsum.photos/id/237/200/300" alt=""></a>
+            <section class="info">
+                <h2>Tel.:</h2>
+                <p><?= $my_restaurant['phoneNum'] ?></p>
+                <h2>Address: </h2>
+                <p><?= $my_restaurant['address'] ?></p>    
+            </section>   
+        </article>
+    <?php }
+
+    function output_my_restaurants_list($my_restaurants) { ?>
+        <section id="restaurants">
+            <header>
+                <h2>My Restaurants</h2>
+            </header>
+            <?php foreach($my_restaurants as $my_restaurant) { ?>
+                <article>
+                    <header>
+                        <h2><a href="restaurant.php"><?= $my_restaurant['name'] ?></a></h2>
+                    </header>
+                    <a href="restaurant.php"><img src="https://picsum.photos/id/237/200/300" alt=""></a>
+                    <section class="info">
+                        <h2>Tel.:</h2>
+                        <p><?= $my_restaurant['phoneNum'] ?></p>
+                        <h2>Address: </h2>
+                        <p><?= $my_restaurant['address'] ?></p>    
+                    </section>   
+                </article>
+            <?php } ?>
+        </section>
     <?php }
 ?>
