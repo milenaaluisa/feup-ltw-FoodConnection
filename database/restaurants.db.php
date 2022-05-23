@@ -1,17 +1,19 @@
 <?php
     function getAllRestaurants(PDO $db) {
-        $stmt = $db->prepare('SELECT Restaurant.idRestaurant as idRest, name, averagePrice, averageRate
-                              FROM Restaurant');
+        $stmt = $db->prepare('SELECT Restaurant.idRestaurant, name, averagePrice, averageRate
+                              FROM Restaurant
+                              ORDER BY name');
         $stmt->execute();
         $restaurants = $stmt->fetchAll();
         return $restaurants;
     }
 
     function getCategoryRestaurants(PDO $db, int $id) {
-        $stmt = $db->prepare('SELECT Restaurant.idRestaurant as idRest, name, averagePrice, averageRate
+        $stmt = $db->prepare('SELECT Restaurant.idRestaurant, name, averagePrice, averageRate
                               FROM Restaurant
                               JOIN RestaurantCategory USING (idRestaurant) 
-                              WHERE idCategory = ?');
+                              WHERE idCategory = ?
+                              ORDER BY name');
         $stmt->execute(array($_GET['id']));
         $restaurants = $stmt->fetchAll();
         return $restaurants;
@@ -60,7 +62,8 @@
     function getUserRestaurants(PDO $db, int $id) {
         $stmt = $db->prepare('SELECT *
                              FROM Restaurant
-                              WHERE username /*QUANDO TRATAR DAS SESSOES*/');
+                              WHERE username /*QUANDO TRATAR DAS SESSOES*/
+                              ORDER BY name');
         $stmt->execute(array($_GET['id']));
         $my_restaurants = $stmt->fetchAll();
         return $my_restaurants;

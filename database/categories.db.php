@@ -1,6 +1,6 @@
 <?php
     function getAllCategories(PDO $db) {
-        $stmt = $db->prepare('SELECT * FROM Category');
+        $stmt = $db->prepare('SELECT * FROM Category ORDER BY name');
         $stmt->execute();
         $categories = $stmt->fetchAll();
         return $categories;
@@ -9,7 +9,8 @@
     function getAllOtherCategories(PDO $db, int $id) {
         $stmt = $db->prepare('SELECT *
                               FROM Category 
-                              WHERE idCategory <> ?');
+                              WHERE idCategory <> ?
+                              ORDER BY name');
         $stmt->execute(array($id));
         $categories = $stmt->fetchAll();
         return $categories;
@@ -19,7 +20,8 @@
         $stmt = $db->prepare('SELECT *
                               FROM Category
                               JOIN RestaurantCategory USING (idCategory)
-                              WHERE idRestaurant = ?');
+                              WHERE idRestaurant = ?
+                              ORDER BY name');
         $stmt->execute(array($_GET['id']));
         $categories = $stmt->fetchAll();
         return $categories;

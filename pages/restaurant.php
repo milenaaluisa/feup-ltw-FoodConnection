@@ -18,7 +18,9 @@
 
     $reviews = getRestaurantReviews($db, $_GET['id']);
     
-    output_header();
-    output_single_restaurant($restaurant, $categories, $dishes, $shifts, $reviews, True); 
+    $css_files = array('restaurant.css');
+    output_header($css_files);
+    output_restaurant_categories($restaurant, $categories);
+    output_single_restaurant($restaurant, $dishes, $shifts, $reviews, True); 
     output_footer();
 ?>

@@ -10,7 +10,8 @@
 
     $allergens = getDishAllergens($db, $_GET['id']);
 
-    output_header();
+    $css_files = array ('dish.css');
+    output_header($css_files);
     output_single_dish($dish, $allergens);
     output_footer();
 ?>

@@ -1,46 +1,53 @@
 <?php 
     function output_single_dish($dish, $allergens) { ?>
         <main>
-            <section id=dish>
+            <section id="dishes">
                 <?php output_dish($dish, $allergens); ?>
             </section>
         </main>
-    <?php }
+    <?php } ?>
 
+<?php 
     function output_dish_list($dishes) { ?>
         <section id="dishes"> 
-            <header>Dishes</header>
+            <header>
+                <h2>Dishes </h2>
+            </header>
             <?php foreach($dishes as $dish) {
                 output_dish($dish);
             } ?>
         </section>
-    <?php }
+    <?php } ?>
 
+<?php
     function output_dish($dish, $allergens = null) { ?>
         <article class="dish">
             <header>
-                <h1><a href="dish.php?id=<?= $dish['idDish'] ?>"><?= $dish['name'] ?></a></h1>
+                <h2><a href="dish.php?id=<?= $dish['idDish'] ?>"><?= $dish['name'] ?></a></h2>
             </header>
 
-            <img src="..\images\dishes\<?= $dish['file'] ?>">
+            <a href="dish.php?id=<?= $dish['idDish'] ?>"><img src="..\images\dishes\<?= $dish['file'] ?>"></a>
 
-            <section class="info">
-                <span class="price"><?= $dish['price'] ?></span>
-                <span class="rate"><?= $dish['averageRate'] ?></span>
-            </section>
+            <span class="price"><?= $dish['price'] ?></span>
+            <span class="rate"><?= $dish['averageRate'] ?></span>
 
             <!---TODO: like button-->
+            <div class = "edit_options">
+                <a href="edit_info_dish.php">Edit Info</a>
+            </div>
             
-            <?php if(isset($allergens)) { ?>
-                <div class = "composition">
-                    <h3>Ingredients</h3>
-                    <p><?= $dish['ingredients'] ?></p>
+            <div class = "composition">
+                <h3>Ingredients</h3>
+                <p><?= $dish['ingredients'] ?></p>
+                <?php if(isset($allergens) && sizeof($allergens)>0) { ?>
                     <h3>Allergens</h3>
                     <p>
                     <?php foreach($allergens as $allergen) { ?>
                         <?= $allergen['name'] ?>
                     <?php } ?> </p>
-                </div>
+                <?php } ?>
+            </div>
+            
 
                 <form action="action_add_order_item.php" method="post">
                     <input name="quantity" type="number" value="1" min="0" step="1">
@@ -48,7 +55,7 @@
                         Add to cart <!-- ICON DO CARRINHO-->
                     </button>
                 </form>
-            <?php } ?>
+                <a href="restaurant.php?id=<?= $dish['idRestaurant'] ?>" class="close"></a>
         </article>
     <?php }
 ?>

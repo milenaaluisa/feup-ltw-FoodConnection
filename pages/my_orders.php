@@ -12,7 +12,9 @@
     
     $subtotal = 0;
 
-    output_header();
+    $css_files = array('user_orders.css');
+
+    output_header($css_files);
     output_order_list($my_orders, $ordered_dishes, $subtotal);
     output_footer();
 ?>

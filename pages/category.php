@@ -14,7 +14,9 @@
   if($_GET['id'] == 0) $restaurants = getAllRestaurants($db);
   else $restaurants = getCategoryRestaurants($db, $_GET['id']);
 
-  output_header();
+  $css_files = array('restaurants_list.css');
+
+  output_header($css_files);
   output_categories($categories);
   output_restaurant_list($restaurants);
   output_footer();

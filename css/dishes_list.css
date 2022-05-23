@@ -19,7 +19,7 @@
     margin: 15px;
 }
 
- #dishes > article > .close {
+ #dishes > article > .close, #dishes > article > .composition, #dishes > article > form  {
     display: none;
 }/*----------------------------------*/
 

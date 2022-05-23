@@ -7,7 +7,8 @@
             <header>
                 <h1>My Favourites</h1>
             </header>
-            <?php output_restaurant_list($favourite_restaurants); 
+            <?php 
+                output_restaurant_list($favourite_restaurants); 
                 output_dish_list($favourite_dishes);
             ?>
         </section>

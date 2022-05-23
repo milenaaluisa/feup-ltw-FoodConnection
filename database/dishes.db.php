@@ -2,7 +2,7 @@
     function getSelectedDish(PDO $db, int $id) {
         $stmt = $db->prepare('SELECT Dish.*, file
                               FROM Dish
-                              JOIN Photo USING (idDish)
+                              LEFT JOIN Photo USING (idDish)
                               WHERE Dish.idDish = ?');
         $stmt->execute(array($_GET['id']));
         $dish = $stmt->fetch();
@@ -13,7 +13,8 @@
         $stmt = $db->prepare('SELECT name
                               FROM DishAllergen
                               JOIN Allergen Using (idAllergen)
-                              WHERE idDish = ?');
+                              WHERE idDish = ?
+                              ORDER BY name');
         $stmt->execute(array($_GET['id']));
         $allergens = $stmt->fetchAll();
         return $allergens;
@@ -32,8 +33,9 @@
     function getRestaurantDishes(PDO $db, int $id) {
         $stmt = $db->prepare('SELECT idDish, name, price, averageRate, file
                               FROM Dish
-                              JOIN Photo USING (idDish)
-                              WHERE Dish.idRestaurant = ?');
+                              LEFT JOIN Photo USING (idDish)
+                              WHERE Dish.idRestaurant = ?
+                              ORDER BY name');
         $stmt->execute(array($_GET['id']));
         $dishes = $stmt->fetchAll();
         return $dishes;
