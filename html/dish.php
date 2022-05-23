@@ -7,6 +7,7 @@
         <link href="../css/layout.css" rel="stylesheet">
         <link href="../css/forms.css" rel="stylesheet">
         <link href="../css/dish.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <header>
@@ -59,7 +60,7 @@
                     <form action="action_add_order_item.php" method="post">
                         <input name="quantity" type="number" value="1" min="0" step="1">
                         <button type="submit">
-                            Add to cart <img src="https://picsum.photos/600/300?city" alt="">
+                            Add to cart <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         </button>
                     </form>
                     <a href=restaurant.php class="close"></a>
