@@ -1,4 +1,4 @@
-<?php function output_rate_order() { ?>
+<?php function output_rate_order_form() { ?>
     <main>
         <section id="user_forms">
             <article>
@@ -16,14 +16,14 @@
     </main>
 <?php } 
 
-    function output_login() { ?>
+    function output_login_form() { ?>
         <main>
             <section id="user_forms">
                 <article>
                     <header>
                         <h1><a href="login.php">Login</a></h1>
                     </header>
-                    <form action="action_login.php" method="post">
+                    <form action="../actions/action_login.php" method="post">
                         <input type="text" name="username" placeholder="username" required="required">
                         <input type="password" name="password" placeholder="password" required="required">
                         <a href="index.php">Cancel</a>
@@ -34,7 +34,7 @@
         </main>
 <?php }
 
-    function output_register() { ?>
+    function output_register_form() { ?>
         <main>
             <section id="user_forms">
                 <article>
@@ -43,12 +43,12 @@
                     </header>
                     <form action = "action_new_profile.php" method = "post">
                         <!--FALTA: INPUT DA FOTO-->
-                        <input type="text" name="name" placeholder="name" required="required">
+                        <input type="text" name="name" placeholder="name" required="required" minlenght="6">
                         <input type="text" name="email" placeholder="email" required="required">  
                         <input type="number" name="phoneNum" placeholder="phone number" required="required">
                         <input type="text" name="adress" placeholder="adress" required="required">
                         <input type="text" name="city" placeholder="city" required="required">
-                        <input type="text" name="zipCode" placeholder="zip code" required="required">
+                        <input type="text" name="zipCode" placeholder="zip code" required="required" minlenght="6">
                         <input type="text" name="username" placeholder="username" required="required">
                         <input type="password" name="password" placeholder="password" required="required">
                         <a href="index.php">Cancel</a>

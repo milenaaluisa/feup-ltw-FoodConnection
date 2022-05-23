@@ -19,10 +19,10 @@
         <header>
             <a href="index.php"><img src="https://picsum.photos/600/300?city" alt="Logo"></a>
 
-            <div>
-                <a href="login.php">Sign in</a> 
-                <a href="register.php">Sign up</a>
-            </div>
+            <?php
+                if (isset($_SESSION['username'])) output_logout($_SESSION['name']);
+                else output_login();
+            ?>
 
             <div>
                 <form action="action_page.php">
@@ -46,8 +46,26 @@
                 </ul>
             </nav>
         </header>
-    <?php }
+    <?php } ?>
 
+
+ <?php function output_login() { ?>
+    <div>
+        <a href="login.php">Sign in</a> 
+        <a href="register.php">Sign up</a>
+    </div>
+<?php } ?>
+
+
+<?php function output_logout (string $name) { ?> 
+    <div>
+        <?=$_SESSION['name']?>
+        <a href="../actions/action_logout.php">Logout</a>
+    </div>
+<?php } ?>
+
+
+<?php
     function output_footer() { ?>
         <footer>
             <img src="https://picsum.photos/600/300?city" alt="FB Logo">
