@@ -1,4 +1,6 @@
 <?php
+    declare(strict_types = 1);
+
     function getAllRestaurants(PDO $db) {
         $stmt = $db->prepare('SELECT Restaurant.idRestaurant, name, averagePrice, averageRate
                               FROM Restaurant
@@ -14,7 +16,7 @@
                               JOIN RestaurantCategory USING (idRestaurant) 
                               WHERE idCategory = ?
                               ORDER BY name');
-        $stmt->execute(array($_GET['id']));
+        $stmt->execute(array($id));
         $restaurants = $stmt->fetchAll();
         return $restaurants;
     }
@@ -24,7 +26,7 @@
                               FROM FavRestaurant
                               JOIN Restaurant USING (idRestaurant)
                               WHERE username /* MUDAR QUANDO TRATAR DAS SESSOES*/');
-        $stmt->execute(array($_GET['id']));
+        $stmt->execute(array($id));
         $favourite_restaurants = $stmt->fetchAll();
         return $favourite_restaurants;
     }
@@ -33,7 +35,7 @@
         $stmt = $db->prepare('SELECT *
                               FROM Restaurant
                               WHERE idRestaurant = ?');
-        $stmt->execute(array($_GET['id']));
+        $stmt->execute(array($id));
         $restaurant = $stmt->fetch();
         return $restaurant;
     }
@@ -43,7 +45,7 @@
                               FROM Shift
                               JOIN RestaurantShift USING (idShift)
                               WHERE idRestaurant = ?');
-        $stmt->execute(array($_GET['id']));
+        $stmt->execute(array($id));
         $shifts = $stmt->fetchAll();
         return $shifts;
     }
@@ -54,7 +56,7 @@
                               JOIN Dish USING (idDish)
                               JOIN Restaurant USING (idRestaurant)
                               WHERE Dish.idRestaurant = ?');
-        $stmt->execute(array($_GET['id']));
+        $stmt->execute(array($id));
         $reviews = $stmt->fetchAll();
         return $reviews;
     }
@@ -64,7 +66,7 @@
                              FROM Restaurant
                               WHERE username /*QUANDO TRATAR DAS SESSOES*/
                               ORDER BY name');
-        $stmt->execute(array($_GET['id']));
+        $stmt->execute(array($id));
         $my_restaurants = $stmt->fetchAll();
         return $my_restaurants;
     }

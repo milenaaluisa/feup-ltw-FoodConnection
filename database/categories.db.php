@@ -1,4 +1,6 @@
 <?php
+    declare(strict_types = 1);
+
     function getAllCategories(PDO $db) {
         $stmt = $db->prepare('SELECT * FROM Category ORDER BY name');
         $stmt->execute();
@@ -22,7 +24,7 @@
                               JOIN RestaurantCategory USING (idCategory)
                               WHERE idRestaurant = ?
                               ORDER BY name');
-        $stmt->execute(array($_GET['id']));
+        $stmt->execute(array($id));
         $categories = $stmt->fetchAll();
         return $categories;
     }

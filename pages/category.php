@@ -1,5 +1,4 @@
 <?php
-
     declare(strict_types = 1);
 
     session_start();
@@ -14,10 +13,10 @@
   
   $db = getDatabaseConnection();
 
-  $categories = getAllOtherCategories($db, $_GET['id']);
+  $categories = getAllOtherCategories($db, intval($_GET['id']));
 
-  if($_GET['id'] == 0) $restaurants = getAllRestaurants($db);
-  else $restaurants = getCategoryRestaurants($db, $_GET['id']);
+  if(intval($_GET['id']) == 0) $restaurants = getAllRestaurants($db);
+  else $restaurants = getCategoryRestaurants($db, intval($_GET['id']));
 
   $css_files = array('restaurants_list.css');
 

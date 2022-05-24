@@ -1,7 +1,9 @@
+<?php declare(strict_types = 1); ?>
+
 <?php 
     require_once('../templates/dishes.tpl.php');
 
-    function output_single_restaurant($restaurant, $dishes, $shifts, $reviews, $output_order_form = False) { ?>
+    function output_single_restaurant($restaurant, array $dishes, array $shifts, array $reviews, $output_order_form = False) { ?>
         <main>
             <section id="restaurants">
                 <?php output_restaurant($restaurant, $dishes, $shifts, $reviews, $output_order_form); ?>
@@ -9,7 +11,7 @@
         </main>  
     <?php }
 
-    function output_restaurant_list($restaurants) { ?>
+    function output_restaurant_list(array $restaurants) { ?>
         <main>
             <section id="restaurants">
                 <header>
@@ -22,7 +24,7 @@
         </main>                
     <?php }
 
-    function output_restaurant_categories($restaurant, $categories) { ?>
+    function output_restaurant_categories($restaurant, array $categories) { ?>
     <!---TODO: COMPLETAR: PAGINA DO MESMO RESTAURANTE MAS APENAS OS PRATOS DA CATEGORIA SELECIONADA É QUE SÃO APRESENTADOS--->
         <nav>
             <ul>
@@ -33,7 +35,7 @@
         </nav>
     <?php }
 
-    function output_restaurant_info($restaurant, $shifts) { ?>
+    function output_restaurant_info($restaurant, array $shifts) { ?>
         <section class="info">
             <h2>Shift:</h2>
             <?php foreach($shifts as $shift) { ?>
@@ -46,7 +48,7 @@
         </section>
     <?php }
 
-    function output_restaurant_reviews($reviews) { ?>
+    function output_restaurant_reviews(array $reviews) { ?>
         <section id="reviews">
             <header>
                 <h1>Reviews</h1>
@@ -66,7 +68,7 @@
         </section>
     <?php }
 
-    function output_restaurant($restaurant, $dishes = null, $shifts = null, $reviews = null, $output_order_form = False) { ?>
+    function output_restaurant($restaurant, array $dishes = null, array $shifts = null, array $reviews = null, $output_order_form = False) { ?>
         <article>
             <header>
                 <h1><a href="restaurant.php?id=<?= $restaurant['idRestaurant'] ?>"><?= $restaurant['name'] ?></a></h1>
@@ -133,7 +135,7 @@
         </article>
     <?php }
 
-    function output_my_restaurants_list($my_restaurants) { ?>
+    function output_my_restaurants_list(array $my_restaurants) { ?>
         <section id="restaurants">
             <header>
                 <h2>My Restaurants</h2>

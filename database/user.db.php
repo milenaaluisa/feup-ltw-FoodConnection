@@ -1,5 +1,4 @@
 <?php 
-
     declare(strict_types = 1);
 
     function getUserWithPassword (PDO $db, string $username, string $password) {
@@ -16,5 +15,4 @@
         }
         return null;
     }
-
 ?>

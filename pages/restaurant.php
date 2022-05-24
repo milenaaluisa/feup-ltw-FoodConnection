@@ -1,5 +1,4 @@
 <?php
-
     declare(strict_types = 1);
 
     session_start();
@@ -13,15 +12,15 @@
   
     $db = getDatabaseConnection();
 
-    $restaurant = getRestaurant($db, $_GET['id']);
+    $restaurant = getRestaurant($db, intval($_GET['id']));
 
-    $categories = getRestaurantCategories($db, $_GET['id']);
+    $categories = getRestaurantCategories($db, intval($_GET['id']));
 
-    $shifts = getRestaurantShifts($db, $_GET['id']);
+    $shifts = getRestaurantShifts($db, intval($_GET['id']));
 
-    $dishes = getRestaurantDishes($db, $_GET['id']);
+    $dishes = getRestaurantDishes($db, intval($_GET['id']));
 
-    $reviews = getRestaurantReviews($db, $_GET['id']);
+    $reviews = getRestaurantReviews($db, intval($_GET['id']));
     
     $css_files = array('restaurant.css');
     output_header($css_files);

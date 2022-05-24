@@ -1,5 +1,4 @@
 <?php
-
     declare(strict_types = 1);
 
     session_start();
@@ -11,9 +10,9 @@
 
     $db = getDatabaseConnection();
 
-    $my_orders = getUserOrders($db, $_GET['id']);
+    $my_orders = getUserOrders($db, intval($_GET['id']));
 
-    $ordered_dishes = getOrderDishes($db, $_GET['id'])
+    $ordered_dishes = getOrderDishes($db, intval($_GET['id']))
     
     $subtotal = 0;
 

@@ -1,5 +1,7 @@
+<?php declare(strict_types = 1); ?>
+
 <?php
-    function output_categories($categories) { ?>
+    function output_categories(array $categories) { ?>
         <nav>
             <header>
                 <h2><a href="index.php">Categories</a></h2>

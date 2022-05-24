@@ -1,5 +1,7 @@
+<?php declare(strict_types = 1); ?>
+
 <?php 
-    function output_single_dish($dish, $allergens) { ?>
+    function output_single_dish($dish, array $allergens) { ?>
         <main>
             <section id="dishes">
                 <?php output_dish($dish, $allergens); ?>
@@ -8,7 +10,7 @@
     <?php } ?>
 
 <?php 
-    function output_dish_list($dishes) { ?>
+    function output_dish_list(array $dishes) { ?>
         <section id="dishes"> 
             <header>
                 <h2>Dishes </h2>
@@ -20,7 +22,7 @@
     <?php } ?>
 
 <?php
-    function output_dish($dish, $allergens = null) { ?>
+    function output_dish($dish, array $allergens = null) { ?>
         <article class="dish">
             <header>
                 <h2><a href="dish.php?id=<?= $dish['idDish'] ?>"><?= $dish['name'] ?></a></h2>

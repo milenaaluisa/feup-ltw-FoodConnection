@@ -1,5 +1,4 @@
 <?php
-
     declare(strict_types = 1);
 
     session_start();
@@ -11,9 +10,9 @@
       
     $db = getDatabaseConnection();
 
-    $dish = getSelectedDish($db, $_GET['id']);
+    $dish = getSelectedDish($db, intval($_GET['id']));
 
-    $allergens = getDishAllergens($db, $_GET['id']);
+    $allergens = getDishAllergens($db, intval($_GET['id']));
 
     $css_files = array ('dish.css');
     output_header($css_files);

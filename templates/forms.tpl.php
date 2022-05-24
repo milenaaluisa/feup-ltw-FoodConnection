@@ -1,3 +1,5 @@
+<?php declare(strict_types = 1); ?>
+
 <?php function output_rate_order_form() { ?>
     <main>
         <section id="user_forms">

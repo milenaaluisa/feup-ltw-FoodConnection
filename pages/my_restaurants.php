@@ -1,5 +1,4 @@
 <?php
-
     declare(strict_types = 1);
 
     session_start();
@@ -11,7 +10,7 @@
   
     $db = getDatabaseConnection();
 
-    $my_restaurants = getUserRestaurants($db, $_GET['id']);
+    $my_restaurants = getUserRestaurants($db, intval($_GET['id']));
 
     $css_files = array('my_restaurants.css');
     output_header($css_files);

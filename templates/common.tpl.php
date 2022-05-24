@@ -1,3 +1,5 @@
+<?php declare(strict_types = 1); ?>
+
 <?php 
     function output_header(array $css_files = null) { ?>
         <!DOCTYPE html>

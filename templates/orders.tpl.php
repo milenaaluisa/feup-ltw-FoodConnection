@@ -1,3 +1,5 @@
+<?php declare(strict_types = 1); ?>
+
 <?php function output_ordered_dish($ordered_dish, $subtotal) { ?>
     <p><span class="quantity"><?= $ordered_dish['quantity'] ?></span> <?= $ordered_dish['name'] ?> </p>
     <span class="price"><?= $ordered_dish['quantity'] * $ordered_dish['price'] ?></span>
