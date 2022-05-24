@@ -6,11 +6,10 @@
         <link href="../css/style.css" rel="stylesheet">
         <link href="../css/layout.css" rel="stylesheet">
         <link href="../css/forms.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <header>
-            <a href="index.php"><img src="../images/FoodConnection.jpg" alt="Logo"></a>
+            <a href="index.php"><img src="https://picsum.photos/600/300?city" alt="Logo"></a>
 
             <div>
                 <a href="login.php">Sign in</a> 
@@ -56,8 +55,8 @@
         </nav>
         
         <footer>
-            <i class="fa fa-facebook" alt="FB Logo"></i>
-            <i class="fa fa-instagram" alt="IG Logo"></i>
+            <img src="https://picsum.photos/600/300?city" alt="FB Logo">
+            <img src="https://picsum.photos/600/300?city" alt="IG Logo">
             <span>Privacy Policy</span>
             <span>Terms</span>
             <span>Pricing</span>
