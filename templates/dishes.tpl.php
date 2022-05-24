@@ -54,7 +54,7 @@
                 <form action="action_add_order_item.php" method="post">
                     <input name="quantity" type="number" value="1" min="0" step="1">
                     <button type="submit">
-                        Add to cart <!-- ICON DO CARRINHO-->
+                        Add to cart <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                     </button>
                 </form>
                 <a href="restaurant.php?id=<?= $dish['idRestaurant'] ?>" class="close"></a>

@@ -65,7 +65,7 @@ img {
 }
 
 i {
-    margin: 0;
+    margin: 0; padding: 0; display: inline;
 }/*----------------------------------*/
 
 /*body and footer*/
@@ -150,8 +150,9 @@ body > header > div:nth-child(3) input {
 }
 
 #menu .hamburger:before {
-    content:'\2630';
-    font-size: xx-large;
+    font-family: "FontAwesome";
+    content: "\f03a";
+    font-size: x-large;
 }
 
 #menu .hamburger{
@@ -159,6 +160,7 @@ body > header > div:nth-child(3) input {
 }
 
 #menu #hamburger:checked + .hamburger::before{
+    font-family: "FontAwesome";
     content:'\2715';
     z-index: 99999;
     font-size: xx-large;
