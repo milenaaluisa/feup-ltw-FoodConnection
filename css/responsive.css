@@ -1,0 +1,26 @@
+@media (max-width: 70em) {
+    body > :not(footer) {
+        margin: 0 1em;
+    }
+
+    body > header {
+        margin: 1em;
+    }
+
+    /*search bar*/
+    body > header > div:nth-child(3) {
+        margin: 0 1em;
+    }
+    
+}
+
+@media (max-width: 40em) { 
+    /*categories*/
+    body > nav ul {
+        grid-template-columns: repeat(auto-fit, 9em);
+    }
+
+    body > nav:nth-last-child(2) ul {
+        grid-template-columns: repeat(auto-fit, 13em);
+    }
+}

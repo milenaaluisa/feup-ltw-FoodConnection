@@ -27,12 +27,6 @@
     display : none;
 }
 
-#restaurants > article > #dishes > article {
-    width: calc(33.333333% - 30px);
-    margin: 0px 15px 30px 15px;
-}
-
-
 /*order form in restaurant main page*/
 #restaurants > article > #orders > form > * {
     margin: 0;

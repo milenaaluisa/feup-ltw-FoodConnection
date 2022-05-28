@@ -3,27 +3,12 @@
 /* restaurant*/
 
 /*--------------STYLE--------------*/
-#restaurants > article {
-    width: calc(25% - 30px);
-    margin: 15px;
-}
-
 #restaurants > article > header > * {
     text-align: left;
 }
 
 #restaurants > article > .info {
     display: none;
-}
-
-#restaurants, #dishes {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-#restaurants > header, #dishes > header {
-    width: 100%;
 }
 
 #restaurants > article > header {
@@ -38,6 +23,17 @@
 
 
 /*--------------LAYOUT--------------*/
+#restaurants {
+    display: grid;
+    gap: 30px;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, 16em);
+}
+
+#restaurants > header {
+    grid-column: 1 / -1;
+}
+
 #restaurants > article {
     display: grid;
     grid-template-columns: 1fr auto;

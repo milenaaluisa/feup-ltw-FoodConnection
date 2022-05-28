@@ -62,7 +62,7 @@ input:focus, button, textarea {
 }
 
 #user_forms > article {
-    width: 25%;
+    width: 390px;
 }
 
 #owner_forms > article {

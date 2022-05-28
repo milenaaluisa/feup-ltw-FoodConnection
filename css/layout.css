@@ -39,10 +39,18 @@ body > header > div:nth-child(2) {
 
 /*------categories-----*/
 body > nav ul {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}/*----------------------------------*/
+    display: grid;
+    gap: 14px;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, 8em);
+}
+
+body > nav:nth-last-child(2) ul{ /*index page*/
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, 17em);
+}
+
+/*----------------------------------*/
 
 /*----Footer---*/
 body > footer{

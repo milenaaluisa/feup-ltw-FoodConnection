@@ -65,7 +65,9 @@ img {
 }
 
 i {
-    margin: 0; padding: 0; display: inline;
+    margin: 0; 
+    padding: 0; 
+    display: inline;
 }/*----------------------------------*/
 
 /*body and footer*/
@@ -129,8 +131,7 @@ body > header img:first-of-type {
 
 /*search bar*/
 body > header > div:nth-child(3) {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin: 0 10%;
 }
 
 body > header > div:nth-child(3) img {
@@ -226,14 +227,10 @@ body > nav {
 body > nav li {
     text-align: center;
     padding: 1em 0;
-    width: calc(12.5% - 14px);
-    margin: 7px;
 }
 
 body > nav:nth-last-child(2) li { /*index page*/
     padding: 3em 0;
-    width: calc(25% - 20px);
-    margin: 10px;
 }/*----------------------------------*/
 
 

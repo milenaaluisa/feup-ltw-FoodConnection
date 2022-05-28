@@ -4,19 +4,10 @@
 /*dishes*/
 
 /*------------STYLE------------*/
-#dishes > header {
-    width: 100%;
-}
-
 #dishes > article img:first-of-type {
     width: 100%;
     height: 200px;
     object-fit: cover;
-}
-
-#dishes > article {
-    width: calc(25% - 30px);
-    margin: 15px;
 }
 
  #dishes > article > .close, #dishes > article > .composition, #dishes > article > form  {
@@ -26,9 +17,14 @@
 
 /*-------------LAYOUT------------------*/
 #dishes {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 16em);
+    gap: 30px;
+    justify-content: center;
+}
+
+#dishes > header {
+    grid-column: 1 / -1;
 }
 
 #dishes > article {
