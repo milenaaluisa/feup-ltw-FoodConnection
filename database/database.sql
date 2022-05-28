@@ -105,7 +105,6 @@ CREATE TABLE Review
     rate INT NOT NULL CHECK(rate >= 1 and rate <= 5),
     reviewDate DATE NOT NULL,
     idFoodOrder INT REFERENCES FoodOrder(idFoodOrder),
-    idDish INT REFERENCES Dish(idDish)
 );
 
 CREATE TABLE Photo
