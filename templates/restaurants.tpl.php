@@ -1,16 +1,18 @@
 <?php declare(strict_types = 1); ?>
+<?php require_once('../templates/dishes.tpl.php'); ?>
+
 
 <?php 
-    require_once('../templates/dishes.tpl.php');
-
     function output_single_restaurant($restaurant, array $dishes, array $shifts, array $reviews, $output_order_form = False) { ?>
         <main>
             <section id="restaurants">
                 <?php output_restaurant($restaurant, $dishes, $shifts, $reviews, $output_order_form); ?>
             </section>
         </main>  
-    <?php }
+<?php } ?>
 
+
+<?php
     function output_restaurant_list(array $restaurants) { ?>
         <main>
             <section id="restaurants">
@@ -22,8 +24,10 @@
                 } ?>
             </section>
         </main>                
-    <?php }
+<?php } ?>
 
+
+<?php
     function output_restaurant_categories($restaurant, array $categories) { ?>
     <!---TODO: COMPLETAR: PAGINA DO MESMO RESTAURANTE MAS APENAS OS PRATOS DA CATEGORIA SELECIONADA É QUE SÃO APRESENTADOS--->
         <nav>
@@ -33,9 +37,24 @@
                 <?php } ?>
             </ul>
         </nav>
-    <?php }
+<?php } ?>
 
-    function output_restaurant_info($restaurant, array $shifts) { ?>
+
+<?php
+    function output_restaurant_photo ($restaurant) { ?>
+        <a href="restaurant.php?id=<?= $restaurant['idRestaurant'] ?>">
+            <?php if (isset($restaurant['file'])) { ?>
+                    <img src="..\images\restaurants\<?= $restaurant['file'] ?>">
+            <?php }
+            
+            else { ?>
+                <img src="..\images\no_photo.jpg">
+            <?php } ?>
+        </a>
+<?php } ?>
+
+
+<?php function output_restaurant_info($restaurant, array $shifts) { ?>
         <section class="info">
             <h2>Shift:</h2>
             <?php foreach($shifts as $shift) { ?>
@@ -46,8 +65,9 @@
             <h2>Tel.:</h2>
             <p><?= $restaurant['phoneNum'] ?></p>
         </section>
-    <?php }
+<?php } ?>
 
+<?php
     function output_restaurant_reviews(array $reviews) { ?>
         <section id="reviews">
             <header>
@@ -66,15 +86,17 @@
                 </article> 
             <?php } ?>
         </section>
-    <?php }
+<?php } ?>
 
+
+<?php
     function output_restaurant($restaurant, array $dishes = null, array $shifts = null, array $reviews = null, $output_order_form = False) { ?>
         <article>
             <header>
                 <h1><a href="restaurant.php?id=<?= $restaurant['idRestaurant'] ?>"><?= $restaurant['name'] ?></a></h1>
             </header>
 
-            <a href="restaurant.php?id=<?= $restaurant['idRestaurant'] ?>"><img src= "https://picsum.photos/600/300?city"></a>
+            <?php output_restaurant_photo($restaurant); ?>
 
             <span class="avgPrice">
                 <?php 
@@ -115,11 +137,11 @@
                     output_restaurant_reviews($reviews);
                 } ?>
             <?php } ?>
-
-        <!---TODO: LIKE BUTTON-->
         </article>
-    <?php }
+<?php } ?>
 
+
+<?php
     function output_my_restaurant($my_restaurant) { ?>
          <article>
             <header>
@@ -133,8 +155,10 @@
                 <p><?= $my_restaurant['address'] ?></p>    
             </section>   
         </article>
-    <?php }
+<?php } ?>
 
+
+<?php
     function output_my_restaurants_list(array $my_restaurants) { ?>
         <section id="restaurants">
             <header>
@@ -155,5 +179,4 @@
                 </article>
             <?php } ?>
         </section>
-    <?php }
-?>
+<?php } ?>

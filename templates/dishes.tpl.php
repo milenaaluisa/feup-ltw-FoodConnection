@@ -22,13 +22,26 @@
     <?php } ?>
 
 <?php
+    function output_dish_photo ($dish) { ?>
+        <a href="dish.php?id=<?= $dish['idDish'] ?>">
+            <?php if (isset($dish['file'])) { ?>
+                <img src="..\images\dishes\<?= $dish['file'] ?>">
+            <?php }
+            
+            else { ?>
+                <img src="..\images\no_photo.jpg">
+            <?php } ?>
+        </a>
+<?php } ?>
+
+<?php
     function output_dish($dish, array $allergens = null) { ?>
         <article class="dish">
             <header>
                 <h2><a href="dish.php?id=<?= $dish['idDish'] ?>"><?= $dish['name'] ?></a></h2>
             </header>
 
-            <a href="dish.php?id=<?= $dish['idDish'] ?>"><img src="..\images\dishes\<?= $dish['file'] ?>"></a>
+            <?php output_dish_photo($dish); ?>
 
             <span class="price"><?= $dish['price'] ?></span>
             <span class="rate"><?= $dish['averageRate'] ?></span>
