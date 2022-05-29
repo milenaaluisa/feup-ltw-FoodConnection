@@ -16,6 +16,6 @@
         $_SESSION['name'] = $user['name'];
   }
   
-  header('Location: ' . $_SERVER['HTTP_REFERER']);  /**TODO: Redirecionar para a página anterior ao login.php */
+  header('Location: ../pages/index.php'); 
 ?>
 
