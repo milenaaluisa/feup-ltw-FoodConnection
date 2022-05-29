@@ -2,7 +2,7 @@
     declare(strict_types = 1);
 
     function getSelectedDish(PDO $db, int $id) {
-        $stmt = $db->prepare('SELECT *
+        $stmt = $db->prepare('SELECT Dish.*, file
                               FROM Dish
                               LEFT JOIN Photo USING (idDish)
                               WHERE Dish.idDish = ?');
@@ -23,7 +23,7 @@
     }
 
     function getRestaurantDishes(PDO $db, int $id) {
-        $stmt = $db->prepare('SELECT *
+        $stmt = $db->prepare('SELECT Dish.*, file
                               FROM Dish
                               LEFT JOIN Photo USING (idDish)
                               WHERE Dish.idRestaurant = ?
@@ -34,7 +34,7 @@
     }
 
     function getUserFavouriteDishes(PDO $db, string $username) {
-        $stmt = $db->prepare('SELECT *
+        $stmt = $db->prepare('SELECT Dish.*, file
                               FROM Dish
                               JOIN FavDish USING (idDish)
                               LEFT JOIN Photo USING (idDish)

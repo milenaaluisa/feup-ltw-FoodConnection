@@ -24,7 +24,7 @@
     }
 
     function getRestaurant(PDO $db, int $id) {
-        $stmt = $db->prepare('SELECT *
+        $stmt = $db->prepare('SELECT Restaurant.*, file
                               FROM Restaurant
                               LEFT JOIN Photo USING (idRestaurant) 
                               WHERE idRestaurant = ?');
@@ -58,7 +58,7 @@
     }
 
     function getUserRestaurants(PDO $db, string $username) {
-        $stmt = $db->prepare('SELECT *
+        $stmt = $db->prepare('SELECT Restaurant.*, file
                               FROM Restaurant
                               LEFT JOIN Photo USING (idRestaurant) 
                               WHERE owner = ?
@@ -69,7 +69,7 @@
     }
 
     function getUserFavouriteRestaurants(PDO $db, string $username) {
-        $stmt = $db->prepare('SELECT *
+        $stmt = $db->prepare('SELECT Restaurant.*, file
                               FROM Restaurant
                               JOIN FavRestaurant USING (idRestaurant)
                               LEFT JOIN Photo USING (idRestaurant) 
