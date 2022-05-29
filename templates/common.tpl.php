@@ -22,7 +22,7 @@
     </head>
     <body>
         <header>
-            <a href="index.php"><img src="https://picsum.photos/600/300?city" alt="Logo"></a>
+            <a href="index.php"><img src="../images/FoodConnection.jpg" alt="Logo"></a>
 
             <?php
                 if (isset($_SESSION['username'])) output_logout($_SESSION['name']);
