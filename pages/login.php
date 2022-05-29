@@ -3,6 +3,10 @@
 
     session_start(); 
 
+    if (isset($_SESSION['username'])) {
+        die(header('Location: index.php'));
+    }
+
     require_once('../templates/common.tpl.php');
     require_once('../templates/forms.tpl.php');
 
