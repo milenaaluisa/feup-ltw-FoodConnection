@@ -149,13 +149,13 @@
             </header>
             <?php output_restaurant_photo($my_restaurant); ?>
             <section class="info">
-                <h2>Tel.:</h2>
-                <p><?= $my_restaurant['phoneNum'] ?></p>
                 <h2>Address: </h2>
                 <p><?= $my_restaurant['address'] ?></p>    
+                <h2>Tel.:</h2>
+                <p><?= $my_restaurant['phoneNum'] ?></p>
             </section>   
             <a href="restaurant_orders.php"> List Orders </a>
-            <a href="edit_restaurant.php"> Edit restaurant </a>
+            <a href="edit_restaurant.php?id=<?=$my_restaurant['idRestaurant']?>"> Edit restaurant </a>
         </article>
 <?php } ?>
 

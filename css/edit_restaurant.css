@@ -44,11 +44,7 @@
 #restaurants > article > #dishes > header {
     display : none;
 }
-
-#restaurants #dishes > article {
-    width: calc(33.333333% - 30px);
-    margin: 0px 0px 30px 30px;
-}/*------------------------------------*/
+/*------------------------------------*/
 
 
 /*---------------LAYOUT----------------*/
