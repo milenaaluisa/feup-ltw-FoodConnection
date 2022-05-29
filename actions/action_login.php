@@ -14,6 +14,7 @@
   if ($user) {
         $_SESSION['username'] = $user['username'];
         $_SESSION['name'] = $user['name'];
+        $_SESSION['profilePhoto'] = $user['file'];
   }
   
   header('Location: ../pages/index.php'); 

@@ -1,4 +1,5 @@
 <?php declare(strict_types = 1); ?>
+<?php require_once('../templates/users.tpl.php'); ?>
 
 <?php 
     function output_header(array $css_files = null) { ?>
@@ -39,16 +40,10 @@
             <nav id="menu">
                 <input type="checkbox" id="hamburger"> 
                 <label class="hamburger" for="hamburger"></label>
-                <ul>
-                    <li><a href="user_profile.php"><img src="https://picsum.photos/600/300?city" class ="profile_photo" alt = "profile photo"></a></li>
-                    <li><a href="user_profile.php">Luís Lima</a></li>
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="favourites.php">Favourites</a></li>
-                    <li><a href="order_history.php">Order History</a></li>
-                    <li><a href="my_restaurants.php">My restaurants</a></li>
-                    <li><a href="edit_profile.php">Edit profile</a></li>
-                    <li><a href="logout.php">Sign Out</a></li>
-                </ul>
+                <?php
+                    if (isset($_SESSION['username'])) output_user_menu_options();
+                    else output_guest_menu_options();
+                ?>
             </nav>
         </header>
     <?php } ?>
@@ -67,6 +62,30 @@
         <?=$_SESSION['name']?>
         <a href="../actions/action_logout.php">Logout</a>
     </div>
+<?php } ?>
+
+
+<?php function output_guest_menu_options () { ?> 
+    <ul>
+        <li><a href="login.php">Sign in</a></li>
+        <li><a href="register.php">Sign up</a></li>
+    </ul>
+<?php } ?>
+
+
+<?php function output_user_menu_options () { ?> 
+    <ul>
+        <li><a href="edit_profile.php">
+            <?php output_profile_photo()?>
+        </a></li>
+        <li><a href="edit_profile.php"><?=$_SESSION['name']?></a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="favourites.php">Favourites</a></li>
+        <li><a href="order_history.php">Order History</a></li>
+        <li><a href="my_restaurants.php">My restaurants</a></li>
+        <li><a href="edit_profile.php">Edit profile</a></li>
+        <li><a href="logout.php">Sign Out</a></li>
+    </ul>
 <?php } ?>
 
 

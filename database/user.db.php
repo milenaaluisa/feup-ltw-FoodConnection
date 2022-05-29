@@ -3,8 +3,9 @@
 
     function getUserWithPassword (PDO $db, string $username, string $password) {
 
-        $stmt = $db->prepare('SELECT User.*
+        $stmt = $db->prepare('SELECT User.*, file
                               FROM User
+                              LEFT JOIN Photo USING (username)
                               WHERE username = ?
                               AND password = ? ' );
 
