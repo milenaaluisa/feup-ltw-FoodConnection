@@ -14,7 +14,7 @@
   
     $db = getDatabaseConnection();
 
-    $my_restaurants = getUserRestaurants($db, intval($_GET['id']));
+    $my_restaurants = getUserRestaurants($db, $_SESSION['username']);
 
     $css_files = array('my_restaurants.css');
     output_header($css_files);

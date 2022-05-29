@@ -15,7 +15,7 @@
   
     $db = getDatabaseConnection();
 
-    $favourite_restaurants = getUserFavouriteRestaurants($db, intval($_GET['ID']));
+    $favourite_restaurants = getUserFavouriteRestaurants($db, $_SESSION['username']);
 
     $favourite_dishes = getUserFavouriteDishes($db, intval($_GET['id']));
 
