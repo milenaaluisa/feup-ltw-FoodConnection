@@ -104,7 +104,7 @@ CREATE TABLE Review
     comment VARCHAR, 
     rate INT NOT NULL CHECK(rate >= 1 and rate <= 5),
     reviewDate DATE NOT NULL,
-    idFoodOrder INT REFERENCES FoodOrder(idFoodOrder),
+    idFoodOrder INT REFERENCES FoodOrder(idFoodOrder)
 );
 
 CREATE TABLE Photo
