@@ -269,7 +269,7 @@ INSERT INTO User(name, username, email, phoneNum, address, zipCode, city, passwo
 
 INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(1, 'Camélia Brunch Garden', 226170009, 'Rua do Passeio Alegre, 368', 'saradias');
 INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(2, 'Eleven Lab Concept', 910550994, 'Rua do Ouro nº 418', 'saradias');
-INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(3, 'Starbucks', 'Rua Mouzinho da Silveira, 188', 220437782, 'saradias');
+INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(3, 'Starbucks', 220437782, 'Rua Mouzinho da Silveira, 188', 'saradias');
 INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(4, 'DeGema', 221116336, 'Rua Fonte da Luz, 217', 'lluislima');
 INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(5, 'Noshi Healthy Food', 222053034, 'Rua do Carmo, 11/12', 'lluislima');
 INSERT INTO Restaurant(idRestaurant, name, phoneNum, address, owner) VALUES(6, 'Apuro', 224024756, 'Rua do Breiner, 236', 'lluislima');
