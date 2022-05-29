@@ -58,7 +58,7 @@
         <section class="info">
             <h2>Shift:</h2>
             <?php foreach($shifts as $shift) { ?>
-                <p><?= $shift['day'] ?>: <?= $shift['openingTime'] ?>-<?= $shift['closingTime'] ?></p>
+                <p><?= $shift['day'] ?>: <?= substr($shift['openingTime'],0,-3) ?>-<?= substr($shift['closingTime'],0,-3) ?></p>
             <?php } ?>
             <h2>Address:</h2>
             <p><?= $restaurant['address'] ?></p>
