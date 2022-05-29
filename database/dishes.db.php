@@ -2,7 +2,7 @@
     declare(strict_types = 1);
 
     function getSelectedDish(PDO $db, int $id) {
-        $stmt = $db->prepare('SELECT Dish.*, file
+        $stmt = $db->prepare('SELECT *
                               FROM Dish
                               LEFT JOIN Photo USING (idDish)
                               WHERE Dish.idDish = ?');
@@ -22,18 +22,8 @@
         return $allergens;
     }
 
-    function getUserFavouriteDishes(PDO $db, int $id) {
-        $stmt = $db->prepare('SELECT FavDish.username, Dish.*
-                              FROM FavDish
-                              JOIN Dish USING (idDish)
-                              WHERE username /* MUDAR QUANDO TRATAR DAS SESSOES*/');
-        $stmt->execute(array($id));
-        $favourite_dishes = $stmt->fetchAll();
-        return $favourite_dishes;
-    }
-
     function getRestaurantDishes(PDO $db, int $id) {
-        $stmt = $db->prepare('SELECT idDish, name, price, averageRate, file
+        $stmt = $db->prepare('SELECT *
                               FROM Dish
                               LEFT JOIN Photo USING (idDish)
                               WHERE Dish.idRestaurant = ?
@@ -41,5 +31,16 @@
         $stmt->execute(array($id));
         $dishes = $stmt->fetchAll();
         return $dishes;
+    }
+
+    function getUserFavouriteDishes(PDO $db, string $username) {
+        $stmt = $db->prepare('SELECT *
+                              FROM Dish
+                              JOIN FavDish USING (idDish)
+                              LEFT JOIN Photo USING (idDish)
+                              WHERE FavDish.username = ?');
+        $stmt->execute(array($username));
+        $favourite_dishes = $stmt->fetchAll();
+        return $favourite_dishes;
     }
 ?>

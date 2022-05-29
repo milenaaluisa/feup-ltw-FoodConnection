@@ -17,7 +17,7 @@
 
     $favourite_restaurants = getUserFavouriteRestaurants($db, $_SESSION['username']);
 
-    $favourite_dishes = getUserFavouriteDishes($db, intval($_GET['id']));
+    $favourite_dishes = getUserFavouriteDishes($db,  $_SESSION['username']);
 
     $css_files = array('restaurants_list.css', 'dishes_list.css');
     output_header($css_files);
