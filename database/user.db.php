@@ -112,4 +112,14 @@
         return $stmt->fetch();
    }
 
+   function canEditDish(PDO $db, int $idDish, string $username) {
+        $stmt = $db->prepare('SELECT *
+                            FROM Dish
+                            JOIN Restaurant USING (idRestaurant)
+                            WHERE idDish = ?
+                            AND owner = ?');
+        $stmt -> execute(array($idDish, $username));
+        return $stmt->fetch();
+    }
+
 ?>
