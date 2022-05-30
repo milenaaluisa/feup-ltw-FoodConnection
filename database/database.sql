@@ -84,6 +84,7 @@ CREATE TABLE FoodOrder
     idFoodOrder INTEGER PRIMARY KEY,     
     state VARCHAR NOT NULL CHECK(state = 'received' OR state = 'preparing' OR state = 'ready' OR state = 'delivered'),  
     orderDate DATE NOT NULL,   
+    notes VARCHAR,
     username VARCHAR NOT NULL REFERENCES User(username)
 );
 
@@ -141,7 +142,6 @@ CREATE TABLE Selection
 (
     quantity INT NOT NULL,
     extras VARCHAR,
-    notes VARCHAR,
     idFoodOrder INT NOT NULL REFERENCES FoodOrder(idFoodOrder),
     idDish INT NOT NULL REFERENCES Dish(idDish),
     PRIMARY KEY (idFoodOrder, idDish)
