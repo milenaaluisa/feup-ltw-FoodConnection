@@ -78,4 +78,10 @@
         $favourite_restaurants = $stmt->fetchAll();
         return $favourite_restaurants;
     }
+
+    function registerRestaurant(PDO $db, string $name, int $phoneNum, string $address,  string $zipCode, string $city, string $owner) {
+        $stmt = $db->prepare('INSERT INTO Restaurant(name, phoneNum, address, zipCode, city, owner)
+                              VALUES(?, ?, ?, ?, ?, ?) ');
+        $stmt->execute(array($name, $phoneNum, $address, $zipCode, $city, $owner));
+    }
 ?>

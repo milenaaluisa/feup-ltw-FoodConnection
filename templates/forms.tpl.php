@@ -74,7 +74,7 @@
                         <header>
                             <h1>Add new restaurant</h1>
                         </header>
-                        <form action="action_add_restaurant.php" method="post">
+                        <form action="../actions/action_add_restaurant.php" method="post">
                             <input type="file" name="file" accept="image/png,image/jpeg">
                             <input type="text" name="name" placeholder="name" required="required">
                             <input type="number" name="number" placeholder="phone number" required="required">
