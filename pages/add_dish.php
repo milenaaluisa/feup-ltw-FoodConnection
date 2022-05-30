@@ -19,6 +19,6 @@
     $categories = getAllCategories($db);
 
     output_header();
-    output_new_dish_form($allergens, $categories);
+    output_new_dish_form($allergens, $categories, intval($_GET['id']));
     output_footer();
 ?>

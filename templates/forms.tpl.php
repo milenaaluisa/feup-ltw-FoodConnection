@@ -97,14 +97,15 @@
 
 
 <?php
-    function output_new_dish_form(array $allergens, array $categories) { ?>
+    function output_new_dish_form(array $allergens, array $categories, int $idRestaurant) { ?>
         <main>
             <section id="owner_forms">
                 <article>
                     <header>
                         <h1>Add new dish</h1>
                     </header>
-                    <form action="action_add_restaurant.php" method="post">
+                    <form action="../actions/action_add_dish.php" method="post">
+                        <input type="hidden" name="idRestaurant" value="<?=$idRestaurant?>">
                         <input type="file" name="file" accept="image/png,image/jpeg">
                         <input type="text" name="name" placeholder="name" required="required">
                         <input type="number" name="price" placeholder="price" step = 0.01 required="required">

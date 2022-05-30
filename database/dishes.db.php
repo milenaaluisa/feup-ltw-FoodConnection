@@ -52,4 +52,36 @@
         $allergens = $stmt->fetchAll();
         return $allergens;
     }
+
+    function registerDish(PDO $db, string $name, string $ingredients, float $price, int $idRestaurant) {
+        $stmt = $db->prepare('INSERT INTO Dish (name, ingredients, price, idRestaurant)
+                              VALUES(?, ?, ?, ?)');
+        $stmt->execute(array($name, $ingredients, $price, $idRestaurant));
+
+        return $db->lastInsertId();
+    }
+
+    function registerDishCategories (PDO $db, int $idDish, array $categories){
+        foreach($categories as $category) {
+            registerDishCategory ($db, $idDish, intval($category));
+        }
+    }
+
+    function registerDishCategory (PDO $db, int $idDish, int $category){
+        $stmt = $db->prepare('INSERT INTO DishCategory(idDish, idCategory)
+                                    VALUES(?, ?)');
+        $stmt->execute(array($idDish, $category));
+    }
+
+    function registerDishAllergens (PDO $db, int $idDish, array $allergens){
+        foreach($allergens as $allergen) {
+            registerDishAllergen ($db, $idDish, intval($allergen));
+        }
+    }
+
+    function registerDishAllergen (PDO $db, int $idDish, int $allergen){
+        $stmt = $db->prepare('INSERT INTO DishAllergen(idDish, idAllergen)
+                                    VALUES(?, ?)');
+        $stmt->execute(array($idDish, $allergen));
+    }
 ?>

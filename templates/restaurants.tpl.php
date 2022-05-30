@@ -112,7 +112,7 @@
 
             <div class = "edit_options">
                 <a href="edit_info_restaurant.php">Edit Info</a>
-                <a href="add_dish.php">Add Dish</a>
+                <a href="add_dish.php?id=<?= $restaurant['idRestaurant'] ?>">Add Dish</a>
             </div>
 
             <?php if(isset($shifts) && sizeof($shifts) > 0) {
