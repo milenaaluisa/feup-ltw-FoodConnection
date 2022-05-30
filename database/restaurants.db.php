@@ -57,29 +57,29 @@
         return $reviews;
     }
 
-    function getUserRestaurants(PDO $db, string $username) {
+    function getUserRestaurants(PDO $db, int $idUser) {
         $stmt = $db->prepare('SELECT Restaurant.*, file
                               FROM Restaurant
                               LEFT JOIN Photo USING (idRestaurant) 
                               WHERE owner = ?
                               ORDER BY name');
-        $stmt->execute(array($username));
+        $stmt->execute(array($idUser));
         $my_restaurants = $stmt->fetchAll();
         return $my_restaurants;
     }
 
-    function getUserFavouriteRestaurants(PDO $db, string $username) {
+    function getUserFavouriteRestaurants(PDO $db, int $idUser) {
         $stmt = $db->prepare('SELECT Restaurant.*, file
                               FROM Restaurant
                               JOIN FavRestaurant USING (idRestaurant)
                               LEFT JOIN Photo USING (idRestaurant) 
-                              WHERE FavRestaurant.username = ?');
-        $stmt->execute(array($username));
+                              WHERE FavRestaurant.idUser = ?');
+        $stmt->execute(array($idUser));
         $favourite_restaurants = $stmt->fetchAll();
         return $favourite_restaurants;
     }
 
-    function registerRestaurant(PDO $db, string $name, int $phoneNum, string $address,  string $zipCode, string $city, string $owner) {
+    function registerRestaurant(PDO $db, string $name, int $phoneNum, string $address,  string $zipCode, string $city, int $owner) {
         $stmt = $db->prepare('INSERT INTO Restaurant(name, phoneNum, address, zipCode, city, owner)
                               VALUES(?, ?, ?, ?, ?, ?) ');
         $stmt->execute(array($name, $phoneNum, $address, $zipCode, $city, $owner));

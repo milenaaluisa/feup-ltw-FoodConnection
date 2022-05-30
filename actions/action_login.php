@@ -12,7 +12,7 @@
   $user = getUserWithPassword($db, $_POST['username'], $_POST['password']);
 
   if ($user) {
-        $_SESSION['username'] = $user['username'];
+        $_SESSION['idUser'] = $user['idUser'];
         $_SESSION['name'] = $user['name'];
         $_SESSION['profilePhoto'] = $user['file'];
   }

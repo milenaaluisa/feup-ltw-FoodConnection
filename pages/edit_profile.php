@@ -3,7 +3,7 @@
 
     session_start(); 
 
-    if (!isset($_SESSION['username'])) {
+    if (!isset($_SESSION['idUser'])) {
         die(header('Location: index.php'));
     }
 
@@ -14,7 +14,7 @@
     
     $db = getDatabaseConnection();
     
-    $user = getUser($db, $_SESSION['username']);
+    $user = getUser($db, intval($_SESSION['idUser']));
 
     output_header();
     output_profile_form($user);

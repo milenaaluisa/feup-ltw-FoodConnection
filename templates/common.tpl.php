@@ -26,7 +26,7 @@
             <a href="index.php"><img src="../images/FoodConnection.jpg" alt="Logo"></a>
 
             <?php
-                if (isset($_SESSION['username'])) output_logout($_SESSION['name']);
+                if (isset($_SESSION['idUser'])) output_logout($_SESSION['name']);
                 else output_login();
             ?>
 
@@ -41,7 +41,7 @@
                 <input type="checkbox" id="hamburger"> 
                 <label class="hamburger" for="hamburger"></label>
                 <?php
-                    if (isset($_SESSION['username'])) output_user_menu_options();
+                    if (isset($_SESSION['idUser'])) output_user_menu_options();
                     else output_guest_menu_options();
                 ?>
             </nav>

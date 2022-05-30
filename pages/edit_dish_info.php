@@ -3,7 +3,7 @@
 
     session_start(); 
 
-    if (!isset($_SESSION['username'])) {
+    if (!isset($_SESSION['idUser'])) {
         die(header('Location: index.php'));
     }
 
@@ -14,8 +14,8 @@
     require_once('../templates/forms.tpl.php');
 
     $db = getDatabaseConnection();
-    
-    if (canEditDish($db, intval($_GET['id']), $_SESSION['username'])) {
+
+    if (canEditDish($db, intval($_GET['id']), intval($_SESSION['idUser'])) {
         $dish = getSelectedDish($db, intval($_GET['id']));
 
         output_header();

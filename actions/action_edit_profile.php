@@ -9,7 +9,7 @@
 
     $db = getDatabaseConnection();
 
-    $user = getUser($db, $_SESSION['username']);
+    $user = getUser($db, intval($_SESSION['idUser']));
 
     if (empty($_POST['password'])) 
         $password = $user['password'];
@@ -20,7 +20,6 @@
     if (updateUserInfo($db, $_POST['name'], $_POST['email'], intval($_POST['phoneNum']), $_POST['address'], $_POST['city'], $_POST['zipCode'], $_POST['username'], $password, $user)) {
 
         echo "Success!";
-        $_SESSION['username'] = strtolower($_POST['username']);
         $_SESSION['name'] = $_POST['name'];
     }
 

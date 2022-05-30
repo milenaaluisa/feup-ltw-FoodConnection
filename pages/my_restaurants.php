@@ -3,7 +3,7 @@
 
     session_start();
 
-    if (!isset($_SESSION['username'])) {
+    if (!isset($_SESSION['idUser'])) {
         die(header('Location: index.php'));
     }
     
@@ -14,7 +14,7 @@
   
     $db = getDatabaseConnection();
 
-    $my_restaurants = getUserRestaurants($db, $_SESSION['username']);
+    $my_restaurants = getUserRestaurants($db, intval($_SESSION['idUser']));
 
     $css_files = array('my_restaurants.css');
     output_header($css_files);

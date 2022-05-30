@@ -3,7 +3,7 @@
 
     session_start();
     
-    if (!isset($_SESSION['username'])) {
+    if (!isset($_SESSION['idUser'])) {
         die(header('Location: index.php'));
     }
 
@@ -15,9 +15,9 @@
   
     $db = getDatabaseConnection();
 
-    $favourite_restaurants = getUserFavouriteRestaurants($db, $_SESSION['username']);
+    $favourite_restaurants = getUserFavouriteRestaurants($db, intval($_SESSION['idUser']));
 
-    $favourite_dishes = getUserFavouriteDishes($db,  $_SESSION['username']);
+    $favourite_dishes = getUserFavouriteDishes($db,  intval($_SESSION['idUser']));
 
     $css_files = array('restaurants_list.css', 'dishes_list.css');
     output_header($css_files);

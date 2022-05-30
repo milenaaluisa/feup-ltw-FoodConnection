@@ -3,6 +3,10 @@
 
     session_start();
 
+    if (!isset($_SESSION['idUser'])) {
+        die(header('Location: index.php'));
+    }
+
     require_once('../database/connection.db.php');
     require_once('../database/categories.db.php');
     require_once('../database/restaurants.db.php');
@@ -13,7 +17,7 @@
   
     $db = getDatabaseConnection();
 
-    if (canEditRestaurant($db, intval($_GET['id']), $_SESSION['username'])) {
+    if (canEditRestaurant($db, intval($_GET['id']), intval($_SESSION['idUser']))) {
 
         $restaurant = getRestaurant($db, intval($_GET['id']));
 

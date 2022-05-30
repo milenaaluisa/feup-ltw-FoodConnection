@@ -3,7 +3,7 @@
 
     session_start(); 
 
-    if (!isset($_SESSION['username'])) {
+    if (!isset($_SESSION['idUser'])) {
         die(header('Location: index.php'));
     }
 
@@ -16,7 +16,7 @@
 
     $db = getDatabaseConnection();
 
-    if (canEditRestaurant($db, intval($_GET['id']), $_SESSION['username'])) {
+    if (canEditRestaurant($db, intval($_GET['id']), intval($_SESSION['idUser']))) {
         $allergens = getAllAllergens($db);   
         $categories = getAllCategories($db);
 

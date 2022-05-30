@@ -33,13 +33,13 @@
         return $dishes;
     }
 
-    function getUserFavouriteDishes(PDO $db, string $username) {
+    function getUserFavouriteDishes(PDO $db, int $idUser) {
         $stmt = $db->prepare('SELECT Dish.*, file
                               FROM Dish
                               JOIN FavDish USING (idDish)
                               LEFT JOIN Photo USING (idDish)
-                              WHERE FavDish.username = ?');
-        $stmt->execute(array($username));
+                              WHERE FavDish.idUser = ?');
+        $stmt->execute(array($idUser));
         $favourite_dishes = $stmt->fetchAll();
         return $favourite_dishes;
     }

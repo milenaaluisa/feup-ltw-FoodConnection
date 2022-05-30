@@ -3,7 +3,7 @@
 
     session_start();
     
-    if (!isset($_SESSION['username'])) {
+    if (!isset($_SESSION['idUser'])) {
         die(header('Location: index.php'));
     }
 

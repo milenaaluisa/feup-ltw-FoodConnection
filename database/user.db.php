@@ -5,7 +5,7 @@
 
         $stmt = $db->prepare('SELECT User.*, file
                               FROM User
-                              LEFT JOIN Photo USING (username)
+                              LEFT JOIN Photo USING (idUser)
                               WHERE username = ?
                               AND password = ? ' );
 
@@ -18,13 +18,13 @@
     }
 
 
-    function getUser (PDO $db, string $username) {
+    function getUser (PDO $db, int $idUser) {
         $stmt = $db->prepare('SELECT User.*, file
                               FROM User
-                              LEFT JOIN Photo USING (username)
-                              WHERE username = ?' );
+                              LEFT JOIN Photo USING (idUser)
+                              WHERE idUser = ?' );
 
-        $stmt->execute(array($username));
+        $stmt->execute(array($idUser));
 
         $user =  $stmt->fetch();
         return $user;
@@ -33,7 +33,6 @@
     function existsUserWithEmail (PDO $db, string $email) {
         $stmt = $db->prepare('SELECT User.*, file
                               FROM User
-                              LEFT JOIN Photo USING (username)
                               WHERE email = ?' );
 
         $stmt->execute(array(strtolower($email)));
@@ -46,7 +45,6 @@
     function existsUserWithUsername (PDO $db, string $username) {
         $stmt = $db->prepare('SELECT User.*, file
                               FROM User
-                              LEFT JOIN Photo USING (username)
                               WHERE username = ?' );
 
         $stmt->execute(array(strtolower($username)));
@@ -76,7 +74,7 @@
                                 zipCode = ?,
                                 username = ?,
                                 password = ?
-                                WHERE username = '{$user['username']}'"
+                                WHERE idUser = '{$user['idUser']}'"
                             );
          $stmt->execute(array($name, strtolower($email), $phoneNum, $address, $zipCode, $city, strtolower($username), md5($password)));
 
@@ -87,12 +85,12 @@
     function registerUser (PDO $db, string $name, string $email, int $phoneNum, string $address, string $zipCode, string $city, string $username, string $password) { 
         if (existsUserWithEmail($db, $email)) {
             $_SESSION['message'] = 'Choose another email'; 
-            return false;
+            return 0;
         } 
 
         else if (existsUserWithUsername($db, $username)){
             $_SESSION['message'] = 'Choose another username'; 
-            return false;
+            return 0;
         }
 
         $stmt = $db->prepare('INSERT INTO User(name, email, phoneNum, address, zipCode, city, username, password)
@@ -100,25 +98,25 @@
         
         $stmt->execute(array($name, strtolower($email), $phoneNum, $address, $zipCode, $city, strtolower($username), md5($password)));
 
-        return true;
+        return $db->lastInsertId();
     }
 
-    function canEditRestaurant(PDO $db, int $idRestaurant, string $username) { 
+    function canEditRestaurant(PDO $db, int $idRestaurant, int $idUser) { 
         $stmt = $db->prepare('SELECT *
                               FROM Restaurant
                               WHERE idRestaurant = ?
                               AND owner = ?');
-        $stmt -> execute(array($idRestaurant, $username));
+        $stmt -> execute(array($idRestaurant, $idUser));
         return $stmt->fetch();
-   }
+    }
 
-   function canEditDish(PDO $db, int $idDish, string $username) {
+   function canEditDish(PDO $db, int $idDish, int $idUser) {
         $stmt = $db->prepare('SELECT *
                             FROM Dish
                             JOIN Restaurant USING (idRestaurant)
                             WHERE idDish = ?
                             AND owner = ?');
-        $stmt -> execute(array($idDish, $username));
+        $stmt -> execute(array($idDish, $idUser));
         return $stmt->fetch();
     }
 
