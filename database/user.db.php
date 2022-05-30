@@ -102,4 +102,14 @@
 
         return true;
     }
+
+    function canEditRestaurant(PDO $db, int $idRestaurant, string $username) { 
+        $stmt = $db->prepare('SELECT *
+                              FROM Restaurant
+                              WHERE idRestaurant = ?
+                              AND owner = ?');
+        $stmt -> execute(array($idRestaurant, $username));
+        return $stmt->fetch();
+   }
+
 ?>
