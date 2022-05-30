@@ -95,6 +95,40 @@
             </main>
 <?php } ?>
 
+<?php
+    function output_edit_restaurant_form($restaurant) { ?>
+        <main>
+                <section id="owner_forms">
+                    <article>
+                        <header>
+                            <h1>Edit restaurant</h1>
+                        </header>
+                        <form action="../actions/action_edit_restaurant.php" method="post">
+                            <input type="hidden" name="idRestaurant" value="<?=$restaurant['idRestaurant']?>">
+                            <input type="file" name="file" accept="image/png,image/jpeg">
+                            <label for="name">Name:</label>
+                            <input type="text" name="name" value='<?=$restaurant['name']?>' required="required">
+
+                            <label for="number">Phone number:</label>
+                            <input type="number" name="number" value='<?=$restaurant['phoneNum']?>' required="required">
+
+                            <label for="address">Address:</label>
+                            <input type="text" name="address" value='<?=$restaurant['address']?>' required="required">
+
+                            <label for="city">City:</label>
+                            <input type="text" name="city" value='<?=$restaurant['city']?>' required="required">
+
+                            <label for="zipCode">Zip code:</label>
+                            <input type="text" name="zipCode" value='<?=$restaurant['zipCode']?>' required="required">
+
+                            <a href="my_restaurants.php">Cancel</a>
+                            <button type="submit">Save</button>
+                        </form>
+                    </article>
+                </section>
+            </main>
+<?php } ?>
+
 
 <?php
     function output_new_dish_form(array $allergens, array $categories, int $idRestaurant) { ?>

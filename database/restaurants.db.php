@@ -98,4 +98,15 @@
                                     VALUES(?, ?)');
         $stmt->execute(array($idRestaurant, $category));
     }
+
+    function updateRestaurantInfo (PDO $db, string $name, int $phoneNum, string $address, string $zipCode, string $city, int $idRestaurant) {
+        $stmt = $db->prepare('UPDATE Restaurant
+                                SET name = ?,
+                                phoneNum = ?,
+                                address = ?,
+                                zipCode = ?,
+                                city = ?
+                                WHERE idRestaurant = ?');
+        $stmt->execute(array($name, $phoneNum, $address, $zipCode, $city, $idRestaurant));
+    }
 ?>
