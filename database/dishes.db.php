@@ -84,4 +84,13 @@
                                     VALUES(?, ?)');
         $stmt->execute(array($idDish, $allergen));
     }
+
+    function updateDishInfo(PDO $db, string $name, string $ingredients, float $price, int $idDish) {
+        $stmt = $db->prepare('UPDATE Dish
+                                SET name = ?,
+                                ingredients = ?,
+                                price = ?
+                                WHERE idDish = ?');
+        $stmt->execute(array($name, $ingredients, $price, $idDish));
+    }
 ?>

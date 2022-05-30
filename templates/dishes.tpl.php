@@ -48,7 +48,7 @@
 
             <!---TODO: like button-->
             <div class = "edit_options">
-                <a href="edit_info_dish.php">Edit Info</a>
+                <a href="edit_dish_info.php?id=<?= $dish['idDish'] ?>">Edit Info</a>
             </div>
             
             <div class = "composition">

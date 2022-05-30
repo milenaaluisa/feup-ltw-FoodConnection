@@ -65,6 +65,48 @@
         </main>
 <?php } ?>
 
+<?php 
+    function output_profile_form ($user) { ?>
+        <main>
+            <section>
+                <article>
+                    <header>
+                        <h1><a href="edit_profile.php">Edit Profile</a></h1>
+                    </header>
+                    <form action = "../actions/action_edit_profile.php" method = "post" class = "edit_form">
+                        <!--FALTA: INPUT DA FOTO-->
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" value='<?=$user['name']?>' required="required">
+                        
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" value=<?=$user['email']?> required="required">  
+
+                        <label for="phoneNum">Phone Number:</label>
+                        <input type="number" name="phoneNum" value=<?=$user['phoneNum']?> required="required">
+
+                        <label for="address">Address:</label>
+                        <input type="text" name="address" value='<?=$user['address']?>' required="required">
+
+                        <label for="city">City:</label>
+                        <input type="text" name="city" value='<?=$user['city']?>' required="required">
+
+                        <label for="zipCode">ZipCode:</label>
+                        <input type="text" name="zipCode" value=<?=$user['zipCode']?> required="required">
+
+                        <label for="username">Username:</label>
+                        <input type="text" name="username" value=<?=$user['username']?> required="required" minlenght="6">
+
+                        <label for="password">Password:</label>
+                        <input type="password" name="password"  minlenght="8">
+
+                        <a href="index.php">Cancel</a>
+                        <button type="submit">Save</button>
+                    </form>
+                </article>
+            </section>
+        </main>
+
+<?php } ?>
 
 <?php
     function output_new_restaurant_form(array $categories) { ?>
@@ -166,45 +208,32 @@
         </main>
 <?php } ?>  
 
-<?php 
-    function output_profile_form ($user) { ?>
+<?php
+    function output_edit_dish_form($dish) { ?>
         <main>
-            <section>
+            <section id="owner_forms">
                 <article>
                     <header>
-                        <h1><a href="edit_profile.php">Edit Profile</a></h1>
+                        <h1>Add new dish</h1>
                     </header>
-                    <form action = "../actions/action_edit_profile.php" method = "post" class = "edit_form">
-                        <!--FALTA: INPUT DA FOTO-->
+                    <form action="../actions/action_edit_dish.php" method="post">
+                        <input type="hidden" name="idDish" value='<?=$dish['idDish']?>'>
+                        <input type="hidden" name="idRestaurant" value='<?=$dish['idRestaurant']?>'>
+                        <input type="file" name="file" accept="image/png,image/jpeg">
+
                         <label for="name">Name:</label>
-                        <input type="text" name="name" value='<?=$user['name']?>' required="required">
-                        
-                        <label for="email">Email:</label>
-                        <input type="email" name="email" value=<?=$user['email']?> required="required">  
+                        <input type="text" name="name" value='<?=$dish['name']?>' required="required">
 
-                        <label for="phoneNum">Phone Number:</label>
-                        <input type="number" name="phoneNum" value=<?=$user['phoneNum']?> required="required">
+                        <label for="price">Price:</label>
+                        <input type="number" name="price" value='<?=$dish['price']?>' step = 0.01 required="required">
 
-                        <label for="address">Address:</label>
-                        <input type="text" name="address" value='<?=$user['address']?>' required="required">
+                        <label for="ingredients">Ingredients:</label>
+                        <input type="text" name="ingredients" value='<?=$dish['ingredients']?>'>
 
-                        <label for="city">City:</label>
-                        <input type="text" name="city" value='<?=$user['city']?>' required="required">
-
-                        <label for="zipCode">ZipCode:</label>
-                        <input type="text" name="zipCode" value=<?=$user['zipCode']?> required="required">
-
-                        <label for="username">Username:</label>
-                        <input type="text" name="username" value=<?=$user['username']?> required="required" minlenght="6">
-
-                        <label for="password">Password:</label>
-                        <input type="password" name="password"  minlenght="8">
-
-                        <a href="index.php">Cancel</a>
+                        <a href="my_restaurants.php">Cancel</a>
                         <button type="submit">Save</button>
                     </form>
                 </article>
             </section>
         </main>
-
-<?php } ?>
+<?php } ?>  

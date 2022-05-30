@@ -20,5 +20,5 @@
         registerDishAllergens ($db, intval($idDish), $_POST['allergens']);
     }
 
-    header('Location: ../pages/my_restaurants.php'); 
+    header('Location: ../pages/edit_restaurant.php?id='.$_POST['idRestaurant']);
 ?>
