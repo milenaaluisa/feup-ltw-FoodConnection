@@ -43,4 +43,13 @@
         $favourite_dishes = $stmt->fetchAll();
         return $favourite_dishes;
     }
+
+    function getAllAllergens(PDO $db) {
+        $stmt = $db->prepare('SELECT *
+                              FROM Allergen
+                              ORDER BY name');
+        $stmt->execute();
+        $allergens = $stmt->fetchAll();
+        return $allergens;
+    }
 ?>

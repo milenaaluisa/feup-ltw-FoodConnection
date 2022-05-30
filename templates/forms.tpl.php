@@ -97,7 +97,7 @@
 
 
 <?php
-    function output_new_dish_form() { ?>
+    function output_new_dish_form(array $allergens) { ?>
         <main>
             <section id="owner_forms">
                 <article>
@@ -109,21 +109,11 @@
                         <input type="text" name="name" placeholder="name" required="required">
                         <input type="number" name="price" placeholder="price" step = 0.01 required="required">
                         <input type="text" name="ingredients" placeholder="ingredients">
-                        <select name="allergens" multiple>
+                        <select name="allergens[]" multiple>
                             <option value="" disabled selected>allergens</option>
-                            <option value="Celery">Celery</option>
-                            <option value="Crustaceans">Crustaceans</option>
-                            <option value="Dairy">Dairy</option>
-                            <option value="Eggs">Eggs</option>
-                            <option value="Fish">Fish</option>
-                            <option value="Gluten">Gluten</option>
-                            <option value="Lupin">Lupin</option>
-                            <option value="Mustard">Mustard</option>
-                            <option value="Peanuts">Peanuts</option>
-                            <option value="Sesame">Sesame</option>
-                            <option value="Soy">Soy</option>
-                            <option value="Sulphur dioxide and sulphites">Sulphur dioxide and sulphites</option>
-                            <option value="Nuts">Nuts</option>
+                                <?php foreach ($allergens as $allergen) { ?>
+                                    <option value="<?=$allergen['idAllergen']?>"><?=$allergen['name']?></option>
+                                <?php } ?>
                         </select>
 
                         <a href="my_restaurants.php">Cancel</a>

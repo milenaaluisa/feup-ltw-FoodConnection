@@ -7,10 +7,16 @@
         die(header('Location: index.php'));
     }
 
+    require_once('../database/connection.db.php');
+    require_once('../database/dishes.db.php');
     require_once('../templates/common.tpl.php');
     require_once('../templates/forms.tpl.php');
 
+    $db = getDatabaseConnection();
+
+    $allergens = getAllAllergens($db);
+
     output_header();
-    output_new_dish_form();
+    output_new_dish_form($allergens);
     output_footer();
 ?>
