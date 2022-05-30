@@ -67,7 +67,7 @@
 
 
 <?php
-    function output_new_restaurant_form() { ?>
+    function output_new_restaurant_form(array $categories) { ?>
         <main>
                 <section id="owner_forms">
                     <article>
@@ -81,20 +81,11 @@
                             <input type="text" name="address" placeholder="address" required="required">
                             <input type="text" name="city" placeholder="city" required="required">
                             <input type="text" name="zipCode" placeholder="zip code" required="required">
-                            <select name="category" multiple>
+                            <select name="categories[]" multiple>
                                 <option value="" disabled selected>category</option>
-                                <option value="Breakfast">Breakfast</option>
-                                <option value="Vegetarian">Vegetarian</option>
-                                <option value="Vegan">Vegan</option>
-                                <option value="Japanese">Japanese</option>
-                                <option value="Mexican">Mexican</option>
-                                <option value="Indian">Indian</option>
-                                <option value="Portuguese">Portuguese</option>
-                                <option value="Fast-food">Fast-food</option>
-                                <option value="Healthy">Healthy</option>
-                                <option value="Dessert">Dessert</option>
-                                <option value="Bakery">Bakery</option>
-                                <option value="Drinks">Drinks</option>
+                                <?php foreach ($categories as $category) { ?>
+                                    <option value="<?=$category['idCategory']?>"><?=$category['name']?></option>
+                                <?php } ?>
                             </select>
                             <a href="my_restaurants.php">Cancel</a>
                             <button type="submit">Save</button>
