@@ -97,7 +97,7 @@
 
 
 <?php
-    function output_new_dish_form(array $allergens) { ?>
+    function output_new_dish_form(array $allergens, array $categories) { ?>
         <main>
             <section id="owner_forms">
                 <article>
@@ -113,6 +113,13 @@
                             <option value="" disabled selected>allergens</option>
                                 <?php foreach ($allergens as $allergen) { ?>
                                     <option value="<?=$allergen['idAllergen']?>"><?=$allergen['name']?></option>
+                                <?php } ?>
+                        </select>
+
+                        <select name="categories[]" multiple>
+                                <option value="" disabled selected>category</option>
+                                <?php foreach ($categories as $category) { ?>
+                                    <option value="<?=$category['idCategory']?>"><?=$category['name']?></option>
                                 <?php } ?>
                         </select>
 
