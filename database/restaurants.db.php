@@ -83,5 +83,19 @@
         $stmt = $db->prepare('INSERT INTO Restaurant(name, phoneNum, address, zipCode, city, owner)
                               VALUES(?, ?, ?, ?, ?, ?) ');
         $stmt->execute(array($name, $phoneNum, $address, $zipCode, $city, $owner));
+
+        return $db->lastInsertId();
+    }
+
+    function registerRestaurantCategories (PDO $db, int $idRestaurant, array $categories){
+        foreach($categories as $category) {
+            registerRestaurantCategory ($db, $idRestaurant, intval($category));
+        }
+    }
+
+    function registerRestaurantCategory (PDO $db, int $idRestaurant, int $category){
+        $stmt = $db->prepare('INSERT INTO RestaurantCategory(idRestaurant, idCategory)
+                                    VALUES(?, ?)');
+        $stmt->execute(array($idRestaurant, $category));
     }
 ?>
