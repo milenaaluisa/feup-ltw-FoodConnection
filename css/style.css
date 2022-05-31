@@ -84,6 +84,18 @@ body{
   flex-direction:column; 
 }
 
+body ul{
+    margin-top: 1em;
+}
+
+body li:hover{ 
+    background-color: var(--gray-hover-color);
+}
+
+body li:hover a{
+    color: white;
+}
+
 footer {
     padding: 1em;
     margin-top: auto;
@@ -123,8 +135,8 @@ body > header {
 }
 
 body > header img:first-of-type {
-    height: 5em;
-    width: 15em;
+
+    width: 20em;
     margin: auto;
     display: block;
 }

@@ -6,7 +6,7 @@
 body > header {
     display: grid;
     align-items: center;
-    grid-template-columns: auto 1fr 10em;
+    grid-template-columns: 10em 1fr 10em;
     grid-template-rows: auto auto;
     row-gap: 1em;
 }
