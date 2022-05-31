@@ -129,6 +129,11 @@ body > header img:first-of-type {
     display: block;
 }
 
+/*sign*/
+body > header > div:nth-child(2) > * {
+    text-align: center;
+}
+
 /*search bar*/
 body > header > div:nth-child(3) {
     margin: 0 10%;
