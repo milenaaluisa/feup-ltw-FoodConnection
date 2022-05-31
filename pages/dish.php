@@ -4,15 +4,16 @@
     session_start();
     
     require_once('../database/connection.db.php');
-    require_once('../database/dishes.db.php');
+    require_once('../database/dish.class.php');
+    require_once('../database/allergen.class.php');
     require_once('../templates/common.tpl.php');
-    require_once('../templates/dishes.tpl.php');
+    require_once('../templates/dish.tpl.php');
       
     $db = getDatabaseConnection();
 
-    $dish = getSelectedDish($db, intval($_GET['id']));
+    $dish = Dish::getDish($db, intval($_GET['id']));
 
-    $allergens = getDishAllergens($db, intval($_GET['id']));
+    $allergens = Allergen::getDishAllergens($db, $dish->idDish);
 
     $css_files = array ('dish.css');
     output_header($css_files);

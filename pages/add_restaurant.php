@@ -8,13 +8,13 @@
     }
 
     require_once('../database/connection.db.php');
-    require_once('../database/categories.db.php');
+    require_once('../database/category.class.php');
     require_once('../templates/common.tpl.php');
     require_once('../templates/forms.tpl.php');
 
     $db = getDatabaseConnection();
 
-    $categories = getAllCategories($db);
+    $categories = Category::getAllCategories($db);
 
     output_header();
     output_new_restaurant_form($categories);

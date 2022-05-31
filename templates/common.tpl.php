@@ -1,5 +1,5 @@
 <?php declare(strict_types = 1); ?>
-<?php require_once('../templates/users.tpl.php'); ?>
+<?php require_once('../templates/user.tpl.php'); ?>
 
 <?php 
     function output_header(array $css_files = null) { ?>

@@ -8,15 +8,15 @@
     }
 
     require_once('../database/connection.db.php');
-    require_once('../database/dishes.db.php');
-    require_once('../database/user.db.php');
+    require_once('../database/dish.class.php');
+    require_once('../database/user.class.php');
     require_once('../templates/common.tpl.php');
     require_once('../templates/forms.tpl.php');
 
     $db = getDatabaseConnection();
 
-    if (canEditDish($db, intval($_GET['id']), intval($_SESSION['idUser'])) {
-        $dish = getSelectedDish($db, intval($_GET['id']));
+    if (User::canEditDish($db, intval($_GET['id']), intval($_SESSION['idUser']))) {
+        $dish = Dish::getDish($db, intval($_GET['id']));
 
         output_header();
         output_edit_dish_form($dish);

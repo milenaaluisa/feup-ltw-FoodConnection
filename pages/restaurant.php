@@ -4,23 +4,24 @@
     session_start();
 
     require_once('../database/connection.db.php');
-    require_once('../database/categories.db.php');
-    require_once('../database/restaurants.db.php');
-    require_once('../database/dishes.db.php');
+    require_once('../database/category.class.php');
+    require_once('../database/restaurant.class.php');
+    require_once('../database/dish.class.php');
     require_once('../templates/common.tpl.php');
-    require_once('../templates/restaurants.tpl.php');
+    require_once('../templates/category.tpl.php');
+    require_once('../templates/restaurant.tpl.php');
   
     $db = getDatabaseConnection();
 
-    $restaurant = getRestaurant($db, intval($_GET['id']));
+    $restaurant = Restaurant::getRestaurant($db, intval($_GET['id']));
 
-    $categories = getRestaurantCategories($db, intval($_GET['id']));
+    $categories = Category::getRestaurantCategories($db, intval($_GET['id']));
 
-    $shifts = getRestaurantShifts($db, intval($_GET['id']));
+    $shifts = $restaurant->getRestaurantShifts($db);
 
-    $dishes = getRestaurantDishes($db, intval($_GET['id']));
+    $dishes = Dish::getRestaurantDishes($db, intval($_GET['id']));
 
-    $reviews = getRestaurantReviews($db, intval($_GET['id']));
+    $reviews = $restaurant->getRestaurantReviews($db);
     
     $css_files = array('restaurant.css');
     output_header($css_files);

@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1); ?>
 
 <?php 
-    function output_single_dish($dish, array $allergens) { ?>
+    function output_single_dish(Dish $dish, array $allergens) { ?>
         <main>
             <section id="dishes">
                 <?php output_dish($dish, $allergens); ?>
@@ -22,10 +22,10 @@
     <?php } ?>
 
 <?php
-    function output_dish_photo ($dish) { ?>
-        <a href="dish.php?id=<?= $dish['idDish'] ?>">
-            <?php if (isset($dish['file'])) { ?>
-                <img src="..\images\dishes\<?= $dish['file'] ?>">
+    function output_dish_photo (Dish $dish) { ?>
+        <a href="dish.php?id=<?= $dish->idDish ?>">
+            <?php if (isset($dish->file)) { ?>
+                <img src="..\images\dishes\<?= $dish->file ?>">
             <?php }
             
             else { ?>
@@ -35,30 +35,30 @@
 <?php } ?>
 
 <?php
-    function output_dish($dish, array $allergens = null) { ?>
+    function output_dish(Dish $dish, array $allergens = null) { ?>
         <article class="dish">
             <header>
-                <h2><a href="dish.php?id=<?= $dish['idDish'] ?>"><?= $dish['name'] ?></a></h2>
+                <h2><a href="dish.php?id=<?= $dish->idDish ?>"><?= $dish->name ?></a></h2>
             </header>
 
             <?php output_dish_photo($dish); ?>
 
-            <span class="price"><?= $dish['price'] ?></span>
-            <span class="rate"><?= $dish['averageRate'] ?></span>
+            <span class="price"><?= $dish->price ?></span>
+            <span class="rate"><?= $dish->averageRate ?></span>
 
             <!---TODO: like button-->
             <div class = "edit_options">
-                <a href="edit_dish_info.php?id=<?= $dish['idDish'] ?>">Edit Info</a>
+                <a href="edit_dish_info.php?id=<?=$dish->idDish?>">Edit Info</a>
             </div>
             
             <div class = "composition">
                 <h3>Ingredients</h3>
-                <p><?= $dish['ingredients'] ?></p>
+                <p><?= $dish->ingredients ?></p>
                 <?php if(isset($allergens) && sizeof($allergens)>0) { ?>
                     <h3>Allergens</h3>
                     <p>
                     <?php foreach($allergens as $allergen) { ?>
-                        <?= $allergen['name'] ?>
+                        <?= $allergen->name ?>
                     <?php } ?> </p>
                 <?php } ?>
             </div>
@@ -70,7 +70,7 @@
                         Add to cart <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                     </button>
                 </form>
-                <a href="restaurant.php?id=<?= $dish['idRestaurant'] ?>" class="close"></a>
+                <a href="restaurant.php?id=<?= $dish->idRestaurant ?>" class="close"></a>
         </article>
     <?php }
 ?>

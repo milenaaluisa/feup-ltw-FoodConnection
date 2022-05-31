@@ -5,25 +5,38 @@
     session_start();
 
     require_once('../database/connection.db.php');
-    require_once('../database/user.db.php');
+    require_once('../database/user.class.php');
 
     $db = getDatabaseConnection();
 
-    $user = getUser($db, intval($_SESSION['idUser']));
+    $user = User::getUser($db, intval($_SESSION['idUser']));
 
-    if (empty($_POST['password'])) 
-        $password = $user['password'];
-    else 
-        $password = $_POST['password'];
+    if ($user) {
 
+        if (empty($_POST['password'])) 
+            $password = $user->getPassword($db);
+        else 
+            $password = $_POST['password'];
 
-    if (updateUserInfo($db, $_POST['name'], $_POST['email'], intval($_POST['phoneNum']), $_POST['address'], $_POST['city'], $_POST['zipCode'], $_POST['username'], $password, $user)) {
+        $user->name = $_POST['name'];
+        $user->email = $_POST['email'];
+        $user->phoneNum = intval($_POST['phoneNum']);
+        $user->address = $_POST['address'];
+        $user->city = $_POST['city'];
+        $user->zipCode = $_POST['zipCode'];
+        $user->username = $_POST['username'];
 
-        echo "Success!";
-        $_SESSION['name'] = $_POST['name'];
-    }
-
-    else
-        echo $_SESSION['message'];
+        if ($user->updateUserInfo($db, $password)) {
+            echo "Success!";
+            $_SESSION['idUser'] = $user->idUser;
+            $_SESSION['name'] = $user->name;
+            $_SESSION['username'] = strtolower($user->username);
+            $_SESSION['email'] = strtolower($user->email);
+            $_SESSION['phone'] = $user->phoneNum;
+        }
     
+        else
+            echo $_SESSION['message'];
+    }
+  
 ?>

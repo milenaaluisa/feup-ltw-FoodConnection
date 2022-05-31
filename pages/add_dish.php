@@ -8,17 +8,19 @@
     }
 
     require_once('../database/connection.db.php');
-    require_once('../database/dishes.db.php');
-    require_once('../database/categories.db.php');
-    require_once('../database/user.db.php');
+    require_once('../database/dish.class.php');
+    require_once('../database/category.class.php');
+    require_once('../database/user.class.php');
+    require_once('../database/allergen.class.php');
     require_once('../templates/common.tpl.php');
     require_once('../templates/forms.tpl.php');
 
     $db = getDatabaseConnection();
 
-    if (canEditRestaurant($db, intval($_GET['id']), intval($_SESSION['idUser']))) {
-        $allergens = getAllAllergens($db);   
-        $categories = getAllCategories($db);
+    if (User::canEditRestaurant($db, intval($_GET['id']), intval($_SESSION['idUser']))) {
+        
+        $allergens = Allergen::getAllAllergens($db);   
+        $categories = Category::getAllCategories($db);
 
         output_header();
         output_new_dish_form($allergens, $categories, intval($_GET['id']));

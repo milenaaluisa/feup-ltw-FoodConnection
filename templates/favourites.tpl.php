@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1); ?>
 
 <?php 
-    require_once('../templates/restaurants.tpl.php');
-    require_once('../templates/dishes.tpl.php');
+    require_once('../templates/restaurant.tpl.php');
+    require_once('../templates/dish.tpl.php');
     
     function output_favourites(array $favourite_restaurants, array $favourite_dishes) { ?>
         <section id="favorites">

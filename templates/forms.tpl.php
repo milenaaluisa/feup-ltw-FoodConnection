@@ -66,9 +66,9 @@
 <?php } ?>
 
 <?php 
-    function output_profile_form ($user) { ?>
+    function output_profile_form (User $user) { ?>
         <main>
-            <section>
+            <section id="user_forms">
                 <article>
                     <header>
                         <h1><a href="edit_profile.php">Edit Profile</a></h1>
@@ -76,25 +76,25 @@
                     <form action = "../actions/action_edit_profile.php" method = "post" class = "edit_form">
                         <!--FALTA: INPUT DA FOTO-->
                         <label for="name">Name:</label>
-                        <input type="text" name="name" value='<?=$user['name']?>' required="required">
+                        <input type="text" name="name" value="<?=$user->name?>" required="required">
                         
                         <label for="email">Email:</label>
-                        <input type="email" name="email" value=<?=$user['email']?> required="required">  
+                        <input type="email" name="email" value="<?=$user->email?>" required="required">  
 
                         <label for="phoneNum">Phone Number:</label>
-                        <input type="number" name="phoneNum" value=<?=$user['phoneNum']?> required="required">
+                        <input type="number" name="phoneNum" value="<?=$user->phoneNum?>" required="required">
 
                         <label for="address">Address:</label>
-                        <input type="text" name="address" value='<?=$user['address']?>' required="required">
+                        <input type="text" name="address" value="<?=$user->address?>" required="required">
 
                         <label for="city">City:</label>
-                        <input type="text" name="city" value='<?=$user['city']?>' required="required">
+                        <input type="text" name="city" value="<?=$user->city?>" required="required">
 
                         <label for="zipCode">ZipCode:</label>
-                        <input type="text" name="zipCode" value=<?=$user['zipCode']?> required="required">
+                        <input type="text" name="zipCode" value="<?=$user->zipCode?>" required="required">
 
                         <label for="username">Username:</label>
-                        <input type="text" name="username" value=<?=$user['username']?> required="required" minlenght="6">
+                        <input type="text" name="username" value="<?=$user->username?>" required="required" minlenght="6">
 
                         <label for="password">Password:</label>
                         <input type="password" name="password"  minlenght="8">
@@ -126,7 +126,7 @@
                             <select name="categories[]" multiple>
                                 <option value="" disabled selected>category</option>
                                 <?php foreach ($categories as $category) { ?>
-                                    <option value="<?=$category['idCategory']?>"><?=$category['name']?></option>
+                                    <option value="<?=$category->idCategory?>"><?=$category->name?></option>
                                 <?php } ?>
                             </select>
                             <a href="my_restaurants.php">Cancel</a>
@@ -138,7 +138,7 @@
 <?php } ?>
 
 <?php
-    function output_edit_restaurant_form($restaurant) { ?>
+    function output_edit_restaurant_form(Restaurant $restaurant) { ?>
         <main>
                 <section id="owner_forms">
                     <article>
@@ -146,22 +146,22 @@
                             <h1>Edit restaurant</h1>
                         </header>
                         <form action="../actions/action_edit_restaurant.php" method="post">
-                            <input type="hidden" name="idRestaurant" value="<?=$restaurant['idRestaurant']?>">
+                            <input type="hidden" name="idRestaurant" value="<?=$restaurant->idRestaurant?>">
                             <input type="file" name="file" accept="image/png,image/jpeg">
                             <label for="name">Name:</label>
-                            <input type="text" name="name" value='<?=$restaurant['name']?>' required="required">
+                            <input type="text" name="name" value='<?=$restaurant->name?>' required="required">
 
                             <label for="number">Phone number:</label>
-                            <input type="number" name="number" value='<?=$restaurant['phoneNum']?>' required="required">
+                            <input type="number" name="number" value='<?=$restaurant->phoneNum?>' required="required">
 
                             <label for="address">Address:</label>
-                            <input type="text" name="address" value='<?=$restaurant['address']?>' required="required">
+                            <input type="text" name="address" value='<?=$restaurant->address?>' required="required">
 
                             <label for="city">City:</label>
-                            <input type="text" name="city" value='<?=$restaurant['city']?>' required="required">
+                            <input type="text" name="city" value='<?=$restaurant->city?>' required="required">
 
                             <label for="zipCode">Zip code:</label>
-                            <input type="text" name="zipCode" value='<?=$restaurant['zipCode']?>' required="required">
+                            <input type="text" name="zipCode" value='<?=$restaurant->zipCode?>' required="required">
 
                             <a href="my_restaurants.php">Cancel</a>
                             <button type="submit">Save</button>
@@ -189,14 +189,14 @@
                         <select name="allergens[]" multiple>
                             <option value="" disabled selected>allergens</option>
                                 <?php foreach ($allergens as $allergen) { ?>
-                                    <option value="<?=$allergen['idAllergen']?>"><?=$allergen['name']?></option>
+                                    <option value="<?=$allergen->idAllergen?>"><?=$allergen->name?></option>
                                 <?php } ?>
                         </select>
 
                         <select name="categories[]" multiple>
                                 <option value="" disabled selected>category</option>
                                 <?php foreach ($categories as $category) { ?>
-                                    <option value="<?=$category['idCategory']?>"><?=$category['name']?></option>
+                                    <option value="<?=$category->idCategory?>"><?=$category->name?></option>
                                 <?php } ?>
                         </select>
 
@@ -209,26 +209,26 @@
 <?php } ?>  
 
 <?php
-    function output_edit_dish_form($dish) { ?>
+    function output_edit_dish_form(Dish $dish) { ?>
         <main>
             <section id="owner_forms">
                 <article>
                     <header>
-                        <h1>Add new dish</h1>
+                        <h1>Edit dish</h1>
                     </header>
                     <form action="../actions/action_edit_dish.php" method="post">
-                        <input type="hidden" name="idDish" value='<?=$dish['idDish']?>'>
-                        <input type="hidden" name="idRestaurant" value='<?=$dish['idRestaurant']?>'>
+                        <input type="hidden" name="idDish" value='<?=$dish->idDish?>'>
+                        <input type="hidden" name="idRestaurant" value='<?=$dish->idRestaurant?>'>
                         <input type="file" name="file" accept="image/png,image/jpeg">
 
                         <label for="name">Name:</label>
-                        <input type="text" name="name" value='<?=$dish['name']?>' required="required">
+                        <input type="text" name="name" value='<?=$dish->name?>' required="required">
 
                         <label for="price">Price:</label>
-                        <input type="number" name="price" value='<?=$dish['price']?>' step = 0.01 required="required">
+                        <input type="number" name="price" value='<?=$dish->price?>' step = 0.01 required="required">
 
                         <label for="ingredients">Ingredients:</label>
-                        <input type="text" name="ingredients" value='<?=$dish['ingredients']?>'>
+                        <input type="text" name="ingredients" value='<?=$dish->ingredients?>'>
 
                         <a href="my_restaurants.php">Cancel</a>
                         <button type="submit">Save</button>

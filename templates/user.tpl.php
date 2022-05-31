@@ -2,8 +2,8 @@
 
 <?php 
     function output_profile_photo() {
-        if (isset($_SESSION['profilePhoto'])) { ?>
-            <img src="..\images\users\<?= $_SESSION['profilePhoto'] ?>" class ="profile_photo" alt = "profile photo">
+        if (isset($_SESSION['file'])) { ?>
+            <img src="..\images\users\<?= $_SESSION['file'] ?>" class ="profile_photo" alt = "profile photo">
         <?php } 
 
         else { ?>

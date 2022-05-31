@@ -8,15 +8,18 @@
     }
 
     require_once('../database/connection.db.php');
-    require_once('../database/user.db.php');
+    require_once('../database/user.class.php');
     require_once('../templates/common.tpl.php');
     require_once('../templates/forms.tpl.php');
     
     $db = getDatabaseConnection();
     
-    $user = getUser($db, intval($_SESSION['idUser']));
+    $user = User::getUser($db, intval($_SESSION['idUser']));
 
-    output_header();
-    output_profile_form($user);
-    output_footer();
+    if ($user) {
+        output_header();
+        output_profile_form($user);
+        output_footer();
+    }
+    
 ?>

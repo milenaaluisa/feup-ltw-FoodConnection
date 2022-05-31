@@ -5,14 +5,21 @@
     session_start();
 
     require_once('../database/connection.db.php');
-    require_once('../database/user.db.php');
+    require_once('../database/user.class.php');
 
     $db = getDatabaseConnection();
 
-    if ($idUser = registerUser($db, $_POST['name'], $_POST['email'], intval($_POST['phoneNum']), $_POST['address'], $_POST['zipCode'], $_POST['city'], $_POST['username'], $_POST['password'])) {
+    if ($idUser = User::registerUser($db, $_POST['name'], $_POST['email'], intval($_POST['phoneNum']), $_POST['address'], $_POST['zipCode'], $_POST['city'], $_POST['username'], $_POST['password'])) {
         echo "Success!";
-        $_SESSION['idUser'] = $idUser;
-        $_SESSION['name'] = $_POST['name'];   
+
+        $user = User::getUser($db, intval($idUser));
+        
+        $_SESSION['idUser'] = $user->idUser;
+        $_SESSION['name'] = $user->name;
+        $_SESSION['username'] = strtolower($user->username);
+        $_SESSION['email'] = strtolower($user->email);
+        $_SESSION['phone'] = $user->phoneNum;  
+        $_SESSION['file'] = $user->file; 
     }
 
     else

@@ -8,17 +8,17 @@
     }
 
     require_once('../database/connection.db.php');
-    require_once('../database/restaurants.db.php');
-    require_once('../database/categories.db.php');
-    require_once('../database/user.db.php');
+    require_once('../database/restaurant.class.php');
+    require_once('../database/category.class.php');
+    require_once('../database/user.class.php');
     require_once('../templates/common.tpl.php');
     require_once('../templates/forms.tpl.php');
 
     $db = getDatabaseConnection();
 
-    if (canEditRestaurant($db, intval($_GET['id']), intval($_SESSION['idUser']))) {
+    if (User::canEditRestaurant($db, intval($_GET['id']), intval($_SESSION['idUser']))) {
 
-        $restaurant = getRestaurant($db, intval($_GET['id']));
+        $restaurant = Restaurant::getRestaurant($db, intval($_GET['id']));
 
         output_header();
         output_edit_restaurant_form($restaurant);
