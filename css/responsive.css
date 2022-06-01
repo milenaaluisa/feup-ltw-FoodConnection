@@ -23,4 +23,13 @@
     body > nav:nth-last-child(2) ul {
         grid-template-columns: repeat(auto-fit, 13em);
     }
+
+    /*footer*/
+    body > footer {
+        padding: 0.5em;
+    }
+
+    body > footer > div {
+        column-gap: 0.5em;
+    }
 }

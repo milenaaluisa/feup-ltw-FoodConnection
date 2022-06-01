@@ -99,12 +99,10 @@ body li:hover a{
 footer {
     padding: 1em;
     margin-top: auto;
+    font-size: smaller;
 }
+/*----------------------------------*/
 
-footer img {
-    height: 1em;
-    width: auto;
-}/*----------------------------------*/
 
 /*background-color*/ 
 .dark-bg-color, body > nav li, footer, #restaurants.my_restaurants_page + a {

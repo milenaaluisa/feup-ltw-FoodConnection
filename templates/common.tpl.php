@@ -92,11 +92,20 @@
 <?php
     function output_footer() { ?>
         <footer>
-            <i class="fa fa-facebook" alt="FB Logo"></i>
-            <i class="fa fa-instagram" alt="IG Logo"></i>
-            <span>Privacy Policy</span>
-            <span>Terms</span>
-            <span>Pricing</span>
+            <div>
+                <a href = "https://github.com/FEUP-LTW-2022/ltw-t09-g01"> 
+                    <i class="fa fa-github" alt="GH Logo"> </i> 
+                    Follow us
+                </a>
+            </div>
+            <div>
+                <p>Privacy Policy</p>
+                <p>Terms</p>
+                <p>Pricing</p>
+            </div>
+            <div>
+                <p>Copyright &copy; 2022 Food Connection</p>
+            </div>
         </footer>
         </body>
     </html>
