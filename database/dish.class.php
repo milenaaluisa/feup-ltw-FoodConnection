@@ -73,7 +73,8 @@
                                   FROM Dish
                                   JOIN FavDish USING (idDish)
                                   LEFT JOIN Photo USING (idDish)
-                                  WHERE FavDish.idUser = ?');
+                                  WHERE FavDish.idUser = ?
+                                  ORDER BY name');
             $stmt->execute(array($idUser));
             $dishes =  array();
 

@@ -117,7 +117,7 @@ CREATE TABLE Photo
     file VARCHAR NOT NULL,
     idRestaurant INTEGER REFERENCES Restaurant(idRestaurant),
     idReview INT REFERENCES Review(idReview),
-    idUSer INT REFERENCES User(idUSer),
+    idUSer INT REFERENCES User(idUser),
     idDish INT REFERENCES Dish(idDish)
 );
 
@@ -154,21 +154,21 @@ CREATE TABLE Reply
 (
     idReplay INTEGER PRIMARY KEY,
     comment VARCHAR NOT NULL,
-    owner INT NOT NULL REFERENCES User(idUSer),
+    owner INT NOT NULL REFERENCES User(idUser),
     idReview INT NOT NULL REFERENCES Review(idReview)
 );
 
 CREATE TABLE FavRestaurant
 (
     idRestaurant INT NOT NULL REFERENCES Restaurant(idRestaurant),
-    idUSer INT NOT NULL REFERENCES User(idUSer),
-    PRIMARY KEY(idRestaurant, idUSer)
+    idUser INT NOT NULL REFERENCES User(idUser),
+    PRIMARY KEY(idRestaurant, idUser)
 );
 
 CREATE TABLE FavDish(
     idDish INT NOT NULL REFERENCES Dish(idDish),
-    idUSer INT NOT NULL REFERENCES User(idUSer),
-    PRIMARY KEY (idDish, idUSer)
+    idUser INT NOT NULL REFERENCES User(idUser),
+    PRIMARY KEY (idDish, idUser)
 );
 
 CREATE TABLE DishCategory(
@@ -924,11 +924,11 @@ INSERT INTO Photo(file, idRestaurant) VALUES('restaurant28.jpg', 28);
 INSERT INTO Photo(file, idRestaurant) VALUES('restaurant29.jpg', 29);
 INSERT INTO Photo(file, idRestaurant) VALUES('restaurant30.jpg', 30);
 INSERT INTO Photo(file, idRestaurant) VALUES('restaurant31.jpg', 31);
-INSERT INTO Photo(file, idUSer) VALUES('user1.jpg', 1);
-INSERT INTO Photo(file, idUSer) VALUES('user2.jpg', 2);
-INSERT INTO Photo(file, idUSer) VALUES('user3.jpg', 3);
-INSERT INTO Photo(file, idUSer) VALUES('user4.jpg', 4);
-INSERT INTO Photo(file, idUSer) VALUES('user5.jpg', 5);
+INSERT INTO Photo(file, idUser) VALUES('user1.jpg', 1);
+INSERT INTO Photo(file, idUser) VALUES('user2.jpg', 2);
+INSERT INTO Photo(file, idUser) VALUES('user3.jpg', 3);
+INSERT INTO Photo(file, idUser) VALUES('user4.jpg', 4);
+INSERT INTO Photo(file, idUser) VALUES('user5.jpg', 5);
 
 INSERT INTO MenuDish(idMenu, idDish) VALUES(1, 1);
 INSERT INTO MenuDish(idMenu, idDish) VALUES(1, 5);
@@ -1171,21 +1171,18 @@ INSERT INTO DishAllergen(idDish, idAllergen) VALUES(167, 4);
 INSERT INTO DishAllergen(idDish, idAllergen) VALUES(168, 3);
 INSERT INTO DishAllergen(idDish, idAllergen) VALUES(168, 4);
 INSERT INTO DishAllergen(idDish, idAllergen) VALUES(184, 3);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(1, 1);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(2, 1);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(3, 1);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(4, 1);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(5, 1);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(6, 1);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(7, 1);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(8, 1);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(9, 1);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(10, 1);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(11, 1);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(12, 1);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(13, 1);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(14, 1);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(15, 1);
@@ -1198,7 +1195,6 @@ INSERT INTO DishCategory(idDish, idCategory) VALUES(15, 12);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(16, 12);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(17, 12);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(18, 12);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(19, 2);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(20, 2);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(21, 2);
@@ -1211,7 +1207,6 @@ INSERT INTO DishCategory(idDish, idCategory) VALUES(21, 9);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(22, 9);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(23, 9);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(24, 9);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(25, 2);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(26, 2);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(27, 2);
@@ -1224,7 +1219,6 @@ INSERT INTO DishCategory(idDish, idCategory) VALUES(27, 10);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(28, 10);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(29, 10);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(30, 10);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(31, 2);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(32, 2);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(33, 2);
@@ -1237,7 +1231,6 @@ INSERT INTO DishCategory(idDish, idCategory) VALUES(33, 9);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(34, 9);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(35, 9);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(36, 9);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(37, 3);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(38, 3);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(39, 3);
@@ -1250,42 +1243,36 @@ INSERT INTO DishCategory(idDish, idCategory) VALUES(39, 10);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(40, 10);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(41, 10);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(42, 10);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(43, 3);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(44, 3);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(45, 3);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(46, 3);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(47, 3);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(48, 3);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(49, 3);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(50, 3);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(51, 3);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(52, 3);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(53, 3);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(54, 3);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(55, 4);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(56, 4);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(57, 4);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(58, 4);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(59, 4);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(60, 4);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(61, 4);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(62, 4);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(63, 4);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(64, 4);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(65, 4);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(66, 4);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(67, 4);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(68, 4);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(69, 4);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(70, 4);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(71, 4);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(72, 4);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(73, 5);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(74, 5);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(75, 5);
@@ -1298,56 +1285,48 @@ INSERT INTO DishCategory(idDish, idCategory) VALUES(75, 9);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(76, 9);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(77, 9);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(78, 9);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(79, 5);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(80, 5);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(81, 5);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(82, 5);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(83, 5);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(84, 5);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(85, 5);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(86, 5);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(87, 5);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(88, 5);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(89, 5);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(90, 5);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(91, 6);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(92, 6);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(93, 6);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(94, 6);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(95, 6);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(96, 6);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(97, 6);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(98, 6);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(99, 6);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(100, 6);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(101, 6);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(102, 6);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(103, 6);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(104, 6);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(105, 6);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(106, 6);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(107, 6);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(108, 6);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(109, 7);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(110, 7);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(111, 7);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(112, 7);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(113, 7);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(114, 7);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(115, 7);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(116, 7);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(117, 7);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(118, 7);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(119, 7);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(120, 7);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(121, 7);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(122, 7);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(123, 7);
@@ -1360,28 +1339,24 @@ INSERT INTO DishCategory(idDish, idCategory) VALUES(123, 11);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(124, 11);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(125, 11);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(126, 11);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(127, 8);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(128, 8);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(129, 8);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(130, 8);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(131, 8);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(132, 8);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(133, 8);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(134, 8);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(135, 8);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(136, 8);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(137, 8);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(138, 8);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(139, 8);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(140, 8);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(141, 8);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(142, 8);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(143, 8);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(144, 8);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(145, 10);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(146, 10);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(147, 10);
@@ -1394,28 +1369,24 @@ INSERT INTO DishCategory(idDish, idCategory) VALUES(147, 11);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(148, 11);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(149, 11);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(150, 11);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(151, 11);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(152, 11);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(153, 11);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(154, 11);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(155, 11);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(156, 11);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(157, 12);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(158, 12);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(159, 12);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(160, 12);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(161, 12);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(162, 12);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(163, 12);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(164, 12);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(165, 12);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(166, 12);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(167, 12);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(168, 12);
-
 INSERT INTO DishCategory(idDish, idCategory) VALUES(169, 13);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(170, 13);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(171, 13);
@@ -1434,3 +1405,62 @@ INSERT INTO DishCategory(idDish, idCategory) VALUES(183, 13);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(184, 13);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(185, 13);
 INSERT INTO DishCategory(idDish, idCategory) VALUES(186, 13);
+
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(1, 2);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(1, 5);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(1, 6);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(1, 20);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(1, 25);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(1, 30);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(2, 8);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(2, 12);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(2, 18);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(2, 22);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(2, 26);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(2, 31);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(3, 7);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(3, 10);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(3, 14);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(3, 18);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(4, 4);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(4, 8);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(4, 12);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(4, 17);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(4, 27);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(5, 1);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(5, 5);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(5, 10);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(5, 15);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(5, 20);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(6, 5);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(6, 20);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(7, 14);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(7, 19);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(8, 16);
+INSERT INTO FavRestaurant (idUser, idRestaurant) VALUES(8, 28);
+
+INSERT INTO FavDish (idUser, idDish) VALUES(1, 2);
+INSERT INTO FavDish (idUser, idDish) VALUES(1, 5);
+INSERT INTO FavDish (idUser, idDish) VALUES(1, 10);
+INSERT INTO FavDish (idUser, idDish) VALUES(1, 12);
+INSERT INTO FavDish (idUser, idDish) VALUES(1, 22);
+INSERT INTO FavDish (idUser, idDish) VALUES(1, 30);
+INSERT INTO FavDish (idUser, idDish) VALUES(1, 40);
+INSERT INTO FavDish (idUser, idDish) VALUES(2, 50);
+INSERT INTO FavDish (idUser, idDish) VALUES(2, 60);
+INSERT INTO FavDish (idUser, idDish) VALUES(2, 65);
+INSERT INTO FavDish (idUser, idDish) VALUES(3, 25);
+INSERT INTO FavDish (idUser, idDish) VALUES(3, 29);
+INSERT INTO FavDish (idUser, idDish) VALUES(3, 32);
+INSERT INTO FavDish (idUser, idDish) VALUES(3, 40);
+INSERT INTO FavDish (idUser, idDish) VALUES(4, 15);
+INSERT INTO FavDish (idUser, idDish) VALUES(4, 17);
+INSERT INTO FavDish (idUser, idDish) VALUES(5, 15);
+INSERT INTO FavDish (idUser, idDish) VALUES(5, 20);
+INSERT INTO FavDish (idUser, idDish) VALUES(5, 35);
+INSERT INTO FavDish (idUser, idDish) VALUES(6, 75);
+INSERT INTO FavDish (idUser, idDish) VALUES(7, 100);
+INSERT INTO FavDish (idUser, idDish) VALUES(7, 150);
+INSERT INTO FavDish (idUser, idDish) VALUES(8, 160);
+INSERT INTO FavDish (idUser, idDish) VALUES(8, 170);
+

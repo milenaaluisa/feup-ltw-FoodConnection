@@ -157,7 +157,8 @@
                                   FROM Restaurant
                                   JOIN FavRestaurant USING (idRestaurant)
                                   LEFT JOIN Photo USING (idRestaurant) 
-                                  WHERE FavRestaurant.idUser = ?');
+                                  WHERE FavRestaurant.idUser = ?
+                                  ORDER BY NAME');
             $stmt->execute(array($idUser));
             $restaurants = array();
 
