@@ -5,7 +5,6 @@
 /*---main header----*/
 body > header {
     display: grid;
-    align-items: center;
     grid-template-columns: 10em 1fr 10em;
     grid-template-rows: auto auto;
     row-gap: 1em;
@@ -34,8 +33,24 @@ body > header > div:nth-child(2) {
     flex-direction: column;
     padding: calc(max-content + 2em);
     row-gap: 5px;
+    justify-content: center;
 }/*----------------------------------*/
 
+
+/*sidemenu*/
+#menu ul{
+    margin: 4em 1em 1em 1em;
+}
+
+#menu ul li{
+    margin-top: 3em;
+}
+
+#menu ul li:nth-child(2){
+    margin-top: 1em;    
+    text-align: center;
+}
+/*-----------------------------------*/
 
 /*------categories-----*/
 body > nav ul {

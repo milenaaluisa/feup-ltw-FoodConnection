@@ -32,11 +32,13 @@ body > :not(footer) {
 }
 
 body > header {
-    margin: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
 }
 
 #menu a {
-    font-size: x-large;
+    font-size: large;
 }
 
 p {
@@ -88,7 +90,7 @@ body ul{
     margin-top: 1em;
 }
 
-body li:hover{ 
+body > nav li:hover{ 
     background-color: var(--gray-hover-color);
 }
 
@@ -161,54 +163,60 @@ body > header > div:nth-child(3) input {
 
 
 /*sidebar menu*/
-#menu ul, #menu #hamburger{
+.sidebar{
+    position: fixed;
+    left:-250px;
+    width: 250px;
+    height: 100%;
+    background-color: var(--second-color);
+    transition: all 1s ease;
+}
+
+.sidebar ul a{
+    display: block;
+    color: white;
+}
+
+#menu #hamburger{
     display: none;
 }
 
-#menu .hamburger:before {
-    font-family: "FontAwesome";
-    content: "\f03a";
-    font-size: x-large;
-}
-
-#menu .hamburger{
-    margin: 0 32px;
-}
-
-#menu #hamburger:checked + .hamburger::before{
-    font-family: "FontAwesome";
-    content:'\2715';
-    z-index: 99999;
-    font-size: xx-large;
+label #button, label #cancel {
     position: fixed;
-    width: 100vw;
-}
-
-#menu #hamburger:checked + .hamburger::before, #menu .hamburger:before {
     cursor: pointer;
 }
 
-#menu #hamburger:checked + .hamburger + ul{
-    display: flex;
-    flex-direction: column;
+label #button{
+    left: 40px;
+    top: 25px;
+    font-size: xx-large;
 }
 
-#menu ul {   
-    left: 0;
-    top: 0;
-    background-color: wheat; /*--TODO: Altear*/
-    position: fixed;
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
-    width: 100vw;
-    height: 100vh;
+label #cancel{
+    z-index: 1111;
+    left: -45px;
+    top: 20px;
+    font-size: xx-large;
+    background-color: var(--second-color);
+    padding: 4px 9px;
+    transition: all 1s;
 }
 
-#menu li{
-    padding: 1em;
-    margin: 0;
-    background-color: var(--light-bg-color);
-    width: 20vw;
+#hamburger:checked ~ .sidebar{
+    left:0;
+}
+
+#hamburger:checked ~ label #button{
+    opacity: 0;
+    pointer-events: none;
+}
+
+#hamburger:checked ~ label #cancel{
+    left: 195px;
+}
+
+#hamburger:checked ~ body > :not(footer){
+    margin-left:300px;
 }
 
 #menu ul > li img:first-of-type {
@@ -219,7 +227,21 @@ body > header > div:nth-child(3) input {
 
 .profile_photo {
     width: 20%;
-}/*----------------------------------*/
+}
+
+#menu ul li:nth-child(2) a{
+    font-size:x-large;
+
+}
+
+#menu ul li:last-child{
+    font-weight: bold;
+}
+
+#menu ul li:not(:nth-child(1),:nth-child(2)){
+    border-bottom: 1px solid white;
+}
+/*----------------------------------*/
 
 
 /* sign */

@@ -2,6 +2,7 @@ body {
     --dark-bg-color: #C4C4C4;
     --light-bg-color: #E7E7E7;
     --gray-hover-color: #808080;
+    --second-color: #04682f;
     --star-color: #F8CF66;
     --default-border-radius: 15px;
 }

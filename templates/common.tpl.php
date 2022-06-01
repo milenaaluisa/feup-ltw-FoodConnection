@@ -38,12 +38,17 @@
             </div>
 
             <nav id="menu">
-                <input type="checkbox" id="hamburger"> 
-                <label class="hamburger" for="hamburger"></label>
-                <?php
-                    if (isset($_SESSION['idUser'])) output_user_menu_options();
-                    else output_guest_menu_options();
-                ?>
+                <input type="checkbox" id="hamburger">
+                <label for="hamburger">
+                    <i class="fa fa-list" id="button"></i>
+                    <i class="fa fa-close" id="cancel"></i>
+                </label>
+                <div class="sidebar">
+                    <?php
+                        if (isset($_SESSION['idUser'])) output_user_menu_options();
+                        else output_guest_menu_options();
+                    ?>
+                </div>
             </nav>
         </header>
     <?php } ?>
