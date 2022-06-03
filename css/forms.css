@@ -1,7 +1,7 @@
 /*constants*/
 @import url(constants.css);
 
-form, form > *{
+form, form > * {
     width: 100%;
     justify-content: center;
 }
@@ -54,7 +54,7 @@ input:focus, button, textarea {
     top: 0;     
     left: 0;
     width: 100vw;   min-height: 100vh;
-    background-color: rgba(225, 225, 225, 0.2);
+    background-color: var(--blur-bg-color);
     backdrop-filter: blur(5px);
 }
 
@@ -65,7 +65,7 @@ input:focus, button, textarea {
     align-self: center;
     background-color: white;
     border-radius: var(--default-border-radius);
-    box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: var(--shadow-color);
 }
 
 #user_forms > article {

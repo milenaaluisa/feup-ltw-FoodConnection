@@ -5,4 +5,6 @@ body {
     --second-color: #04682f;
     --star-color: #F8CF66;
     --default-border-radius: 15px;
+    --blur-bg-color: rgba(225, 225, 225, 0.2);
+    --shadow-color: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

@@ -12,8 +12,6 @@
     transition: all 200ms ease-in-out;
 }
 
-
-
 #dishes > article img:first-of-type:hover {
     transform: scale(1.08);
 }
