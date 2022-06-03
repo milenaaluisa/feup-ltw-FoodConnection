@@ -200,7 +200,7 @@
                                 <?php } ?>
                         </select>
 
-                        <a href="my_restaurants.php">Cancel</a>
+                        <a href = "edit_restaurant.php?id=<?=$idRestaurant?>">Cancel</a>
                         <button type="submit">Save</button>
                     </form>
                 </article>
@@ -230,7 +230,7 @@
                         <label for="ingredients">Ingredients:</label>
                         <input type="text" name="ingredients" value='<?=$dish->ingredients?>'>
 
-                        <a href="my_restaurants.php">Cancel</a>
+                        <a href = "edit_restaurant.php?id=<?=$dish->idRestaurant?>">Cancel</a>
                         <button type="submit">Save</button>
                     </form>
                 </article>
