@@ -310,8 +310,8 @@ body > nav:nth-last-child(2) li { /*index page*/
 
 
 /* dish main page */
-#dishes > article > .composition p {
-    margin-bottom: 1em;
+#dishes > article > .composition > :nth-child(3) {
+    margin-top: 1em;
 }
 
 #dishes > article form button > img {
