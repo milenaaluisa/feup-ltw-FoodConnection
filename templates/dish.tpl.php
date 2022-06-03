@@ -51,18 +51,24 @@
                 <a href="edit_dish_info.php?id=<?=$dish->idDish?>">Edit Info</a>
             </div>
             
-            <div class = "composition">
-                <h3>Ingredients</h3>
-                <p><?= $dish->ingredients ?></p>
-                <?php if(isset($allergens) && sizeof($allergens)>0) { ?>
-                    <h3>Allergens</h3>
-                    <p>
-                    <?php foreach($allergens as $allergen) { ?>
-                        <?= $allergen->name ?>
-                    <?php } ?> </p>
-                <?php } ?>
-            </div>
-            
+            <?php if((isset($dish->ingredients) && !empty(trim($dish->ingredients))) || isset($allergens) && sizeof($allergens)>0) { ?>
+                <div class = "composition">
+                    <?php if(isset($dish->ingredients) && !empty(trim($dish->ingredients))) { ?>
+                        <h3>Ingredients</h3>
+                        <p><?= $dish->ingredients ?></p>
+                    <?php } ?>
+
+                    <?php if(isset($allergens) && sizeof($allergens)>0) { ?>
+                        <h3>Allergens</h3>
+                        <p>
+                            <?php foreach($allergens as $allergen) { ?>
+                                <?= $allergen->name ?>
+                            <?php } ?> 
+                        </p>
+                    <?php } ?>
+                    
+                </div>
+            <?php } ?>
 
                 <form action="action_add_order_item.php" method="post">
                     <input name="quantity" type="number" value="1" min="0" step="1">
