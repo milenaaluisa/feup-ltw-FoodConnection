@@ -1,3 +1,5 @@
+
+
 DROP TABLE IF EXISTS User;
 DROP TABLE IF EXISTS Restaurant;
 DROP TABLE IF EXISTS Category;
@@ -7,6 +9,7 @@ DROP TABLE IF EXISTS RestaurantShift;
 DROP TABLE IF EXISTS Menu;
 DROP TABLE IF EXISTS FoodOrder;
 DROP TABLE IF EXISTS Dish;
+DROP TABLE IF EXISTS RateDish;
 DROP TABLE IF EXISTS Review;
 DROP TABLE IF EXISTS Photo;
 DROP TABLE IF EXISTS MenuDish;
@@ -38,13 +41,13 @@ CREATE TABLE Restaurant
 (
     idRestaurant INTEGER PRIMARY KEY,
     name VARCHAR NOT NULL,
-    averagePrice REAL(2,1) NOT NULL DEFAULT(0),
+    averagePrice INT NOT NULL DEFAULT(0),
     phoneNum INT NOT NULL,
     address VARCHAR NOT NULL,
     zipCode VARCHAR NOT NULL,
     city VARCHAR NOT NULL,
     averageRate INT NOT NULL DEFAULT(0),
-    owner INT NOT NULL REFERENCES User(idUSer)
+    owner INT NOT NULL REFERENCES User(idUser)
 );
 
 CREATE TABLE Category
@@ -86,9 +89,9 @@ CREATE TABLE FoodOrder
 ( 
     idFoodOrder INTEGER PRIMARY KEY,     
     state VARCHAR NOT NULL CHECK(state = 'received' OR state = 'preparing' OR state = 'ready' OR state = 'delivered'),  
-    orderDate DATE NOT NULL,   
+    orderDate INTEGER NOT NULL,   
     notes VARCHAR,
-    idUSer INT NOT NULL REFERENCES User(idUSer)
+    idUser INT NOT NULL REFERENCES User(idUser)
 );
 
 CREATE TABLE Dish
@@ -102,14 +105,24 @@ CREATE TABLE Dish
     idRestaurant INT NOT NULL REFERENCES Restaurant(idRestaurant)
 );
 
+CREATE TABLE RateDish
+(
+    rate INT NOT NULL CHECK(rate >= 1 and rate <= 5),
+    idFoodOrder INT NOT NULL REFERENCES FoodOrder(idFoodOrder),
+    idDish INT NOT NULL REFERENCES Dish(idDish),
+    PRIMARY KEY (idFoodOrder, idDish)
+);
+
 CREATE TABLE Review
 (
     idReview INTEGER PRIMARY KEY,
     comment VARCHAR, 
     rate INT NOT NULL CHECK(rate >= 1 and rate <= 5),
-    reviewDate DATE NOT NULL,
-    idFoodOrder INT REFERENCES FoodOrder(idFoodOrder)
+    reviewDate INTEGER NOT NULL,
+    idFoodOrder INT NOT NULL REFERENCES FoodOrder(idFoodOrder)
 );
+
+
 
 CREATE TABLE Photo
 (
@@ -117,7 +130,7 @@ CREATE TABLE Photo
     file VARCHAR NOT NULL,
     idRestaurant INTEGER REFERENCES Restaurant(idRestaurant),
     idReview INT REFERENCES Review(idReview),
-    idUSer INT REFERENCES User(idUser),
+    idUser INT REFERENCES User(idUser),
     idDish INT REFERENCES Dish(idDish)
 );
 
@@ -144,7 +157,7 @@ CREATE TABLE DishAllergen
 CREATE TABLE Selection
 (
     quantity INT NOT NULL,
-    extras VARCHAR,
+    extras VARCHAR, 
     idFoodOrder INT NOT NULL REFERENCES FoodOrder(idFoodOrder),
     idDish INT NOT NULL REFERENCES Dish(idDish),
     PRIMARY KEY (idFoodOrder, idDish)
@@ -183,32 +196,38 @@ CREATE TABLE DishCategory(
 ---Trigger that updates the restaurant average rating every time the users review their order  
 CREATE TRIGGER IF NOT EXISTS RestaurantRate
 AFTER INSERT ON Review
-WHEN (new.idFoodOrder NOT NULL)
 
 BEGIN
     UPDATE Restaurant
-    SET averageRate = (SELECT avg(rate) 
-                      FROM Review NATURAL JOIN FoodOrder NATURAL JOIN Selection NATURAL JOIN Dish NATURAL JOIN Restaurant 
-                      WHERE Dish.idRestaurant = (SELECT idRestaurant 
-                                                 FROM Dish NATURAL JOIN (SELECT idDish 
-                                                                         FROM Selection NATURAL JOIN FoodOrder 
-                                                                         WHERE FoodOrder.idFoodOrder = new.idFoodOrder LIMIT 1)))
+    SET averageRate = (SELECT avg(rate)
+                       FROM (SELECT DISTINCT Review.*
+                            FROM Review 
+                            JOIN FoodOrder USING (idFoodOrder)
+                            JOIN Selection USING (idFoodOrder) 
+                            JOIN Dish USING (idDish)
+                            WHERE Dish.idRestaurant = (SELECT idRestaurant 
+                                                        FROM FoodOrder
+                                                        JOIN Selection USING (idFoodOrder)
+                                                        JOIN Dish USING (idDish)
+                                                        WHERE idFoodOrder = new.idFoodOrder
+                                                        LIMIT 1)))
 
     WHERE idRestaurant = (SELECT idRestaurant 
-                         FROM Dish NATURAL JOIN (SELECT idDish 
-                                                 FROM Selection NATURAL JOIN FoodOrder 
-                                                 WHERE FoodOrder.idFoodOrder = new.idFoodOrder LIMIT 1));
+                          FROM FoodOrder
+                          JOIN Selection USING (idFoodOrder)
+                          JOIN Dish USING (idDish)
+                          WHERE idFoodOrder = new.idFoodOrder
+                          LIMIT 1);
 END;
 
----Trigger that updates the dish average rating every time a new review is inserted
+---Trigger that updates the dish average rating every time a new RateDish is inserted
 CREATE TRIGGER IF NOT EXISTS DishRate
-AFTER INSERT ON Review  
-WHEN (new.idDish NOT NULL)
+AFTER INSERT ON RateDish  
 
 BEGIN
     UPDATE Dish
     SET averageRate = (SELECT avg(rate) 
-                       FROM Review
+                       FROM RateDish
                        WHERE idDish = new.idDish)
     WHERE idDish = new.idDish;
 END;
@@ -572,7 +591,7 @@ INSERT INTO Dish(idDish, name, ingredients, price, idRestaurant) VALUES(49, 'Ban
 INSERT INTO Dish(idDish, name, ingredients, price, idRestaurant) VALUES(50, 'Shakshuka Nola Style', 'Ovo escalfado em estufado de tomate, beringela, especiarias, hummus e flatbread de fermentação natural', 12.00, 9);
 INSERT INTO Dish(idDish, name, ingredients, price, idRestaurant) VALUES(51, 'Protein bowl', 'Hummus, espinafre, kale, abóbora hokkaido, raiz de aipo assada, tupinambo pickelado, noz pecan e romã', 12.00, 9);
 INSERT INTO Dish(idDish, name, ingredients, price, idRestaurant) VALUES(52, 'The superhero shot', 'Abacaxi, gengibre, limão, mistura de pimentas, mel, cúrcuma e pólen de abelha', 3.00, 9);
-INSERT INTO Dish(idDish, name, ingredients, price, idRestaurant) VALUES(53, 'Choco(licious, 9); pancake', 'NOLA-tella, manteiga de Avelã, gra-NOLA e maple syrup', 8.00, 9);
+INSERT INTO Dish(idDish, name, ingredients, price, idRestaurant) VALUES(53, 'Choco(licious) pancake', 'NOLA-tella, manteiga de Avelã, gra-NOLA e maple syrup', 8.00, 9);
 INSERT INTO Dish(idDish, name, ingredients, price, idRestaurant) VALUES(54, 'Smoothie Peanut&Berries', 'Frutos vermelhos, banana, manteiga de amendoim, sementes de cânhamo e pólen de abelha', 6.00, 9);
 INSERT INTO Dish(idDish, name, ingredients, price, idRestaurant) VALUES(55, 'Sashimi Toro', 'Fatias de barrigade atum', 19.95, 10);
 INSERT INTO Dish(idDish, name, ingredients, price, idRestaurant) VALUES(56, 'Temaki Espadarte', 'Com guacamole', 6.80, 10);
@@ -1463,4 +1482,123 @@ INSERT INTO FavDish (idUser, idDish) VALUES(7, 100);
 INSERT INTO FavDish (idUser, idDish) VALUES(7, 150);
 INSERT INTO FavDish (idUser, idDish) VALUES(8, 160);
 INSERT INTO FavDish (idUser, idDish) VALUES(8, 170);
+
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (1, 'received',1653004800, 1);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (2, 'ready', 1653436800, 1);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, notes, idUser) VALUES (3, 'preparing', 1652140800, 'Sem tomate', 1);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, notes, idUser) VALUES (4, 'delivered', 1641513600, 'Sem milho', 1);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (5, 'received', 1653004800, 1);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (6, 'received', 1650412800, 2);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, notes, idUser) VALUES (7, 'preparing', 1652745600, 'Sem banana', 2);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (8, 'ready', 1653004800, 2);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (9, 'received', 1649030400, 3);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (10, 'received', 1653004800, 3);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (11, 'preparing', 1646092800, 4);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, notes, idUser) VALUES (12, 'received', 1643760000, 'Sem avela', 5);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (13, 'preparing', 1644451200, 5);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (14, 'delivered', 1652572800, 5);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (15, 'ready', 1652659200, 5);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (16, 'delivered', 1641772800, 6);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (17, 'received', 1649376000, 6);
+
+
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 1, 116);
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (2, 1, 115);
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (2, 1, 119);
+
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (3, 2, 156);
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 2, 152);
+
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (5, 3, 82);
+
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (3, 4, 76);
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 4, 75);
+
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 5, 25);
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 5, 30);
+
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 6, 4);
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 6, 1);
+
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (3, 7, 3);
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 7, 2);
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 7, 6);
+
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (2, 8, 9);
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 8, 12);
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 8, 8);
+
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (2, 9, 8);
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 9, 11);
+
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 10, 15);
+
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (2, 11, 89);
+
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (2, 12, 53);
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (2, 12, 52);
+
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (2, 13, 51);
+
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (3, 14, 140);
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (3, 14, 144);
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 14, 143);
+
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (2, 15, 32);
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 15, 31);
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 15, 35);
+
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 16, 145);
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 16, 150);
+
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (2, 17, 4);
+
+
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (4, 1, 116);
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 1, 115);
+
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (4, 2, 152);
+
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 3, 82);
+
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 4, 76);
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (3, 4, 75);
+
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (4, 5, 25);
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (4, 5, 30);
+
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 6, 4);
+
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (4, 7, 3);
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (2, 7, 6);
+
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (1, 8, 9);
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (2, 8, 8);
+
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 9, 8);
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (4, 9, 11);
+
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (4, 12, 53);
+
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 14, 140);
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 14, 143);
+
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (4, 15, 32);
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 15, 35);
+
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 17, 4);
+
+
+INSERT INTO Review (idReview, comment, rate, reviewDate, idFoodOrder) values (1, "Comida saborosa. Se pudesse, dava 6 estrelas.", 5, 1653004800, 1);
+INSERT INTO Review (idReview, comment, rate, reviewDate, idFoodOrder) values (2, "É caro? Sim. Está um pouco(bastante) supervalorizado? Sim. Seguirei indo? Tambem", 4, 1651363200, 10); 
+INSERT INTO Review (idReview, comment, rate, reviewDate, idFoodOrder) values (3, "Devia ter a opcao de dar 0 estrela.", 1, 1651622400, 6); 
+INSERT INTO Review (idReview, comment, rate, reviewDate, idFoodOrder) values (4, "Melhor restaurante de comida mexicana no Porto!", 5, 1649635200, 5);
+INSERT INTO Review (idReview, comment, rate, reviewDate, idFoodOrder) values (5, "Comida caseira com boa qualidade. Recomendo.", 3, 1650326400, 12);
+INSERT INTO Review (idReview, rate, reviewDate, idFoodOrder) values (6, 3, 1641945600, 9);
+
+
+INSERT INTO Reply (idReplay, comment, owner, idReview) VALUES (1, "Muito obtigado. Ler isto nos enche de alegria!", 9, 1);
+INSERT INTO Reply (idReplay, comment, owner, idReview) VALUES (2, "Gratidão.", 1, 3);
+INSERT INTO Reply (idReplay, comment, owner, idReview) VALUES (3, "Muito obtigado pelo seu feedback.", 4, 4);
+
 

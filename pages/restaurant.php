@@ -7,6 +7,7 @@
     require_once('../database/category.class.php');
     require_once('../database/restaurant.class.php');
     require_once('../database/dish.class.php');
+    require_once('../database/review.class.php');
     require_once('../templates/common.tpl.php');
     require_once('../templates/category.tpl.php');
     require_once('../templates/restaurant.tpl.php');
@@ -21,7 +22,7 @@
 
     $dishes = Dish::getRestaurantDishes($db, intval($_GET['id']));
 
-    $reviews = $restaurant->getRestaurantReviews($db);
+    $reviews = Review::getRestaurantReviews($db, intval($restaurant->idRestaurant));
     
     $css_files = array('restaurant.css');
     output_header($css_files);

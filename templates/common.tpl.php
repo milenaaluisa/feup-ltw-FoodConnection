@@ -76,7 +76,7 @@
 <?php function output_user_menu_options () { ?> 
     <ul>
         <li><a href="edit_profile.php">
-            <?php output_profile_photo()?>
+            <?php output_profile_photo($_SESSION['file'])?>
         </a></li>
         <li><a href="edit_profile.php"><?=$_SESSION['name']?></a></li>
         <li><a href="index.php">Home</a></li>

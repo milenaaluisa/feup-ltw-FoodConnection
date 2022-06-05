@@ -43,7 +43,7 @@
 
             <?php output_dish_photo($dish); ?>
 
-            <span class="price"><?= $dish->price ?></span>
+            <span class="price"><?= number_format($dish->price, 2) ?></span>
             <span class="rate"><?= $dish->averageRate ?></span>
 
             <!---TODO: like button-->
