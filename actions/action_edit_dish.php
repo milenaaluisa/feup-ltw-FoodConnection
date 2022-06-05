@@ -14,12 +14,10 @@
     if ($dish) {
         $dish->name = $_POST['name'];
         $dish->ingredients = $_POST['ingredients'];
-        $user->price = floatval($_POST['price']);
+        $dish->price = floatval($_POST['price']);
 
         $dish->updateDishInfo($db);
     }
-
-    
     
     header('Location: ../pages/edit_restaurant.php?id='.$_POST['idRestaurant']);
 ?>

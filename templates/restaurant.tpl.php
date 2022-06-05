@@ -1,5 +1,8 @@
-<?php declare(strict_types = 1); ?>
-<?php require_once('../templates/dish.tpl.php'); ?>
+<?php 
+    declare(strict_types = 1);
+    include_once('../templates/dish.tpl.php'); 
+    include_once('../templates/review.tpl.php'); 
+?>
 
 
 <?php 
@@ -31,11 +34,11 @@
     function output_restaurant_photo (Restaurant $restaurant) { ?>
         <a href="restaurant.php?id=<?= $restaurant->idRestaurant ?>">
             <?php if (isset($restaurant->file)) { ?>
-                    <img src="..\images\restaurants\<?= $restaurant->file ?>">
+                    <img src="../images/restaurants/<?= $restaurant->file ?>" alt="">
             <?php }
             
             else { ?>
-                <img src="..\images\no_photo.jpg">
+                <img src="../images/no_photo.jpg" alt="">
             <?php } ?>
         </a>
 <?php } ?>
@@ -54,33 +57,12 @@
         </section>
 <?php } ?>
 
-<?php
-    function output_restaurant_reviews(array $reviews) { ?>
-        <section id="reviews">
-            <header>
-                <h1>Reviews</h1>
-            </header>
-            <?php foreach($reviews as $review) { ?>
-                <article>
-                    <div>
-                        <img src="https://picsum.photos/600/200?city" class ="profile_photo" alt = "profile photo">
-                        <span class="user"><?= $review['username'] ?> said:</span>
-                        <span class="rate"><?= $review['rate'] ?></span>
-                        <p><?= $review['comment'] ?></p>
-                        <span class="date"><?= $review['reviewDate'] ?></span>
-                    </div>
-                    <img src= "https://picsum.photos/300/200?city" alt = "review photo">
-                </article> 
-            <?php } ?>
-        </section>
-<?php } ?>
-
 
 <?php
     function output_restaurant(Restaurant $restaurant, array $dishes = null, array $shifts = null, array $reviews = null, $output_order_form = False) { ?>
         <article>
             <header>
-                <h1><a href="restaurant.php?id=<?= $restaurant->idRestaurant ?>"><?= $restaurant->name ?></a></h1>
+                <h2><a href="restaurant.php?id=<?= $restaurant->idRestaurant ?>"><?= $restaurant->name ?></a></h2>
             </header>
 
             <?php output_restaurant_photo($restaurant); ?>
@@ -113,7 +95,7 @@
             if($output_order_form === True) { ?>
                 <section id="orders">
                     <header>
-                        <h1>Your Order</h1>
+                        <h3>Your Order</h3>
                     </header>
                     <form action = "new_order.php" method="post">
                         <button type="submit">Place Order</button>
@@ -121,7 +103,7 @@
                 </section>
 
                 <?php if(isset($reviews) && sizeof($reviews) > 0) {
-                    output_restaurant_reviews($reviews);
+                    output_restaurant_reviews_list($reviews);
                 } ?>
             <?php } ?>
         </article>
@@ -141,7 +123,7 @@
                 <h2>Tel.:</h2>
                 <p><?= $my_restaurant->phoneNum ?></p>
             </section>   
-            <a href="restaurant_orders.php"> List Orders </a>
+            <a href="restaurant_orders.php?id=<?=$my_restaurant->idRestaurant?>"> List Orders </a>
             <a href="edit_restaurant.php?id=<?=$my_restaurant->idRestaurant?>"> Edit restaurant </a>
         </article>
 <?php } ?>

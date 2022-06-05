@@ -46,7 +46,7 @@
                     intval($restaurant['owner']),
                     $restaurant['file'],
                     floatval($restaurant['averagePrice']),
-                    intval($restaurant['averageRate']),
+                    intval($restaurant['averageRate'])
                 );
             }
             return $restaurants;
@@ -73,7 +73,7 @@
                     intval($restaurant['owner']),
                     $restaurant['file'],
                     floatval($restaurant['averagePrice']),
-                    intval($restaurant['averageRate']),
+                    intval($restaurant['averageRate'])
                 );
             }
             return $restaurants;
@@ -96,7 +96,7 @@
                         intval($restaurant['owner']),
                         $restaurant['file'],
                         floatval($restaurant['averagePrice']),
-                        intval($restaurant['averageRate']),
+                        intval($restaurant['averageRate'])
                 );
             }
             return null;
@@ -110,20 +110,6 @@
             $stmt->execute(array($this->idRestaurant));
             $shifts = $stmt->fetchAll();
             return $shifts;
-        }
-
-        function getRestaurantReviews(PDO $db) {
-            $stmt = $db->prepare('SELECT distinct Review.*, file
-                                  FROM Review
-                                  LEFT JOIN Photo USING (idReview)
-                                  NATURAL JOIN FoodOrder
-                                  NATURAL JOIN Selection
-                                  NATURAL JOIN Dish
-                                  WHERE idRestaurant = ?
-                                  ORDER BY reviewDate DESC');
-            $stmt->execute(array($this->idRestaurant));
-            $reviews = $stmt->fetchAll();
-            return $reviews;
         }
 
         static function getUserRestaurants(PDO $db, int $idUser) : array {
@@ -146,7 +132,7 @@
                     intval($restaurant['owner']),
                     $restaurant['file'],
                     floatval($restaurant['averagePrice']),
-                    intval($restaurant['averageRate']),
+                    intval($restaurant['averageRate'])
                 );
             }
             return $restaurants;
@@ -157,7 +143,8 @@
                                   FROM Restaurant
                                   JOIN FavRestaurant USING (idRestaurant)
                                   LEFT JOIN Photo USING (idRestaurant) 
-                                  WHERE FavRestaurant.idUser = ?');
+                                  WHERE FavRestaurant.idUser = ?
+                                  ORDER BY NAME');
             $stmt->execute(array($idUser));
             $restaurants = array();
 
@@ -172,7 +159,7 @@
                     intval($restaurant['owner']),
                     $restaurant['file'],
                     floatval($restaurant['averagePrice']),
-                    intval($restaurant['averageRate']),
+                    intval($restaurant['averageRate'])
                 );
             }
             return $restaurants;
