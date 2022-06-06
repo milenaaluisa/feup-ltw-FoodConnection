@@ -17,7 +17,7 @@
 
     $order = Order::getOrder($db, intval($_GET['id']));
 
-    if ($order->state !== 'received' || $order->rated === true) 
+    if ($order->state !== 'received' || $order->rated === true || $order->idUser !== $_SESSION['idUser']) 
         die(header('Location: index.php'));
 
     output_header();

@@ -6,16 +6,18 @@
         public int $idFoodOrder;
         public string $state;
         public int $orderDate;
+        public int $idUser;
         public $notes;
         public array $items;
         public float $total;
         public bool $rated;
         public Restaurant $restaurant;
 
-        public function __construct(int $idFoodOrder, string $state, int $orderDate, $notes, array $items, float $total, bool $rated, Restaurant $restaurant) {
+        public function __construct(int $idFoodOrder, string $state, int $orderDate, int $idUser, $notes, array $items, float $total, bool $rated, Restaurant $restaurant) {
             $this->idFoodOrder = $idFoodOrder;
             $this->state = $state;
             $this->orderDate = $orderDate;
+            $this->idUser = $idUser;
             $this->notes = $notes;
             $this->items = $items;
             $this->total = $total;
@@ -40,6 +42,7 @@
                     intval($order['idFoodOrder']),
                     $order['state'],
                     intval($order['orderDate']),
+                    intval($order['idUser']),
                     $order['notes'],
                     $items,
                     floatval($order['total']),
@@ -68,6 +71,7 @@
                     intval($order['idFoodOrder']),
                     $order['state'],
                     intval($order['orderDate']),
+                    intval($order['idUser']),
                     $order['notes'],
                     $items,
                     floatval($order['total']),
@@ -105,6 +109,7 @@
                     intval($order['idFoodOrder']),
                     $order['state'],
                     intval($order['orderDate']),
+                    intval($order['idUser']),
                     $order['notes'],
                     $items,
                     floatval($order['total']),
