@@ -1,16 +1,20 @@
 <?php declare(strict_types = 1); ?>
 
-<?php function output_rate_order_form() { ?>
+<?php function output_rate_order_form(int $idFoodOrder) { ?>
     <main>
         <section id="user_forms">
             <article>
                 <header>
                     <h1>Rate Your Order</h1>
                 </header>
-                <form action="action_rate_order.php" method="post">
-                    <input name="quantity" type="number" value="1" min="1" max="5" step="1">
+                <form action="../actions/action_rate_order.php" method="post">
+                <input type="hidden" name="idFoodOrder" value="<?=$idFoodOrder?>">
+                <?php 
+                    for ($i = 1; $i <= 5; $i++) { ?>
+                        <input type="radio" name="rate" value="<?=$i?>"> 
+                <?php }?>
                     <textarea name="comment" placeholder="your comment"></textarea>
-                    <a href="my_orders.php">Cancel</a>
+                    <a href="order_history.php">Cancel</a>
                     <button type="submit">Post</button>
                 </form>
             </article>

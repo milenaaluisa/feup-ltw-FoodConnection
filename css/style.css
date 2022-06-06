@@ -354,7 +354,7 @@ div.subtotal {
     border: 2px solid var(--dark-bg-color);
 }
 
-#reviews > article > div:last-of-type{  /*Reply*/
+#reviews > article > div:nth-of-type(2){  /*Reply*/
     border-radius: var(--default-border-radius);
     background-color: var(--light-bg-color);
     padding: 1em;
@@ -363,7 +363,7 @@ div.subtotal {
     align-items: center;
 }
 
-#reviews > article > div:last-of-type > * {
+#reviews > article > div:nth-of-type(2) > * {
     text-align: left;
     margin-top: 0.5em;
 }

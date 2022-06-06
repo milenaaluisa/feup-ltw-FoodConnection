@@ -28,7 +28,7 @@
     object-fit: cover;
 }
 
-#reviews > article > div:last-child {   /*Reply*/
+#reviews > article > div:nth-of-type(2){   /*Reply*/
     grid-column: 1; grid-row: 2;
 }
 

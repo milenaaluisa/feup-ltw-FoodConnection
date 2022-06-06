@@ -26,7 +26,7 @@
             $this->file = $file;
         }
 
-        function getRestaurantReviews(PDO $db, int $idRestaurant) {
+        static function getRestaurantReviews(PDO $db, int $idRestaurant) : array{
             $stmt = $db->prepare('SELECT RestReview.*, Photo.file as profilePhoto, username, Reply.comment as reply
                                   FROM (SELECT Distinct Review.*, FoodORder.idUser, file
                                         FROM Review
@@ -59,7 +59,14 @@
 
             return $reviews;
         }    
-    }
 
+
+        static function saveReview(PDO $db, int $rate, $comment, int $date, int $idFoodOrder) {
+            $stmt = $db->prepare('INSERT INTO Review (comment, rate, reviewDate, idFoodOrder)
+                                  VALUES (?, ?, ?, ?) ');
+            $stmt->execute(array($comment, $rate, $date, $idFoodOrder));
+        }
+
+    }
 
 ?>

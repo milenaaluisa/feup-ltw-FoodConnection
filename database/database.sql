@@ -1514,8 +1514,8 @@ INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (5, 3, 82);
 INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (3, 4, 76);
 INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 4, 75);
 
-INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 5, 25);
-INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 5, 30);
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 5, 82);
+INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 5, 80);
 
 INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 6, 4);
 INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 6, 1);
@@ -1564,8 +1564,8 @@ INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 3, 82);
 INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 4, 76);
 INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (3, 4, 75);
 
-INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (4, 5, 25);
-INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (4, 5, 30);
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (4, 5, 82);
+INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (4, 5, 80);
 
 INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 6, 4);
 
@@ -1589,7 +1589,7 @@ INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 15, 35);
 INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 17, 4);
 
 
-INSERT INTO Review (idReview, comment, rate, reviewDate, idFoodOrder) values (1, "Comida saborosa. Se pudesse, dava 6 estrelas.", 5, 1653004800, 1);
+INSERT INTO Review (idReview, comment, rate, reviewDate, idFoodOrder) values (1, "Comida saborosa. Se pudesse, dava 6 estrelas.", 5, 1653004800, 9);
 INSERT INTO Review (idReview, comment, rate, reviewDate, idFoodOrder) values (2, "É caro? Sim. Está um pouco(bastante) supervalorizado? Sim. Seguirei indo? Tambem", 4, 1651363200, 10); 
 INSERT INTO Review (idReview, comment, rate, reviewDate, idFoodOrder) values (3, "Devia ter a opcao de dar 0 estrela.", 1, 1651622400, 6); 
 INSERT INTO Review (idReview, comment, rate, reviewDate, idFoodOrder) values (4, "Melhor restaurante de comida mexicana no Porto!", 5, 1649635200, 5);
@@ -1597,7 +1597,7 @@ INSERT INTO Review (idReview, comment, rate, reviewDate, idFoodOrder) values (5,
 INSERT INTO Review (idReview, rate, reviewDate, idFoodOrder) values (6, 3, 1641945600, 9);
 
 
-INSERT INTO Reply (idReplay, comment, owner, idReview) VALUES (1, "Muito obtigado. Ler isto nos enche de alegria!", 9, 1);
+INSERT INTO Reply (idReplay, comment, owner, idReview) VALUES (1, "Muito obtigado. Ler isto nos enche de alegria!", 2, 1);
 INSERT INTO Reply (idReplay, comment, owner, idReview) VALUES (2, "Gratidão.", 1, 3);
 INSERT INTO Reply (idReplay, comment, owner, idReview) VALUES (3, "Muito obtigado pelo seu feedback.", 4, 4);
 
