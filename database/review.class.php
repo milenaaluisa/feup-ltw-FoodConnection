@@ -66,7 +66,6 @@
                                   VALUES (?, ?, ?, ?) ');
             $stmt->execute(array($comment, $rate, $date, $idFoodOrder));
         }
-
     }
 
 ?>

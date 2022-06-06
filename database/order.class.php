@@ -23,16 +23,40 @@
             $this->restaurant = $restaurant;
         }
 
+        static function getOrder (PDO $db, int $idFoodOrder) : ?Order {
+            $stmt = $db->prepare('SELECT FoodOrder.*, sum(quantity * price) as total, Review.idReview as rated, idRestaurant
+                                  FROM FoodOrder
+                                  JOIN Selection USING (idFoodOrder)
+                                  JOIN Dish USING (idDish)
+                                  LEFT JOIN Review USING (idFoodOrder)
+                                  WHERE FoodORder.idFoodOrder = ?');
+            $stmt->execute(array($idFoodOrder));
+
+            if ($order = $stmt->fetch()) {
+                $items = Order::getOrderItems($db, intval($order['idFoodOrder']));
+                $restaurant = Restaurant::getRestaurant($db, intval($order['idRestaurant']));
+
+                return new Order(
+                    intval($order['idFoodOrder']),
+                    $order['state'],
+                    intval($order['orderDate']),
+                    $order['notes'],
+                    $items,
+                    floatval($order['total']),
+                    boolval($order['rated']), 
+                    $restaurant);     
+            }
+            return null;
+        }
+
         static function getUserOrders(PDO $db, int $idUser) : array {
             $stmt = $db->prepare('SELECT FoodOrder.*, sum(quantity * price) as total, Review.idReview as rated, idRestaurant
                                   FROM FoodOrder
                                   JOIN Selection USING (idFoodOrder)
                                   JOIN Dish USING (idDish)
                                   LEFT JOIN Review USING (idFoodOrder)
-                                  LEFT JOIN Photo USING (idRestaurant)
                                   GROUP BY FoodOrder.idFoodOrder
                                   HAVING FoodOrder.idUser = ?');
-        
             $stmt->execute(array($idUser));
             $orders = array();
     
@@ -48,8 +72,7 @@
                     $items,
                     floatval($order['total']),
                     boolval($order['rated']), 
-                    $restaurant
-                );     
+                    $restaurant);     
             }
             return $orders;
         }
@@ -59,7 +82,6 @@
                                     FROM Dish
                                     JOIN Selection USING (idDish)
                                     WHERE idFoodOrder = ?');    
-
             $stmt->execute(array($idFoodOrder));
             $items =$stmt->fetchAll();
             return $items;
@@ -71,11 +93,9 @@
                                   JOIN Selection USING (idFoodOrder)
                                   JOIN Dish USING (idDish)
                                   LEFT JOIN Review USING (idFoodOrder)
-                                  LEFT JOIN Photo USING (idRestaurant)
                                   GROUP BY FoodOrder.idFoodOrder
                                   HAVING idRestaurant = ?
                                   ORDER BY FoodOrder.orderDate DESC');    
-
             $stmt->execute(array($restaurant->idRestaurant));
             $order = array();
 
@@ -89,13 +109,18 @@
                     $items,
                     floatval($order['total']),
                     boolval($order['rated']),
-                    $restaurant
-                );     
-             }
-            return $orders;
-
-            
+                    $restaurant);     
+            }
+            return $orders; 
         }
-    
+
+        static function getOrderState(PDO $db, int $idFoodOrder) : string {
+            $stmt = $db->prepare('SELECT FoodOrder.state
+                                  FROM FoodOrder
+                                  WHERE idFoodOrder = ?'); 
+            $stmt->execute(array($idFoodOrder));
+            $state = $stmt->fetch();
+            return $state[0];
+        }
     }
 ?>
