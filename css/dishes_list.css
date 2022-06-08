@@ -27,6 +27,7 @@
     grid-template-columns: repeat(auto-fit, 16em);
     gap: 30px;
     justify-content: center;
+    align-items: flex-start;
 }
 
 #dishes > header {

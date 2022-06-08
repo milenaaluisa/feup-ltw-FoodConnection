@@ -20,6 +20,6 @@
     
     output_header($css_files);
     output_my_restaurants_list($my_restaurants); ?>
-    <a href="add_restaurant.php">Add new restaurant</a>
+    <a href="add_restaurant.php">Add new restaurant <i class="fa-regular fa-plus"></i></a>
     <?php output_footer();
 ?>

@@ -9,7 +9,7 @@
         <title>Food Connection</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/212cf37a16.js" crossorigin="anonymous"></script>
         <link href="../css/style.css" rel="stylesheet">
         <link href="../css/layout.css" rel="stylesheet">
         <link href="../css/forms.css" rel="stylesheet">
@@ -40,10 +40,10 @@
             <nav id="menu">
                 <input type="checkbox" id="hamburger">
                 <label for="hamburger">
-                    <i class="fa fa-list" id="button"></i>
-                    <i class="fa fa-close" id="cancel"></i>
+                    <i class="fa fa-list"></i>
+                    <i class="fa fa-close"></i>
                 </label>
-                <div class="sidebar">
+                <div>
                     <?php
                         if (isset($_SESSION['idUser'])) output_user_menu_options();
                         else output_guest_menu_options();
@@ -84,12 +84,12 @@
             <?php output_profile_photo($_SESSION['file'])?>
         </a></li>
         <li><a href="edit_profile.php"><?=$_SESSION['name']?></a></li>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="favourites.php">Favourites</a></li>
-        <li><a href="order_history.php">Order History</a></li>
-        <li><a href="my_restaurants.php">My restaurants</a></li>
-        <li><a href="edit_profile.php">Edit profile</a></li>
-        <li><a href="logout.php">Sign Out</a></li>
+        <li><a href="index.php"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="favourites.php"><i class="fa-solid fa-heart"></i> Favourites</a></li>
+        <li><a href="order_history.php"><i class="fa-solid fa-receipt"></i> Order History</a></li>
+        <li><a href="my_restaurants.php"><i class="fa-solid fa-utensils"></i> My restaurants</a></li>
+        <li><a href="edit_profile.php"><i class="fa-solid fa-user-gear"></i>  Edit profile</a></li>
+        <li><a href="logout.php">Sign Out <i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
     </ul>
 <?php } ?>
 
@@ -109,7 +109,7 @@
                 <p>Pricing</p>
             </div>
             <div>
-                <p>Copyright &copy; 2022 Food Connection</p>
+                <p>Copyright <i class="fa-regular fa-copyright"></i> 2022 Food Connection</p>
             </div>
         </footer>
         </body>
