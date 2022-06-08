@@ -1,28 +1,6 @@
 <?php declare(strict_types = 1); ?>
 
-<?php function output_rate_order_form(int $idFoodOrder) { ?>
-    <main>
-        <section id="user_forms">
-            <article>
-                <header>
-                    <h1>Rate Your Order</h1>
-                </header>
-                <form action="../actions/action_rate_order.php" method="post">
-                <input type="hidden" name="idFoodOrder" value="<?=$idFoodOrder?>">
-                <?php 
-                    for ($i = 1; $i <= 5; $i++) { ?>
-                        <input type="radio" name="rate" value="<?=$i?>"> 
-                <?php }?>
-                    <textarea name="comment" placeholder="your comment"></textarea>
-                    <a href="order_history.php">Cancel</a>
-                    <button type="submit">Post</button>
-                </form>
-            </article>
-        </section>
-    </main>
-<?php }  ?>
-
-
+<!--User forms---------------------------------------------------------------------->
 <?php
     function output_login_form() { ?>
         <main>
@@ -112,6 +90,8 @@
 
 <?php } ?>
 
+
+<!--Restaurant forms-------------------------------------------------------------------->
 <?php
     function output_new_restaurant_form(array $categories) { ?>
         <main>
@@ -176,6 +156,7 @@
 <?php } ?>
 
 
+<!--Dish forms-------------------------------------------------------------------------------->
 <?php
     function output_new_dish_form(array $allergens, array $categories, int $idRestaurant) { ?>
         <main>
@@ -241,3 +222,43 @@
             </section>
         </main>
 <?php } ?>  
+
+
+<!--Review/Rate forms---------------------------------------------------------------------->
+<?php function output_rate_order_form(int $idFoodOrder) { ?>
+    <main>
+        <section id="user_forms">
+            <article>
+                <header>
+                    <h1>Rate Your Order</h1>
+                </header>
+                <form action="../actions/action_rate_order.php" method="post">
+                <input type="hidden" name="idFoodOrder" value="<?=$idFoodOrder?>">
+                <div>
+                    <?php 
+                        for ($i = 1; $i <= 5; $i++) { ?>
+                            <input type="radio" name="rate" value="<?=$i?>" id="star<?=$i?>" required> 
+                            <label for= "star<?=$i?>" class = "fa fa-star"> </label>
+                    <?php }?>
+                </div>
+                <textarea name="comment" placeholder="your comment"></textarea>
+                <a href="order_history.php">Cancel</a>
+                <button type="submit">Post</button>
+                </form>
+            </article>
+        </section>
+    </main>
+<?php } ?>
+
+
+<!------------------------------------------------------------------>
+<?php 
+function output_reply_review_form(Review $review) { ?>
+    <div class="reply_form">
+        <form action="../actions/action_reply_review.php" method="post">
+            <input type="hidden" name="idReview" value="<?=$review->idReview?>">
+            <textarea rows="1" cols="50" name="reply" placeholder="your comment"></textarea>
+            <button type="submit">Post</button>
+        </form>
+    </div>
+<?php } ?>

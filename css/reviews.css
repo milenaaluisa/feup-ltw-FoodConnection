@@ -9,7 +9,7 @@
     margin: 0;
     width: 100%;
     display: grid;
-    gap: 20px;
+    gap: 7px 20px;
     grid-template-columns: auto 17.5%;
     grid-template-rows: auto auto;
 }

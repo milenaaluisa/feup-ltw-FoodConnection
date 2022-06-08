@@ -44,7 +44,11 @@
 #restaurants > article > #dishes > header {
     display : none;
 }
-/*------------------------------------*/
+
+/*reply form*/
+#restaurants > article > #reviews > article > div.reply_form { 
+    display: block;
+}/*------------------------------------*/
 
 
 /*---------------LAYOUT----------------*/

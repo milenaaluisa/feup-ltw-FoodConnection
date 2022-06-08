@@ -75,7 +75,7 @@
                 ?>
             </span>
             
-            <a class="rate" href=restaurant.php#reviews><?= $restaurant->averageRate ?></a>
+            <a class="rate" href= "restaurant.php?id=<?= $restaurant->idRestaurant ?>#reviews"><?= $restaurant->averageRate ?></a>
 
             <!---<img id="fav_button" src="fav_button.jpg" alt=""> --->
 

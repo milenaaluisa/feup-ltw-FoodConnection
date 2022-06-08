@@ -1,4 +1,7 @@
-<?php declare(strict_types = 1); ?>
+<?php 
+    declare(strict_types = 1);
+    include_once('../templates/forms.tpl.php');  
+?>
 
 
 <?php
@@ -32,20 +35,22 @@
 
         <?php if (isset($review->reply) && !empty($review->reply)) { ?>
             <div>
-                <h3> Reply: </h3>
+                <h3> Response from the owner: </h3>
                 <p><?=$review->reply?></p>
             </div>
-        <?php } ?>
-        
+        <?php } 
+
+        else {
+            output_reply_review_form($review); 
+        } ?>
+             
     </article>
 <?php } ?>
 
 
 <?php
     function output_review_photo($file) { ?> 
-
     <?php if (isset($restaurant->file)) { ?>
             <img src="../images/reviews/<?=$file?>">
-    <?php } ?>
-            
+    <?php } ?>        
 <?php } ?>  

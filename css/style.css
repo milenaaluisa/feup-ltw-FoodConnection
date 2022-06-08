@@ -291,7 +291,17 @@ body > nav:nth-last-child(2) li { /*index page*/
 
 #restaurants > article > .rate, #dishes > article > .rate {
     margin-right: 0.5em;
-}/*----------------------------------*/
+}
+
+#restaurants > article > #reviews > article > div.reply_form {
+    display: none;
+}
+
+#restaurants > article > #reviews > article > div.reply_form > form > button{
+    width: auto;
+    padding: 0.5em 2em;
+}
+/*----------------------------------*/
 
 
 /* dish */

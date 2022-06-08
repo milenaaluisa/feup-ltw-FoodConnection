@@ -27,6 +27,10 @@ input, textarea {
     box-sizing: border-box;
 }
 
+textarea {
+    resize: vertical;
+}
+
 input[name=ingredients] {
     height: 100px;
 }
@@ -94,4 +98,32 @@ input:focus, button, textarea {
 
 #user_forms > article > form > button, #owner_forms > article > form > button {
     width: 40%;
+}
+
+/*stars of rate form*/
+#user_forms > article > form > div { 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#user_forms > article > form > div > input { 
+    display: none;
+}
+
+#user_forms > article > form > div > label { 
+    font-size: 2em;
+    color: var(--light-bg-color);
+    padding: 10px;
+    float: right;
+    transition: all 0.2s ease;
+}
+
+#user_forms > article > form > div > input:not(:checked) ~ label:hover
+{
+     color: var(--star-color);
+}
+
+#user_forms > article > form > div > input:checked + label {
+    color: var(--star-color);
 }
