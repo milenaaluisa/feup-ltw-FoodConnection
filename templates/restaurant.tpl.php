@@ -97,7 +97,9 @@
                     <header>
                         <h3>Your Order</h3>
                     </header>
-                    <form action = "new_order.php" method="post">
+                    <form action = "../actions/action_place_order.php" method="post">
+                        <input type="hidden" name="idRestaurant" value="<?=$dish->idRestaurant?>">
+                        <?php /*output_restaurant_order(); */?>
                         <button type="submit">Place Order</button>
                     </form>
                 </section>
