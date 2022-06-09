@@ -241,7 +241,32 @@
                             <label for= "star<?=$i?>" class = "fa fa-star"> </label>
                     <?php }?>
                 </div>
-                <textarea name="comment" placeholder="your comment"></textarea>
+                <textarea name="comment" rows="3" placeholder="your comment"></textarea>
+                <a href="order_history.php">Cancel</a>
+                <button type="submit">Post</button>
+                </form>
+            </article>
+        </section>
+    </main>
+<?php } ?>
+
+<?php function output_rate_dish_form(Dish $dish, Order $order) { ?>
+    <main>
+        <section id="user_forms">
+            <article>
+                <header>
+                    <h1><?=$dish->name?></h1>
+                </header>
+                <form action="../actions/action_rate_dish.php" method="post">
+                <input type="hidden" name="idDish" value="<?=$dish->idDish?>">
+                <input type="hidden" name="idFoodOrder" value="<?=$order->idFoodOrder?>">
+                <div>
+                    <?php 
+                        for ($i = 1; $i <= 5; $i++) { ?>
+                            <input type="radio" name="rate" value="<?=$i?>" id="star<?=$i?>" required> 
+                            <label for= "star<?=$i?>" class = "fa fa-star"> </label>
+                    <?php }?>
+                </div>
                 <a href="order_history.php">Cancel</a>
                 <button type="submit">Post</button>
                 </form>

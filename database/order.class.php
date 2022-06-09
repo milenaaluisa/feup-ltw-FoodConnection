@@ -26,15 +26,16 @@
         }
 
         static function getOrder (PDO $db, int $idFoodOrder) : ?Order {
-            $stmt = $db->prepare('SELECT FoodOrder.*, sum(quantity * price) as total, Review.idReview as rated, idRestaurant
+            $stmt = $db->prepare('SELECT FoodOrder.*, sum(quantity * price), Review.idReview, idRestaurant
                                   FROM FoodOrder
                                   JOIN Selection USING (idFoodOrder)
                                   JOIN Dish USING (idDish)
                                   LEFT JOIN Review USING (idFoodOrder)
-                                  WHERE FoodORder.idFoodOrder = ?');
+                                  GROUP BY idFoodOrder
+                                  HAVING FoodOrder.idFoodOrder = ?');
             $stmt->execute(array($idFoodOrder));
 
-            if ($order = $stmt->fetch()) {
+            if (($order = $stmt->fetch())) {
                 $items = Order::getOrderItems($db, intval($order['idFoodOrder']));
                 $restaurant = Restaurant::getRestaurant($db, intval($order['idRestaurant']));
 
@@ -82,12 +83,17 @@
         }
 
         public static function getOrderItems(PDO $db, int $idFoodOrder) : array {
-            $stmt = $db->prepare('SELECT Dish.*, quantity
+            $stmt = $db->prepare('SELECT Dish.*, Selection.*
                                     FROM Dish
                                     JOIN Selection USING (idDish)
                                     WHERE idFoodOrder = ?');    
             $stmt->execute(array($idFoodOrder));
-            $items =$stmt->fetchAll();
+            $items =array();
+
+            while($item = $stmt->fetch()) {
+                $item['rated'] = Order::itemIsRated($db, intval($item['idFoodOrder']), intval($item['idDish']));
+                $items[] = $item;
+            }
             return $items;
         }
 
@@ -119,13 +125,21 @@
             return $orders; 
         }
 
-        static function getOrderState(PDO $db, int $idFoodOrder) : string {
-            $stmt = $db->prepare('SELECT FoodOrder.state
-                                  FROM FoodOrder
-                                  WHERE idFoodOrder = ?'); 
-            $stmt->execute(array($idFoodOrder));
-            $state = $stmt->fetch();
-            return $state[0];
+        static function rateOrderItem(PDO $db, int $idFoodOrder, int $idDish, int $rate){
+            $stmt = $db->prepare('INSERT INTO RateDish (rate, idFoodOrder, idDish)
+                                  VALUES (?, ?, ?)');
+            $stmt->execute(array($rate, $idFoodOrder, $idDish));
+        } 
+
+        static function itemIsRated(PDO $db, int $idFoodOrder, int $idDish) : bool {
+            $stmt = $db->prepare('SELECT * 
+                                  FROM RateDish 
+                                  WHERE idFoodOrder = ? AND idDish = ?');
+            $stmt->execute(array($idFoodOrder, $idDish));
+            if ($item =  $stmt->fetch()) {
+                return true;
+            }
+            return false;
         }
     }
 ?>

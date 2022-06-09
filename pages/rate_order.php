@@ -17,10 +17,15 @@
 
     $order = Order::getOrder($db, intval($_GET['id']));
 
-    if ($order->state !== 'received' || $order->rated === true || $order->idUser !== $_SESSION['idUser']) 
-        die(header('Location: index.php'));
+    if ($order) {
+        if ($order->state !== 'delivered' || $order->rated === true || $order->idUser !== $_SESSION['idUser']) 
+            die(header('Location: index.php'));
 
-    output_header();
-    output_rate_order_form(intval($_GET['id']));
-    output_footer();
+        output_header();
+        output_rate_order_form(intval($_GET['id']));
+        output_footer();
+    }
+    else{
+        die(header('Location: index.php'));
+    }
 ?>
