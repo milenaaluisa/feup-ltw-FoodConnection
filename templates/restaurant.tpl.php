@@ -7,26 +7,22 @@
 
 <?php 
     function output_single_restaurant(Restaurant $restaurant, array $dishes, array $shifts, array $reviews, $output_order_form = False) { ?>
-        <main>
-            <section id="restaurants">
-                <?php output_restaurant($restaurant, $dishes, $shifts, $reviews, $output_order_form); ?>
-            </section>
-        </main>  
+        <div id="restaurants">
+            <?php output_restaurant($restaurant, $dishes, $shifts, $reviews, $output_order_form); ?>
+        </div> 
 <?php } ?>
 
 
 <?php
     function output_restaurant_list(array $restaurants) { ?>
-        <main>
-            <section id="restaurants">
-                <header>
-                    <h1>Restaurants</h1>
-                </header>
-                <?php foreach($restaurants as $restaurant) {
-                    output_restaurant($restaurant);
-                } ?>
-            </section>
-        </main>                
+        <section id="restaurants">
+            <header>
+                <h2>Restaurants</h2>
+            </header>
+            <?php foreach($restaurants as $restaurant) {
+                output_restaurant($restaurant);
+            } ?>
+        </section>                
 <?php } ?>
 
 
@@ -77,7 +73,7 @@
             
             <a class="rate" href= "restaurant.php?id=<?= $restaurant->idRestaurant ?>#reviews"><?= $restaurant->averageRate ?></a>
 
-            <!---<img id="fav_button" src="fav_button.jpg" alt=""> --->
+            <!---<img id="fav_button" src="fav_button.jpg" alt=""> -->
 
             <div class = "edit_options">
                 <a href="edit_restaurant_info.php?id=<?= $restaurant->idRestaurant ?>">Edit Info</a>
@@ -132,11 +128,15 @@
 <?php
     function output_my_restaurants_list(array $my_restaurants) { ?>
         <section id="restaurants">
+            <div class="new_restaurant">
+                <a href="add_restaurant.php">Add new restaurant</a>
+            </div>
             <header>
                 <h2>My Restaurants</h2>
             </header>
             <?php foreach($my_restaurants as $my_restaurant) { 
                 output_my_restaurant($my_restaurant);
             } ?>
+            
         </section>
 <?php } ?>

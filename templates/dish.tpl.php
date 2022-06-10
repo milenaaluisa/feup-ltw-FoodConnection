@@ -2,11 +2,9 @@
 
 <?php 
     function output_single_dish(Dish $dish, array $allergens) { ?>
-        <main>
-            <section id="dishes">
-                <?php output_dish($dish, $allergens); ?>
-            </section>
-        </main>
+        <div id="dishes">
+            <?php output_dish($dish, $allergens); ?>
+        </div>
     <?php } ?>
 
 <?php 
@@ -25,11 +23,11 @@
     function output_dish_photo (Dish $dish) { ?>
         <a href="dish.php?id=<?= $dish->idDish ?>">
             <?php if (isset($dish->file)) { ?>
-                <img src="..\images\dishes\<?= $dish->file ?>">
+                <img src="../images/dishes/<?= $dish->file ?>" alt="">
             <?php }
             
             else { ?>
-                <img src="..\images\no_photo.jpg">
+                <img src="../images/no_photo.jpg" alt="">
             <?php } ?>
         </a>
 <?php } ?>

@@ -55,13 +55,13 @@ function output_user_order(Order $my_order) { ?>
 
 <?php 
 function output_order_item(array $item, string $orderState) { ?>
-    <article>
+    <div>
         <p><span class="quantity"><?= $item['quantity'] ?></span> <?= $item['name'] ?> </p>
         <span class="price"><?= number_format($item['quantity'] * $item['price'], 2) ?></span>
         <?php 
             if ($orderState === "delivered" && $item['rated'] === false) { ?>
                 <a href="rate_dish.php?id=<?=$item['idDish']?>&order=<?=$item['idFoodOrder']?>"> Rate dish </a>
         <?php } ?>
-    </article>
+    </div>
 <?php } ?>
 

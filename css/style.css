@@ -13,7 +13,7 @@ body, main {
     background-color: white;
 }
 
-*, *::after, *::before  {
+*, *::after, *::before {
     box-sizing: border-box;
 }
 
@@ -90,7 +90,7 @@ body ul{
     margin-top: 1em;
 }
 
-body > nav li:hover{ 
+body > main > nav li:hover{ 
     background-color: var(--gray-hover-color);
 }
 
@@ -107,7 +107,7 @@ footer {
 
 
 /*background-color*/ 
-.dark-bg-color, body > nav li, footer, #restaurants.my_restaurants_page + a {
+.dark-bg-color, body > main > nav li, footer, #restaurants.my_restaurants_page + a {
     background-color: var(--dark-bg-color);
 }
 
@@ -118,7 +118,7 @@ footer {
 
 
 /*radius*/
-.dark-bg-color, .light-bg-color,img, body > nav li, #restaurants.my_restaurants_page + a, .composition, #favorites > #restaurants, #favorites > #dishes { 
+.dark-bg-color, .light-bg-color,img, body > main > nav li, #restaurants.my_restaurants_page + a, .composition, #favorites > #restaurants, #favorites > #dishes { 
     border-radius: var(--default-border-radius);
 }
 
@@ -256,16 +256,16 @@ body > header > div:nth-child(2) > * {
 
 
 /*categories*/
-body > nav {   
+body > main > nav {   
     margin-bottom: 3em;
 }
 
-body > nav li {
+body > main > nav li {
     text-align: center;
     padding: 1em 0;
 }
 
-body > nav:nth-last-child(2) li { /*index page*/
+body > main > nav:last-child li { /*index page*/
     padding: 3em 0;
 }/*----------------------------------*/
 

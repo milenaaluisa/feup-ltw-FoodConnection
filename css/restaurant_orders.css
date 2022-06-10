@@ -69,12 +69,12 @@
     row-gap: 5px;
 }
 
-#restaurants > article > #orders > article > div > article {
+#restaurants > article > #orders > article > div > div {
     display: flex;
     flex-direction: row;
     gap: 10px;
 }
 
-#restaurants > article > #orders > article > div > article > :first-child {
+#restaurants > article > #orders > article > div > div > :first-child {
     flex-grow: 1;
 }/*-------------------------------------------*/

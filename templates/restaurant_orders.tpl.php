@@ -6,7 +6,7 @@
 
 <?php
 function output_restaurant_orders_list(array $restaurantOrders, Restaurant $restaurant) { ?>
-    <section id = "restaurants">
+    <div id = "restaurants">
         <article>
             <header>
                 <h1><a href="restaurant.php"><?=$restaurant->name?></a></h1>
@@ -22,8 +22,9 @@ function output_restaurant_orders_list(array $restaurantOrders, Restaurant $rest
                 <?php foreach($restaurantOrders as $order) {
                     output_restaurant_order($order);
                 } ?>
+            </section>
         </article>  
-    </section>
+    </div>
     
 <?php } ?>
 
@@ -53,8 +54,8 @@ function output_restaurant_order(Order $order) { ?>
 
 <?php 
 function output_order_item(array $item) { ?>
-    <article>
+    <div>
         <p><span class="quantity"><?= $item['quantity'] ?></span> <?= $item['name'] ?> </p>
         <span class="price"><?= number_format($item['quantity'] * $item['price'], 2) ?></span>
-    </article>
+    </div>
 <?php } ?>

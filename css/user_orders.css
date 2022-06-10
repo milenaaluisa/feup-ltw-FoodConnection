@@ -18,7 +18,7 @@
 
 #orders > article > a:nth-last-child(2),
 #orders > article > a:nth-last-child(1),
-#orders > article > div > article > a{
+#orders > article > div > div > a{
     width: auto;
     background-color: var(--dark-bg-color);
     border-radius: var(--default-border-radius);
@@ -84,13 +84,13 @@
     row-gap: 10px;
 }
 
-#orders > article > div > article {
+#orders > article > div > div {
     display: flex;
     flex-direction: row;
     align-items: baseline;
     gap: 10px;
 }
 
-#orders > article > div > article> :first-child {
+#orders > article > div > div > :first-child {
     flex-grow: 1;
 }

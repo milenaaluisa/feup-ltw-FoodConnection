@@ -51,6 +51,7 @@
                 </div>
             </nav>
         </header>
+        <main>
     <?php } ?>
 
 
@@ -96,10 +97,11 @@
 
 <?php
     function output_footer() { ?>
+        </main>
         <footer>
             <div>
                 <a href = "https://github.com/FEUP-LTW-2022/ltw-t09-g01"> 
-                    <i class="fa fa-github" alt="GH Logo"> </i> 
+                    <i class="fa-brands fa-github"></i>
                     Follow us
                 </a>
             </div>

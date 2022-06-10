@@ -22,8 +22,9 @@ a {
     border-radius: var(--default-border-radius);
 }
 
-body > a {  /*add new restaurant option*/
-    margin: 7em auto;
+#restaurants > .new_restaurant {  /*add new restaurant option*/
+    margin: 0 auto;
+    text-align: center;
     padding: 1.5em 3em;
     background-color: var(--dark-bg-color);
     border-radius: var(--default-border-radius);
