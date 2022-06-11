@@ -71,6 +71,9 @@
             $stmt = $db->prepare('INSERT INTO Review (comment, rate, reviewDate, idFoodOrder)
                                   VALUES (?, ?, ?, ?) ');
             $stmt->execute(array($comment, $rate, $date, $idFoodOrder));
+
+            return $db->lastInsertId();
+            
         }
 
         static function replyReview(PDO $db, string $comment, int $owner, int $idReview) {

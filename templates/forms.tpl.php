@@ -133,7 +133,9 @@
                         </header>
                         <form action="../actions/action_edit_restaurant.php" method="post">
                             <input type="hidden" name="idRestaurant" value="<?=$restaurant->idRestaurant?>">
-                            <input type="file" name="file" accept="image/png,image/jpeg">
+                            <input type="file" name="photo" id ="file">
+                            <label for="file">insert photo <i class="fa-solid fa-camera"></i></label>
+
                             <label for="name">Name:</label>
                             <input type="text" name="name" value='<?=$restaurant->name?>' required="required">
 
@@ -149,7 +151,7 @@
                             <label for="zipCode">Zip code:</label>
                             <input type="text" name="zipCode" value='<?=$restaurant->zipCode?>' required="required">
 
-                            <a href="my_restaurants.php">Cancel</a>
+                            <a href="edit_restaurant.php?id=<?=$restaurant->idRestaurant?>">Cancel</a>
                             <button type="submit">Save</button>
                         </form>
                     </article>
@@ -232,7 +234,7 @@
                 <header>
                     <h1>Rate Your Order</h1>
                 </header>
-                <form action="../actions/action_rate_order.php" method="post">
+                <form action="../actions/action_rate_order.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="idFoodOrder" value="<?=$idFoodOrder?>">
                 <div>
                     <?php 
