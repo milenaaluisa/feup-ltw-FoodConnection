@@ -15,12 +15,17 @@
 
     $db = getDatabaseConnection();
 
+    $idRES = intval($_POST['idRestaurant']);
+    echo "$idRES";
     $orderDate = intval(time());
-    $state = 'preparing';
+    $state = 'received';
+    $notes = htmlspecialchars($_POST['notes']);
 
-    $idFoodOrder = Order::newOrder($db, $state, $orderDate, '', intval($_SESSION['idUser']));
-
-    
+    $idFoodOrder = Order::newOrder($db, $state, $orderDate, $notes, intval($_SESSION['idUser']));
+    foreach($_SESSION['cart'] as $id => $quantity){
+        echo "$quantity";
+        Order::addOrderItem($db, $quantity, $idFoodOrder, $id);
+    }
 
     header('Location: ../pages/restaurant.php?id='.$_POST['idRestaurant']);
 ?>

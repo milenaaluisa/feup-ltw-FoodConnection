@@ -15,15 +15,21 @@
 
     $dish = Dish::getDish($db, intval($idDish));
 
-    if (!isset($_SESSION['cart'])){
+    if (!isset($_SESSION['cart'])){?>
+        <script>
+            console.log('click1');
+            //TO DO MENSAGEM DE ALERTA JAVASCRIPT
+        </script><?php
         $_SESSION ['idRestaurant'] = $dish->idRestaurant;
     }
 
     if ($dish->idRestaurant != $_SESSION ['idRestaurant']){?>
         <script>
+            console.log('click');
             //TO DO MENSAGEM DE ALERTA JAVASCRIPT
         </script>
         <?php header('Location: ../pages/restaurant.php?id='.$_POST['idRestaurant']);
+        exit(0);
     }
 
     if(!isset($_SESSION['cart'][$idDish])) {

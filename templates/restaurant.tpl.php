@@ -1,7 +1,10 @@
 <?php 
     declare(strict_types = 1);
+
+    require_once('../database/connection.db.php');
     include_once('../templates/dish.tpl.php'); 
-    include_once('../templates/review.tpl.php'); 
+    include_once('../templates/review.tpl.php');
+    require_once('../database/dish.class.php');
 ?>
 
 
@@ -57,6 +60,34 @@
         </section>
 <?php } ?>
 
+<!-- TO COMPLETE falta saber ir buscar as orders de cada restaurante -->
+<?php
+    function output_restaurant_order(){
+        /*foreach($_SESSION['cart'] as $item => $value){
+            unset($_SESSION['cart'][$item]);
+        }*/
+
+        //unset($_SESSION['cart']);
+
+        $db = getDatabaseConnection();
+        $price = 0;
+
+        foreach($_SESSION['cart'] as $id => $quantity){
+            $dishh = Dish::getDish($db, intval($id));
+            $price+= $dishh->{'price'};?>
+            
+        <label>
+            <?= $dishh->{'name'}; ?>
+        </label>
+        <span class="quantity">
+            <?=$quantity;?>
+        </span>
+        <span class="price">
+            <?= $dishh->{'price'}; ?>
+        </span>
+            <?php }
+        return $price;
+        } ?>
 
 <?php
     function output_restaurant(Restaurant $restaurant, array $dishes = null, array $shifts = null, array $reviews = null, $output_order_form = False) { ?>
@@ -98,9 +129,15 @@
                         <h3>Your Order</h3>
                     </header>
                     <form action = "../actions/action_place_order.php" method="post">
-                        <input type="hidden" name="idRestaurant" value="<?=$dish->idRestaurant?>">
-                        <?php /*output_restaurant_order(); */?>
+                        <input type="hidden" name="idRestaurant" value="<?=$restaurant->idRestaurant?>">
+                        <?php $price = output_restaurant_order(); ?>
+                        <textarea name="notes" placeholder="notes"></textarea>
+                        <div>
+                            <h2>Subtotal: </h2>
+                            <span class="price"><?=$price?></span>
+                        </div>
                         <button type="submit">Place Order</button>
+                        <button type="cancel">Cancel</button>
                     </form>
                 </section>
 
