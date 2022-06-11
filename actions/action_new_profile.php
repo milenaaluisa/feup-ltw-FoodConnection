@@ -34,8 +34,8 @@
             $mediumwidth = $width;
             $mediumheight = $height;
 
-            if ($mediumwidth > 400) {
-                $mediumwidth = 400;
+            if ($mediumwidth > 700) {
+                $mediumwidth = 700;
                 $mediumheight = intval($mediumheight * ( $mediumwidth / $width ));
             }
 

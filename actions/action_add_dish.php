@@ -31,23 +31,29 @@
         
         move_uploaded_file($_FILES['photo']['tmp_name'], $location);
 
-        /*
-        $original = imagecreatefrompng($filename);
-        if (!$original) $original = imagecreatefrompng($filename);
-        if (!$original) $original = imagecreatefromgif($filename);
+        
+        $original = imagecreatefrompng($location);
+        if (!$original) $original = imagecreatefrompng($location);
+        if (!$original) $original = imagecreatefromgif($location);
 
-        if (!$original) die();
+        if (!$original) die('../pages/edit_restaurant.php?id='.$_POST['idRestaurant']);
 
         $width = imagesx($original);     // width of the original image
         $height = imagesy($original);    // height of the original image
-        $square = min($width, $height);  // size length of the maximum square
 
-        // Create and save a small square thumbnail
-        $small = imagecreatetruecolor(200, 200);
-        imagecopyresized($small, $original, 0, 0, ($width>$square)?($width-$square)/2:0, ($height>$square)?($height-$square)/2:0, 200, 200, $square, $square);
-        imagejpeg($small, $filename);*/
-                
+        $mediumwidth = $width;
+        $mediumheight = $height;
+
+        if ($mediumwidth > 1000) {
+            $mediumwidth = 1000;
+            $mediumheight = intval($mediumheight * ( $mediumwidth / $width ));
         }
+
+        // Create and save a medium image
+        $medium = imagecreatetruecolor($mediumwidth, $mediumheight);
+        imagecopyresized($medium, $original, 0, 0, 0, 0, $mediumwidth, $mediumheight, $width, $height);
+        imagejpeg($medium, $location);     
+    }
     
     header('Location: ../pages/edit_restaurant.php?id='.$_POST['idRestaurant']);
 ?>
