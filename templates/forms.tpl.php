@@ -56,8 +56,18 @@
                     <header>
                         <h1><a href="edit_profile.php">Edit Profile</a></h1>
                     </header>
-                    <form action = "../actions/action_edit_profile.php" method = "post" class = "edit_form">
-                        <!--FALTA: INPUT DA FOTO-->
+                    <form action = "../actions/action_edit_profile.php" method = "post" enctype="multipart/form-data">
+                        <?php 
+                            if (isset($user->file)) { ?>
+                                <img src="../images/users/<?= $user->file ?>" alt="">
+                                <input type="file" name="photo" id ="file">
+                                <label for="file">change photo <i class="fa-solid fa-pen-to-square"></i></label>
+                            <?php }
+                            
+                            else { ?>
+                                <input type="file" name="photo" id ="file">
+                                <label for="file">insert photo <i class="fa-solid fa-camera"></i></label>
+                        <?php } ?>
                         <label for="name">Name:</label>
                         <input type="text" name="name" value="<?=$user->name?>" required="required">
                         
@@ -131,10 +141,20 @@
                         <header>
                             <h1>Edit restaurant</h1>
                         </header>
-                        <form action="../actions/action_edit_restaurant.php" method="post">
+                        <form action="../actions/action_edit_restaurant.php" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="idRestaurant" value="<?=$restaurant->idRestaurant?>">
-                            <input type="file" name="photo" id ="file">
-                            <label for="file">insert photo <i class="fa-solid fa-camera"></i></label>
+                            <?php 
+                                if (isset($restaurant->file)) { ?>
+                                    <img src="../images/restaurants/<?= $restaurant->file ?>" alt="">
+                                    <input type="file" name="photo" id ="file">
+                                    <label for="file">change photo <i class="fa-solid fa-pen-to-square"></i></label>
+                                <?php }
+                                
+                                else { ?>
+                                    <input type="file" name="photo" id ="file">
+                                    <label for="file">insert photo <i class="fa-solid fa-camera"></i></label>
+                            <?php } ?>
+                            
 
                             <label for="name">Name:</label>
                             <input type="text" name="name" value='<?=$restaurant->name?>' required="required">
@@ -205,10 +225,20 @@
                     <header>
                         <h1>Edit dish</h1>
                     </header>
-                    <form action="../actions/action_edit_dish.php" method="post">
+                    <form action="../actions/action_edit_dish.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="idDish" value='<?=$dish->idDish?>'>
                         <input type="hidden" name="idRestaurant" value='<?=$dish->idRestaurant?>'>
-                        <input type="file" name="file" accept="image/png,image/jpeg">
+                        <?php 
+                            if (isset($dish->file)) { ?>
+                                <img src="../images/dishes/<?= $dish->file ?>" alt="">
+                                <input type="file" name="photo" id ="file">
+                                <label for="file">change photo <i class="fa-solid fa-pen-to-square"></i></label>
+                            <?php }
+                            
+                            else { ?>
+                                <input type="file" name="photo" id ="file">
+                                <label for="file">insert photo <i class="fa-solid fa-camera"></i></label>
+                        <?php } ?>
 
                         <label for="name">Name:</label>
                         <input type="text" name="name" value='<?=$dish->name?>' required="required">

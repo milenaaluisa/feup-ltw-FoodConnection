@@ -24,7 +24,7 @@
     }
 
     if(is_uploaded_file($_FILES['photo']['tmp_name'])){ 
-        $filename = "dish". $dish->idDish . "jpg";
+        $filename = "dish". $dish->idDish . ".jpg";
         $location = "../images/dishes/$filename";
 
         Photo::saveDishPhoto($db, intval($dish->idDish), $filename);
