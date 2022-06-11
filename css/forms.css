@@ -105,25 +105,22 @@ input:focus, button, textarea {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 #user_forms > article > form > div > input { 
     display: none;
 }
 
-#user_forms > article > form > div > label { 
-    font-size: 2em;
+#user_forms > article > form > div > label {
+    padding: 0em;
+}
+
+#user_forms > article > form > div > label > i { 
+    font-size: 1.5em;
     color: var(--light-bg-color);
     padding: 10px;
     float: right;
     transition: all 0.2s ease;
 }
 
-#user_forms > article > form > div > input:not(:checked) ~ label:hover
-{
-     color: var(--star-color);
-}
-
-#user_forms > article > form > div > input:checked + label {
-    color: var(--star-color);
-}

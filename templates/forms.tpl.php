@@ -212,11 +212,11 @@
             </header>
             <form action="../actions/action_rate_order.php" method="post">
             <input type="hidden" name="idFoodOrder" value="<?=$idFoodOrder?>">
-            <div>
+            <div class="stars">
                 <?php 
                     for ($i = 1; $i <= 5; $i++) { ?>
                         <input type="radio" name="rate" value="<?=$i?>" id="star<?=$i?>" required> 
-                        <label for= "star<?=$i?>" class = "fa fa-star"> </label>
+                        <label for= "star<?=$i?>"> <i class="fa-solid fa-star"></i> </label>
                 <?php }?>
             </div>
             <textarea name="comment" rows="3" placeholder="your comment"></textarea>
@@ -236,11 +236,11 @@
             <form action="../actions/action_rate_dish.php" method="post">
             <input type="hidden" name="idDish" value="<?=$dish->idDish?>">
             <input type="hidden" name="idFoodOrder" value="<?=$order->idFoodOrder?>">
-            <div>
+            <div class = "stars">
                 <?php 
                     for ($i = 1; $i <= 5; $i++) { ?>
                         <input type="radio" name="rate" value="<?=$i?>" id="star<?=$i?>" required> 
-                        <label for= "star<?=$i?>" class = "fa fa-star"> </label>
+                        <label for="star<?=$i?>"> <i class="fa-solid fa-star"></i> </label>
                 <?php }?>
             </div>
             <a href="order_history.php">Cancel</a>
