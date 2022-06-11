@@ -1,6 +1,5 @@
 <?php declare(strict_types = 1); ?>
 
-<!--User forms---------------------------------------------------------------------->
 <?php
     function output_login_form() { ?>
         <main>
@@ -25,12 +24,14 @@
     function output_register_form() { ?>
         <main>
             <section id="user_forms">
-                <article>
+                <article class = "register">
                     <header>
                         <h1><a href="register.php">Register</a></h1>
                     </header>
-                    <form action = "../actions/action_new_profile.php" method = "post">
-                        <!--FALTA: INPUT DA FOTO-->
+                    <form action = "../actions/action_new_profile.php" method = "post" enctype="multipart/form-data">
+                        <input type="file" name="photo" id ="file">
+                        <label for="file">insert photo <i class="fa-solid fa-camera"></i></label>
+
                         <input type="text" name="name" placeholder="name" required="required">
                         <input type="email" name="email" placeholder="email" required="required">  
                         <input type="number" name="phoneNum" placeholder="phone number" required="required">
@@ -91,7 +92,6 @@
 <?php } ?>
 
 
-<!--Restaurant forms-------------------------------------------------------------------->
 <?php
     function output_new_restaurant_form(array $categories) { ?>
         <main>
@@ -100,8 +100,10 @@
                         <header>
                             <h1>Add new restaurant</h1>
                         </header>
-                        <form action="../actions/action_add_restaurant.php" method="post">
-                            <input type="file" name="file" accept="image/png,image/jpeg">
+                        <form action="../actions/action_add_restaurant.php" method="post" enctype="multipart/form-data">
+                            <input type="file" name="photo" id ="file">
+                            <label for="file">insert photo <i class="fa-solid fa-camera"></i></label>
+
                             <input type="text" name="name" placeholder="name" required="required">
                             <input type="number" name="number" placeholder="phone number" required="required">
                             <input type="text" name="address" placeholder="address" required="required">
@@ -155,8 +157,6 @@
             </main>
 <?php } ?>
 
-
-<!--Dish forms-------------------------------------------------------------------------------->
 <?php
     function output_new_dish_form(array $allergens, array $categories, int $idRestaurant) { ?>
         <main>
@@ -165,9 +165,11 @@
                     <header>
                         <h1>Add new dish</h1>
                     </header>
-                    <form action="../actions/action_add_dish.php" method="post">
+                    <form action="../actions/action_add_dish.php" method="post" enctype="multipart/form-data">
+                        <input type="file" name="photo" id ="file">
+                        <label for="file">insert photo <i class="fa-solid fa-camera"></i></label>
+
                         <input type="hidden" name="idRestaurant" value="<?=$idRestaurant?>">
-                        <input type="file" name="file" accept="image/png,image/jpeg">
                         <input type="text" name="name" placeholder="name" required="required">
                         <input type="number" name="price" placeholder="price" step = 0.01 required="required">
                         <input type="text" name="ingredients" placeholder="ingredients">
@@ -223,8 +225,6 @@
         </main>
 <?php } ?>  
 
-
-<!--Review/Rate forms---------------------------------------------------------------------->
 <?php function output_rate_order_form(int $idFoodOrder) { ?>
     <main>
         <section id="user_forms">
@@ -241,7 +241,9 @@
                             <label for= "star<?=$i?>" class = "fa fa-star"> </label>
                     <?php }?>
                 </div>
-                <textarea name="comment" placeholder="your comment"></textarea>
+                <textarea name="comment" rows="3" placeholder="your comment"></textarea>
+                <input type="file" name="photo" id ="file">
+                <label for="file">insert photo (optional)<i class="fa-solid fa-camera"></i></label>
                 <a href="order_history.php">Cancel</a>
                 <button type="submit">Post</button>
                 </form>
@@ -251,7 +253,6 @@
 <?php } ?>
 
 
-<!------------------------------------------------------------------>
 <?php 
 function output_reply_review_form(Review $review) { ?>
     <div class="reply_form">

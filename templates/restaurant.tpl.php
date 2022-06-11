@@ -8,9 +8,9 @@
 <?php 
     function output_single_restaurant(Restaurant $restaurant, array $dishes, array $shifts, array $reviews, $output_order_form = False) { ?>
         <main>
-            <section id="restaurants">
+            <div id="restaurants">
                 <?php output_restaurant($restaurant, $dishes, $shifts, $reviews, $output_order_form); ?>
-            </section>
+            </div>
         </main>  
 <?php } ?>
 
@@ -77,7 +77,7 @@
             
             <a class="rate" href= "restaurant.php?id=<?= $restaurant->idRestaurant ?>#reviews"><?= $restaurant->averageRate ?></a>
 
-            <!---<img id="fav_button" src="fav_button.jpg" alt=""> --->
+            <!---<img id="fav_button" src="fav_button.jpg" alt=""> -->
 
             <div class = "edit_options">
                 <a href="edit_restaurant_info.php?id=<?= $restaurant->idRestaurant ?>">Edit Info</a>
