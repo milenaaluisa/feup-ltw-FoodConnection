@@ -54,6 +54,11 @@ form > img + input[type="file"] + label{
     padding: 0;
 }
 
+form img {
+    height: 230px;
+    width: 100%;
+}
+
 #search_bar input {
     opacity: 50%;
 }
