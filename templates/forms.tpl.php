@@ -25,8 +25,9 @@
                 <header>
                     <h1><a href="register.php">Register</a></h1>
                 </header>
-                <form action = "../actions/action_new_profile.php" method = "post">
-                    <!--FALTA: INPUT DA FOTO-->
+                <form action = "../actions/action_new_profile.php" method = "post" enctype="multipart/form-data">
+                    <input type="file" name="photo" id ="file">
+                    <label for="file">insert photo <i class="fa-solid fa-camera"></i></label>
                     <input type="text" name="name" placeholder="name" required="required">
                     <input type="email" name="email" placeholder="email" required="required">  
                     <input type="number" name="phoneNum" placeholder="phone number" required="required">
@@ -49,8 +50,18 @@
                 <header>
                     <h1><a href="edit_profile.php">Edit Profile</a></h1>
                 </header>
-                <form action = "../actions/action_edit_profile.php" method = "post" class = "edit_form">
-                    <!--FALTA: INPUT DA FOTO-->
+                <form action = "../actions/action_edit_profile.php" method = "post" enctype="multipart/form-data">
+                    <?php 
+                        if (isset($user->file)) { ?>
+                            <img src="../images/users/<?= $user->file ?>" alt="">
+                            <input type="file" name="photo" id ="file">
+                            <label for="file">change photo <i class="fa-solid fa-pen-to-square"></i></label>
+                        <?php }
+                        
+                        else { ?>
+                            <input type="file" name="photo" id ="file">
+                            <label for="file">insert photo <i class="fa-solid fa-camera"></i></label>
+                    <?php } ?>
                     <label for="name">Name:</label>
                     <input type="text" name="name" value="<?=$user->name?>" required="required" id="name">
                     
@@ -90,8 +101,9 @@
                     <header>
                         <h1>Add new restaurant</h1>
                     </header>
-                    <form action="../actions/action_add_restaurant.php" method="post">
-                        <input type="file" name="file" accept="image/png,image/jpeg">
+                    <form action="../actions/action_add_restaurant.php" method="post" enctype="multipart/form-data">
+                        <input type="file" name="photo" id ="file">
+                        <label for="file">insert photo <i class="fa-solid fa-camera"></i></label>
                         <input type="text" name="name" placeholder="name" required="required">
                         <input type="number" name="number" placeholder="phone number" required="required">
                         <input type="text" name="address" placeholder="address" required="required">
@@ -117,9 +129,19 @@
                 <header>
                     <h1>Edit restaurant</h1>
                 </header>
-                <form action="../actions/action_edit_restaurant.php" method="post">
+                <form action="../actions/action_edit_restaurant.php" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="idRestaurant" value="<?=$restaurant->idRestaurant?>">
-                    <input type="file" name="file" accept="image/png,image/jpeg">
+                    <?php 
+                        if (isset($restaurant->file)) { ?>
+                            <img src="../images/restaurants/<?= $restaurant->file ?>" alt="">
+                            <input type="file" name="photo" id ="file">
+                            <label for="file">change photo <i class="fa-solid fa-pen-to-square"></i></label>
+                        <?php }
+                        
+                        else { ?>
+                            <input type="file" name="photo" id ="file">
+                            <label for="file">insert photo <i class="fa-solid fa-camera"></i></label>
+                    <?php } ?>
                     <label for="name">Name:</label>
                     <input type="text" name="name" value='<?=$restaurant->name?>' required="required" id="name">
 
@@ -135,7 +157,7 @@
                     <label for="zipCode">Zip code:</label>
                     <input type="text" name="zipCode" value='<?=$restaurant->zipCode?>' required="required" id="zipCode">
 
-                    <a href="my_restaurants.php">Cancel</a>
+                    <a href="edit_restaurant.php?id=<?=$restaurant->idRestaurant?>">Cancel</a>
                     <button type="submit">Save</button>
                 </form>
             </article>
@@ -149,9 +171,10 @@
                 <header>
                     <h1>Add new dish</h1>
                 </header>
-                <form action="../actions/action_add_dish.php" method="post">
+                <form action="../actions/action_add_dish.php" method="post" enctype="multipart/form-data">
+                    <input type="file" name="photo" id ="file">
+                    <label for="file">insert photo <i class="fa-solid fa-camera"></i></label>
                     <input type="hidden" name="idRestaurant" value="<?=$idRestaurant?>">
-                    <input type="file" name="file" accept="image/png,image/jpeg">
                     <input type="text" name="name" placeholder="name" required="required">
                     <input type="number" name="price" placeholder="price" step = 0.01 required="required">
                     <input type="text" name="ingredients" placeholder="ingredients">
@@ -183,10 +206,20 @@
                 <header>
                     <h1>Edit dish</h1>
                 </header>
-                <form action="../actions/action_edit_dish.php" method="post">
+                <form action="../actions/action_edit_dish.php" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="idDish" value='<?=$dish->idDish?>'>
                     <input type="hidden" name="idRestaurant" value='<?=$dish->idRestaurant?>'>
-                    <input type="file" name="file" accept="image/png,image/jpeg">
+                    <?php 
+                        if (isset($dish->file)) { ?>
+                            <img src="../images/dishes/<?= $dish->file ?>" alt="">
+                            <input type="file" name="photo" id ="file">
+                            <label for="file">change photo <i class="fa-solid fa-pen-to-square"></i></label>
+                        <?php }
+                        
+                        else { ?>
+                            <input type="file" name="photo" id ="file">
+                            <label for="file">insert photo <i class="fa-solid fa-camera"></i></label>
+                    <?php } ?>
 
                     <label for="name">Name:</label>
                     <input type="text" name="name" value='<?=$dish->name?>' required="required" id="name">
@@ -210,7 +243,7 @@
             <header>
                 <h1>Rate Your Order</h1>
             </header>
-            <form action="../actions/action_rate_order.php" method="post">
+            <form action="../actions/action_rate_order.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="idFoodOrder" value="<?=$idFoodOrder?>">
             <div class="stars">
                 <?php 
@@ -220,6 +253,8 @@
                 <?php }?>
             </div>
             <textarea name="comment" rows="3" placeholder="your comment"></textarea>
+            <input type="file" name="photo" id ="file">
+            <label for="file">insert photo (optional)<i class="fa-solid fa-camera"></i></label>
             <a href="order_history.php">Cancel</a>
             <button type="submit">Post</button>
             </form>

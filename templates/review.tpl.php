@@ -50,7 +50,7 @@
 
 <?php
     function output_review_photo($file) { ?> 
-    <?php if (isset($restaurant->file)) { ?>
+    <?php if (isset($file)) { ?>
             <img src="../images/reviews/<?=$file?>">
     <?php } ?>        
 <?php } ?>  
