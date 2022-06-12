@@ -54,7 +54,7 @@
 
         $idFoodOrder = Order::newOrder($db, $state, $orderDate, $notes, intval($_SESSION['idUser']));
         foreach($_SESSION['cart'] as $id => $quantity){
-            Order::addOrderItem($db, $quantity, $idFoodOrder, $id);
+            Order::addOrderItem($db, $idFoodOrder, $id, $quantity);
         }
 
         deleteCart();
