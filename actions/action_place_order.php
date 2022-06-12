@@ -13,18 +13,51 @@
         header('Location: ../pages/edit_restaurant.php?id='.$_POST['idRestaurant']);
     }
 
-    $db = getDatabaseConnection();
+    function deleteCart(){
+        unset($_SESSION['cart']);
+    }
 
-    $idRES = intval($_POST['idRestaurant']);
-    echo "$idRES";
-    $orderDate = intval(time());
-    $state = 'received';
-    $notes = htmlspecialchars($_POST['notes']);
+    function deleteDishCart($idDish){
+        foreach($_SESSION['cart'] as $item => $value){
+            if($idDish == $item){
+                echo 'entrei';
+                unset($_SESSION['cart'][$item]);
+                if(sizeof($_SESSION['cart']) == 0 ){
+                    deleteCart();
+                }
+            }
+        }
+    }
 
-    $idFoodOrder = Order::newOrder($db, $state, $orderDate, $notes, intval($_SESSION['idUser']));
-    foreach($_SESSION['cart'] as $id => $quantity){
-        echo "$quantity";
-        Order::addOrderItem($db, $quantity, $idFoodOrder, $id);
+    if(isset($_POST["eliminate"])){
+
+        deleteDishCart($_POST['eliminate']);
+        echo $_POST['eliminate'];
+
+        header('Location: ../pages/restaurant.php?id='.$_POST['idRestaurant']);
+        exit(0);
+    }
+
+    if(isset($_POST["cancel"])){
+        deleteCart();
+        header('Location: ../pages/restaurant.php?id='.$_POST['idRestaurant']);
+        exit(0);
+    }
+
+    if(isset($_POST["submit"])){
+        $db = getDatabaseConnection();
+
+        $idRES = intval($_POST['idRestaurant']);
+        $orderDate = intval(time());
+        $state = 'received';
+        $notes = htmlspecialchars($_POST['notes']);
+
+        $idFoodOrder = Order::newOrder($db, $state, $orderDate, $notes, intval($_SESSION['idUser']));
+        foreach($_SESSION['cart'] as $id => $quantity){
+            Order::addOrderItem($db, $quantity, $idFoodOrder, $id);
+        }
+
+        deleteCart();
     }
 
     header('Location: ../pages/restaurant.php?id='.$_POST['idRestaurant']);
