@@ -1,18 +1,41 @@
 <?php
 
     declare(strict_types = 1);
-
     session_start();
+
+    if (!isset($_SESSION['idUser'])) {
+        die(header('Location: index.php'));
+    }
 
     require_once('../database/connection.db.php');
     require_once('../database/restaurant.class.php');
+    require_once('../database/user.class.php');
     require_once('../database/photo.class.php');
+    require_once('../includes/input_validation.php');
 
     $db = getDatabaseConnection();
+
+    if (!User::isRestaurantOwner($db, intval($_POST['idRestaurant']), $_SESSION['idUser']))
+        die(header('Location: ../pages/index.php'));
 
     $restaurant = Restaurant::getRestaurant($db, intval($_POST['idRestaurant']));
     
     if ($restaurant) {
+        if (!validPhoneNumber($_POST['number'])) { 
+            echo "Invalid number";
+            die();
+        }
+    
+        if ( !validZipCode($_POST['zipCode'])) {
+            echo "Invalid zip-code.";
+            die();
+        }
+
+        //filter inserted name, city and address
+        filterName($_POST['name']);
+        filterAddress($_POST['address']);
+        filterCity($_POST['city']);
+
         $restaurant->name = $_POST['name'];
         $restaurant->phoneNum = intval($_POST['number']);
         $restaurant->address = $_POST['address'];
@@ -54,6 +77,10 @@
         }
     }
     
-    
+    else {
+        echo "Invalid Restaurant";
+        die();
+    }
+        
     header('Location: ../pages/edit_restaurant.php?id='.$_POST['idRestaurant']);
 ?>

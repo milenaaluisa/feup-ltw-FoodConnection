@@ -164,7 +164,7 @@
             return intval($db->lastInsertId());
         }
 
-        static function canEditRestaurant(PDO $db, int $idRestaurant, int $idUser) { 
+        static function isRestaurantOwner(PDO $db, int $idRestaurant, int $idUser) { 
             $stmt = $db->prepare('SELECT *
                                   FROM Restaurant
                                   WHERE idRestaurant = ?

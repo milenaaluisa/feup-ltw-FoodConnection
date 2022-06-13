@@ -5,7 +5,7 @@
     //check if the username is valid: it can only have letters/numbers/underscore
     //and should not have a number/underscore in the beginning
     function validUsername (string $username) {
-        return preg_match ('/^[a-z][a-z0-9_]*$/', $_POST['username']);
+        return preg_match ('/^[a-z][a-z0-9_]+$/', $_POST['username']);
     }
 
     //check if email is in the right format
