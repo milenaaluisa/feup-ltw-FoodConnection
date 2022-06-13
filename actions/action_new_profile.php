@@ -10,6 +10,16 @@
 
     $db = getDatabaseConnection();
 
+    if (User::existsUserWithEmail($db, $_POST['email'])) {
+        $_SESSION['message'] = 'Choose another email'; 
+        //die();
+    } 
+
+    if (User::existsUserWithUsername($db, $_POST['username'])){
+        $_SESSION['message'] = 'Choose another username'; 
+        //die();
+    }
+
     if ($idUser = User::registerUser($db, $_POST['name'], $_POST['email'], intval($_POST['phoneNum']), $_POST['address'], $_POST['zipCode'], $_POST['city'], $_POST['username'], $_POST['password'])) {
         echo "Success!";
 
@@ -45,6 +55,7 @@
             imagejpeg($medium, $location);
 
         }
+
         $user = User::getUser($db, intval($idUser));
 
         $_SESSION['idUser'] = $user->idUser;

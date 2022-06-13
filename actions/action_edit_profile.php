@@ -10,6 +10,16 @@
 
     $db = getDatabaseConnection();
 
+    if (User::existsUserWithEmail($db, $_POST['email'])) {
+        $_SESSION['message'] = 'Choose another email'; 
+        //die();
+    } 
+
+    if (User::existsUserWithUsername($db, $_POST['username'])){
+        $_SESSION['message'] = 'Choose another username'; 
+        //die();
+    }
+
     $user = User::getUser($db, intval($_SESSION['idUser']));
 
     if ($user) {
