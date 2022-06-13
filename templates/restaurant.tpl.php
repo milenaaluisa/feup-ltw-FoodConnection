@@ -66,27 +66,34 @@
 
         $db = getDatabaseConnection();
         $price = 0;
+        $id_aux = 0;
 
         foreach($_SESSION['cart'] as $id => $quantity){
+            $id_aux ++;
             $dishh = Dish::getDish($db, intval($id));
             $price+= $quantity*$dishh->{'price'};?>
-            
-            <label>
-                <?= $dishh->{'name'}; ?>
-            </label>
-            
-            <span name = "quantity">
-                <?= $quantity; ?>
-            </span>
-            <span class="price">
-                <?= $quantity*$dishh->{'price'}; ?>
-            </span>
-            
-            <button type="eliminate" name="eliminate" value="<?=$id?>">Eliminate</button>
+            <div class="item" id=<?=$id_aux?>>
+                <label>
+                    <?= $dishh->{'name'}; ?>
+                </label>
+                <input type="number" name="quantity" id = <?=$id_aux?> value="<?=$quantity?>" min="1" step="1">
+
+                <span class="price">
+                    <?= $quantity*$dishh->{'price'}; ?>
+                </span>
+                <button type="eliminate" name="eliminate" value="<?=$id?>">Eliminate</button>
+            </div>
         <?php }
 
         return $price;
     } ?>
+
+<?php function output_order(){
+    if(sizeof($_SESSION['cart']) == 0 ){
+        return false;
+    }
+    return true;
+} ?>
 
 <?php
     function output_restaurant(Restaurant $restaurant, array $dishes = null, array $shifts = null, array $reviews = null, $output_order_form = False) { ?>
@@ -120,30 +127,30 @@
             
             if(isset($dishes) && sizeof($dishes) > 0) {
                 output_dish_list($dishes);
-            }
+            }?>
+            
+            <section id="orders">
+            <header>
+                <h3>Your Order</h3>
+            </header>
 
-            if($output_order_form === True) { ?>
-                <section id="orders">
-                    <header>
-                        <h3>Your Order</h3>
-                    </header>
-                    <form action = "../actions/action_place_order.php" method="post">
-                        <input type="hidden" name="idRestaurant" value="<?=$restaurant->idRestaurant?>">
-                        <?php $price = output_restaurant_order(); ?>
-                        <textarea name="notes" placeholder="notes"></textarea>
-                        <div>
-                            <h2>Subtotal: </h2>
-                            <span class="price"><?=$price?></span>
-                        </div>
-                        <button type="submit" name="submit">Place Order</button>
-                        <button type="cancel" name="cancel">Cancel</button>
-                    </form>
-                </section>
-
-                <?php if(isset($reviews) && sizeof($reviews) > 0) {
+            <?php if(output_order() && $output_order_form) { ?>
+                <form action = "../actions/action_place_order.php" method="post">
+                    <input type="hidden" name="idRestaurant" value="<?=$restaurant->idRestaurant?>">
+                    <?php $price = output_restaurant_order(); ?>
+                    <textarea name="notes" placeholder="notes"></textarea>
+                    <div>
+                        <h2>Subtotal: </h2>
+                        <span class="price"><?=$price?></span>
+                    </div>
+                    <button type="submit" name="submit">Place Order</button>
+                    <button type="cancel" name="cancel">Cancel</button>
+                </form>
+            <?php } ?>
+            </section>
+            <?php if(isset($reviews) && sizeof($reviews) > 0) {
                     output_restaurant_reviews_list($reviews);
                 } ?>
-            <?php } ?>
         </article>
 <?php } ?>
 
