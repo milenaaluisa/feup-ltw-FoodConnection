@@ -7,43 +7,39 @@
     require_once('../database/connection.db.php');
     require_once('../database/user.class.php');
     require_once('../database/photo.class.php');
+    require_once('../includes/input_validation.php');
 
     $db = getDatabaseConnection();
 
-    //check if the username is valid
-    if ( !preg_match ('/^[a-z0-9][a-z0-9_]*[a-z0-9]$/', $_POST['username'])) {
+    if (!validUsername( $_POST['username'])){
         echo "Invalid username";
         die();
     }
 
-    //check if email is in the right format
-    if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+    if(!validEmail($_POST['email'])) {
         echo "Invalid email";
         die();
     }
 
-    //check if phone number is valid 
-    if (!preg_match('/^[0-9]{9}+$/', $_POST['phoneNum'])) { 
+    if (!validPhoneNumber($_POST['phoneNum'])) { 
         echo "Invalid number";
         die();
     }
 
-    //check if zipCode is in the right format
-    if ( !preg_match ("/^[0-9]{4}[-][0-9]{3}+$/", $_POST['zipCode'])) {
+    if ( !validZipCode($_POST['zipCode'])) {
         echo "Invalid zip-code.";
         die();
     }
 
-    //check if password lenght >= 8
-    if (strlen($_POST['password']) < 8) {
+    if (!validPassword($_POST['password'])) {
         echo "Your password must have at least 8 characters.";
         die();
     } 
 
     //filter inserted name, city and address
-    $_POST['name'] = preg_replace ("/[^a-zA-Z\s-]/", '', $_POST['name']);
-    $_POST['address'] = preg_replace ("/[^a-zA-Z\s-]/", '', $_POST['address']);
-    $_POST['city'] = preg_replace ("/[^a-zA-Z\s-]/", '', $_POST['city']);
+    filterName($_POST['name']);
+    filterAddress($_POST['address']);
+    filterCity($_POST['city']);
 
 
     //check if the inserted email/username/phone number matches is already associated to another user
@@ -103,9 +99,6 @@
 
         $_SESSION['idUser'] = $user->idUser;
         $_SESSION['name'] = $user->name;
-        $_SESSION['username'] = strtolower($user->username);
-        $_SESSION['email'] = strtolower($user->email);
-        $_SESSION['phone'] = $user->phoneNum;  
         $_SESSION['file'] = $user->file; 
     }
 

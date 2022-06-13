@@ -83,7 +83,7 @@
             $stmt->execute(array($this->idUser));
 
             $password = $stmt->fetch();
-            return md5($password['password']);
+            return $password[0];
         }
 
 
@@ -126,7 +126,18 @@
             return false;
         }
 
-        function updateUserInfo (PDO $db, string $password) : bool{
+        function updateUserInfo (PDO $db, $password) : bool{
+            if (isset($password)) {
+                $options = ['cost' => 12];
+                $password = password_hash($password, PASSWORD_DEFAULT, $options);
+                echo "set       ";
+                echo $password;
+            }
+            else {
+                $password = $this->getPassword($db);
+                echo $password;
+            }
+            
             $stmt = $db->prepare('UPDATE User
                                     SET name = ?,
                                     email = ?,
@@ -138,7 +149,7 @@
                                     password = ?
                                     WHERE idUser = ?'
                                 );
-             $stmt->execute(array($this->name, strtolower($this->email), $this->phoneNum, $this->address, $this->zipCode, $this->city, strtolower($this->username), md5($password), $this->idUser));
+             $stmt->execute(array($this->name, strtolower($this->email), $this->phoneNum, $this->address, $this->zipCode, $this->city, strtolower($this->username), $password, $this->idUser));
     
             return true;
         }

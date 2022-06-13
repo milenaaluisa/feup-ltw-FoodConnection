@@ -7,27 +7,62 @@
     require_once('../database/connection.db.php');
     require_once('../database/user.class.php');
     require_once('../database/photo.class.php');
+    require_once('../includes/input_validation.php');
 
     $db = getDatabaseConnection();
-
-    if (User::existsUserWithEmail($db, $_POST['email'])) {
-        $_SESSION['message'] = 'Choose another email'; 
-        //die();
-    } 
-
-    if (User::existsUserWithUsername($db, $_POST['username'])){
-        $_SESSION['message'] = 'Choose another username'; 
-        //die();
-    }
 
     $user = User::getUser($db, intval($_SESSION['idUser']));
 
     if ($user) {
+        if (!validUsername( $_POST['username'])){
+            echo "Invalid username";
+            die();
+        }
 
-        if (empty($_POST['password'])) 
-            $password = $user->getPassword($db);
-        else 
+        if(!validEmail($_POST['email'])) {
+            echo "Invalid email";
+            die();
+        }
+
+        if (!validPhoneNumber($_POST['phoneNum'])) { 
+            echo "Invalid number";
+            die();
+        }
+
+        if ( !validZipCode($_POST['zipCode'])) {
+            echo "Invalid zip-code.";
+            die();
+        }
+
+        if (!empty($_POST['password']) && !validPassword($_POST['password'])) {
+            echo "Your password must have at least 8 characters.";
+            die();
+        } 
+
+        //filter inserted name, city and address
+        filterName($_POST['name']);
+        filterAddress($_POST['address']);
+        filterCity($_POST['city']);
+
+        if ( $user-> email != strtolower($_POST['email']) &&  User::existsUserWithEmail($db, $_POST['email'])) {
+            echo 'Choose another email'; 
+            die();
+        } 
+
+        if ($user->username !== strtolower($_POST['username']) && User::existsUserWithUsername($db, $_POST['username'])){
+            echo 'Choose another username'; 
+            die();
+        }
+
+        if ($user->phoneNum !== intval($_POST['phoneNum']) && User::existsUserWithPhoneNumber($db, intval($_POST['phoneNum']))){
+            echo 'Choose another phone number'; 
+            die();
+        }
+
+        if (!empty($_POST['password'])) {
             $password = $_POST['password'];
+        }
+        
 
         $user->name = $_POST['name'];
         $user->email = $_POST['email'];
@@ -41,9 +76,6 @@
             echo "Success!";
             $_SESSION['idUser'] = $user->idUser;
             $_SESSION['name'] = $user->name;
-            $_SESSION['username'] = strtolower($user->username);
-            $_SESSION['email'] = strtolower($user->email);
-            $_SESSION['phone'] = $user->phoneNum;
 
             if(is_uploaded_file($_FILES['photo']['tmp_name'])){ 
             
@@ -79,10 +111,10 @@
 
                 $_SESSION['file'] = $filename; 
             }
+
+            header('Location: ../pages/index.php');  
         }
-    
-        else
-            echo $_SESSION['message'];
     }
-  
+
+    echo "Invalid user!";
 ?>
