@@ -100,12 +100,25 @@
             return false;
         }
 
-        public static function existsUserWithUsername (PDO $db, string $username) : bool {
+        static function existsUserWithUsername (PDO $db, string $username) : bool {
             $stmt = $db->prepare('SELECT User.*
                                   FROM User
                                   WHERE username = ?' );
     
             $stmt->execute(array(strtolower($username)));
+    
+            if ($user =  $stmt->fetch()) {
+                return true;
+            }
+            return false;
+        }
+
+        static function existsUserWithPhoneNumber (PDO $db, int $phoneNum) : bool {
+            $stmt = $db->prepare('SELECT User.*
+                                  FROM User
+                                  WHERE phoneNum = ?' );
+    
+            $stmt->execute(array($phoneNum));
     
             if ($user =  $stmt->fetch()) {
                 return true;
