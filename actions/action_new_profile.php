@@ -10,19 +10,30 @@
 
     $db = getDatabaseConnection();
 
+    //check if there if the inserted email/username/phone number matches is
+    //already associated to another user
     if (User::existsUserWithEmail($db, $_POST['email'])) {
-        $_SESSION['message'] = 'Choose another email'; 
-        //die();
+        echo 'Choose another email'; 
+        die();
     } 
 
     if (User::existsUserWithUsername($db, $_POST['username'])){
-        $_SESSION['message'] = 'Choose another username'; 
-        //die();
+        echo 'Choose another username'; 
+        die();
     }
+
+    if (User::existsUserWithPhoneNumber($db, $_POST['phoneNum'])){
+        echo 'Choose another phone number'; 
+        die();
+    }
+
+    
+
 
     if ($idUser = User::registerUser($db, $_POST['name'], $_POST['email'], intval($_POST['phoneNum']), $_POST['address'], $_POST['zipCode'], $_POST['city'], $_POST['username'], $_POST['password'])) {
         echo "Success!";
 
+        //If a photo was uploaded
         if(is_uploaded_file($_FILES['photo']['tmp_name'])){ 
             
             $filename = "user". $idUser . ".jpg";
@@ -66,7 +77,6 @@
         $_SESSION['file'] = $user->file; 
     }
 
-    else
-        echo $_SESSION['message'];
+    header('Location: ../pages/index.php'); 
     
 ?>
