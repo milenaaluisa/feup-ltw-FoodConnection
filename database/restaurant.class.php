@@ -197,7 +197,7 @@
         }
 
         static function getSearchedRestaurants(PDO $db, string $search, int $count) {
-            if($search == '0'|| $search == '1' || $search == '2' || $search == '3' || $search == '4' || $search == '5') {
+            if(is_numeric($search)) {
                 $rate = intval($search);
                 $stmt = $db->prepare('SELECT DISTINCT Restaurant.*, Photo.file
                                       FROM Restaurant
