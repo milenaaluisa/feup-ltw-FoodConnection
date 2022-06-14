@@ -78,7 +78,7 @@
     display: grid;
     gap: 30px 5px;
     align-items: start;
-    grid-template-columns: 10% 1fr 17.5%;
+    grid-template-columns: 10% 1fr 230px;
     grid-template-rows: repeat(4, auto);
 }
 
@@ -126,4 +126,9 @@
     text-align: center;
 }
 
+#restaurants > article > .edit_options {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 /*----------------------------------*/

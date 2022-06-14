@@ -8,6 +8,7 @@
     margin-top: 3em;
     border: solid 3px var(--dark-bg-color);
     border-radius: var(--default-border-radius);
+    background-color: var(--light-bg-color);
 }
 
 #orders > article img:first-of-type {

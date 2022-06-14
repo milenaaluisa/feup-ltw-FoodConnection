@@ -135,9 +135,11 @@ body > header {
 }
 
 body > header img:first-of-type {
-    width: 20em;
+    width: auto;
+    height: auto;
+    max-width: 350px;
     margin: auto;
-    display: block;
+    display: grid;
 }
 
 /*sign*/
@@ -186,6 +188,7 @@ body > header > div:nth-child(3) input {
 }
 
 #menu > label > i:first-child{
+    background-color: transparent;
     left: 40px;
     top: 25px;
     font-size: xx-large;
@@ -330,10 +333,6 @@ body > main > nav:last-child li { /*index page*/
 /* dish main page */
 #dishes > article > .composition > :nth-child(3) {
     margin-top: 1em;
-}
-
-#dishes > article form button > img {
-    display: none; /*TODO*/
 }
 
 #dishes > article > .composition{

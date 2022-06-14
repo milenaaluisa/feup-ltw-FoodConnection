@@ -10,7 +10,7 @@
     
 }
 
-@media (max-width: 40em) { 
+@media (max-width: 50em) { 
     /*categories*/
     body > nav ul {
         grid-template-columns: repeat(auto-fit, 9em);
@@ -23,9 +23,62 @@
     /*footer*/
     body > footer {
         padding: 0.5em;
+        flex-direction: column;
     }
 
     body > footer > div {
         column-gap: 0.5em;
+    }
+
+    #restaurants > article  {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #reviews > article {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #restaurants > article > .info {
+        width: 100%;
+        align-items: left;
+    }
+
+    #restaurants > article > .info > * {
+        margin-left: 2em;
+        margin-right: 2em;
+    }
+
+    #restaurants > article > a {
+        width: 100%;
+    }
+
+    #restaurants > article > .edit_options  > a{
+        display: block;
+        width: 100%;
+    }
+    #dishes {
+        grid-template-columns: repeat(auto-fit, 100%);
+    }
+    
+    #dishes > article {
+        margin-left: 2em;
+        margin-right: 2em;
+    }
+
+    #orders > article{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #orders > article > * {
+        align-self: left;
+    }
+
+    #orders > article > div {
+        width: 100%;
     }
 }

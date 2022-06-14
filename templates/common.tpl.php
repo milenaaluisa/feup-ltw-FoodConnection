@@ -15,7 +15,6 @@
         <link href="../css/style.css" rel="stylesheet">
         <link href="../css/layout.css" rel="stylesheet">
         <link href="../css/forms.css" rel="stylesheet">
-        <link href="../css/responsive.css" rel="stylesheet">
         <script src="../javascript/script.js" defer></script>
         <?php if(isset ($css_files)) {
             foreach ($css_files as $css_file) {
@@ -23,6 +22,7 @@
                 <link href= <?=$css_file?> rel="stylesheet">
            <?php }
         } ?>
+        <link href="../css/responsive.css" rel="stylesheet">
     </head>
     <body>
         <header>
@@ -35,7 +35,6 @@
 
             <div>
                 <form action="action_page.php">
-                    <img src="https://picsum.photos/600/300?city" alt="search icon">
                     <input type="text" placeholder="Search..." name="search">
                 </form>
             </div>

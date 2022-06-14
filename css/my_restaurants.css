@@ -28,7 +28,15 @@ a {
     padding: 1.5em 3em;
     background-color: var(--dark-bg-color);
     border-radius: var(--default-border-radius);
-}/*----------------------------------------*/
+}
+#restaurants > article {
+    padding: 1em;
+    margin-top: 3em;
+    border: solid 3px var(--dark-bg-color);
+    border-radius: var(--default-border-radius);
+    background-color: var(--light-bg-color);
+}
+/*----------------------------------------*/
 
 /*------------------LAYOUT----------------*/
 #restaurants {
