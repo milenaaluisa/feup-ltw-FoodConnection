@@ -23,7 +23,7 @@
         }
 
         else {
-            $user->likeRestaurant($db, intval($dish->idDish), intval($_SESSION['idUser']));
+            $user->likeDish($db, intval($dish->idDish), intval($_SESSION['idUser']));
         }
     }
 ?>
