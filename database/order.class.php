@@ -97,6 +97,16 @@
             return $items;
         }
 
+        static function getDishQuantity(PDO $db, $idFoodOrder, $idDish){
+            $stmt = $db->prepare('SELECT Quantity
+                                    FROM Selection
+                                    WHERE idFoodOrder = ? 
+                                    AND idDish = ?');
+            $stmt->execute(array($idFoodOrder, $idDish));
+            $quantity = $stmt->fetch();
+            return $quantity['quantity'];
+        }
+
         static function getRestaurantOrders(PDO $db, Restaurant $restaurant) {
             $stmt = $db->prepare('SELECT FoodOrder.*, sum(quantity * price) as total, Review.idReview as rated
                                   FROM FoodOrder

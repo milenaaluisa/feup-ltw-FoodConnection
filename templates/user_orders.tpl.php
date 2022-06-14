@@ -35,10 +35,10 @@ function output_user_order(Order $my_order) { ?>
         
         <?php if ($my_order->state === "delivered") { ?>
             <?php if ($my_order->rated === false) { ?>
-                    <a href="rate_order.php?id=<?= $my_order->idFoodOrder ?>">Rate Order </a>  <!--TODO-->
+                    <a href="rate_order.php?id=<?= $my_order->idFoodOrder ?>">Rate Order </a>
             <?php } ?>
         
-            <a href="re_order.php?id=<?= $my_order->idFoodOrder?>"> Re-order </a> 
+            <a href="../actions/action_reorder.php?id=<?= $my_order->idFoodOrder ?>"> Re-order </a> 
         <?php } ?>
     </article>
 <?php } ?>
