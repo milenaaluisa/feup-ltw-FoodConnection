@@ -11,7 +11,7 @@ function changeOrderState() {
             console.log(newState);
             let request = new XMLHttpRequest()
             
-            var url = "../actions/action_change_order_state.php?state=" + newState + "&idOrder=" + idOrder;
+            var url = "../api/api_order_state.php?state=" + newState + "&idOrder=" + idOrder;
             request.open("GET", url, true)
             request.send()
         })
