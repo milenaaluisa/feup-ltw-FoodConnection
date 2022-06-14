@@ -17,7 +17,7 @@
 
 
 <?php
-    function output_restaurant_list(array $restaurants, bool $all_restaurants) { ?>
+    function output_restaurant_list(array $restaurants, bool $all_restaurants = false) { ?>
         <main>
             <?php if($all_restaurants) { ?>
                 <form>
@@ -26,7 +26,7 @@
             <?php } ?>
             <section id="restaurants">
                 <header>
-                    <h1>Restaurants</h1>
+                    <h2>Restaurants</h2>
                 </header>
                 <?php foreach($restaurants as $restaurant) {
                     output_restaurant($restaurant);
