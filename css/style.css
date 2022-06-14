@@ -189,6 +189,7 @@ body > header > div:nth-child(3) input {
 
 #menu > label > i:first-child{
     background-color: transparent;
+    position:absolute;
     left: 40px;
     top: 25px;
     font-size: xx-large;
