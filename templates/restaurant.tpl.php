@@ -52,13 +52,13 @@
 
 <?php function output_restaurant_info(Restaurant $restaurant, array $shifts) { ?>
         <section class="info">
-            <h2>Shift:</h2>
+            <h2> <i class="fa-solid fa-clock"> </i> Shift:</h2>
             <?php foreach($shifts as $shift) { ?>
                 <p><?= $shift['day'] ?>: <?= substr($shift['openingTime'],0,-3) ?>-<?= substr($shift['closingTime'],0,-3) ?></p>
             <?php } ?>
-            <h2>Address:</h2>
+            <h2><i class="fa-solid fa-location-dot"></i> Address:</h2>
             <p><?= $restaurant->address ?></p>
-            <h2>Tel.:</h2>
+            <h2> <i class="fa-solid fa-phone"Z«> </i> Tel.:</h2>
             <p><?= $restaurant->phoneNum ?></p>
         </section>
 <?php } ?>
@@ -118,8 +118,8 @@
             <?php } ?>
 
             <div class = "edit_options">
-                <a href="edit_restaurant_info.php?id=<?= $restaurant->idRestaurant ?>">Edit Info</a>
-                <a href="add_dish.php?id=<?=$restaurant->idRestaurant?>">Add Dish</a>
+                <a href="edit_restaurant_info.php?id=<?= $restaurant->idRestaurant ?>">Edit Info <i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="add_dish.php?id=<?=$restaurant->idRestaurant?>">Add Dish <i class="fa-solid fa-plus"></i></a>
             </div>
 
             <?php if(isset($shifts) && sizeof($shifts) > 0) {
@@ -172,15 +172,15 @@
                 <h2>Tel.:</h2>
                 <p><?= $my_restaurant->phoneNum ?></p>
             </section>   
-            <a href="restaurant_orders.php?id=<?=$my_restaurant->idRestaurant?>"> List Orders </a>
-            <a href="edit_restaurant.php?id=<?=$my_restaurant->idRestaurant?>"> Edit restaurant </a>
+            <a href="restaurant_orders.php?id=<?=$my_restaurant->idRestaurant?>"> List Orders <i class="fa-solid fa-receipt"></i> </a>
+            <a href="edit_restaurant.php?id=<?=$my_restaurant->idRestaurant?>"> Edit restaurant <i class="fa-regular fa-pen-to-square"></i></a>
         </article>
 <?php } ?>
 
 
 <?php
     function output_my_restaurants_list(array $my_restaurants) { ?>
-        <section id="restaurants">
+        <section id="my_restaurants">
             <div class="new_restaurant">
                 <a href="add_restaurant.php">Add new restaurant</a>
             </div>

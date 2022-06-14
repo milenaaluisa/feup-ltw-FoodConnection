@@ -1,6 +1,5 @@
 @import url(constants.css);
 @import url(dishes_list.css);
-@import url(reviews.css);
 
 /*restaurant article in main page*/
 /*-----------STYLE---------------*/
@@ -8,7 +7,7 @@
     display: none;
 }
 
-#restaurants > article > .avgPrice {
+#restaurants > article > .avgPrice, #restaurants > article .edit_options {
     display: none;
 }
 
@@ -78,7 +77,7 @@
     display: grid;
     gap: 30px 5px;
     align-items: start;
-    grid-template-columns: 10% 1fr 17.5%;
+    grid-template-columns: 10% 1fr 230px;
     grid-template-rows: repeat(4, auto);
 }
 
@@ -126,4 +125,9 @@
     text-align: center;
 }
 
+#restaurants > article > .edit_options {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 /*----------------------------------*/

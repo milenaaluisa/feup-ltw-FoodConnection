@@ -6,7 +6,7 @@
 
 <?php
 function output_restaurant_orders_list(array $restaurantOrders, Restaurant $restaurant) { ?>
-    <div id = "restaurants">
+    <div id = "restaurant_orders">
         <article>
             <header>
                 <h1><a href="restaurant.php"><?=$restaurant->name?></a></h1>

@@ -135,9 +135,11 @@ body > header {
 }
 
 body > header img:first-of-type {
-    width: 20em;
+    width: auto;
+    height: auto;
+    max-width: 300px;
     margin: auto;
-    display: block;
+    display: grid;
 }
 
 /*sign*/
@@ -162,7 +164,7 @@ body > header > div:nth-child(3) input {
 
 
 /*sidebar menu*/
-.sidebar{
+#menu > div {
     position: fixed;
     left:-250px;
     width: 250px;
@@ -171,7 +173,7 @@ body > header > div:nth-child(3) input {
     transition: all 1s ease;
 }
 
-.sidebar ul a{
+#menu > div > ul a{
     display: block;
     color: white;
 }
@@ -180,18 +182,20 @@ body > header > div:nth-child(3) input {
     display: none;
 }
 
-label #button, label #cancel {
+#menu > label > * {
     position: fixed;
     cursor: pointer;
 }
 
-label #button{
+#menu > label > i:first-child{
+    background-color: transparent;
+    position:absolute;
     left: 40px;
     top: 25px;
     font-size: xx-large;
 }
 
-label #cancel{
+#menu > label > i:nth-child(2){
     z-index: 1111;
     left: -45px;
     top: 20px;
@@ -201,16 +205,16 @@ label #cancel{
     transition: all 1s;
 }
 
-#hamburger:checked ~ .sidebar{
+#hamburger:checked ~ div{
     left:0;
 }
 
-#hamburger:checked ~ label #button{
+#hamburger:checked ~ label > i:first-child{
     opacity: 0;
     pointer-events: none;
 }
 
-#hamburger:checked ~ label #cancel{
+#hamburger:checked ~ label > i:nth-child(2){
     left: 195px;
 }
 
@@ -228,17 +232,26 @@ label #cancel{
     width: 20%;
 }
 
-#menu ul li:nth-child(2) a{
+#menu > div > ul > li:nth-child(2) a{
     font-size:x-large;
 
 }
 
-#menu ul li:last-child{
+#menu > div > ul > li:not(:last-child){
+    font-weight: lighter;
+}
+
+#menu > div > ul > li:last-child{
+    text-align: right;
+}
+
+#menu ul li:not(:nth-child(1),:nth-child(2), :last-child):hover{
     font-weight: bold;
 }
 
-#menu ul li:not(:nth-child(1),:nth-child(2)){
-    border-bottom: 1px solid white;
+#menu i {
+    font-size: x-large;
+    padding-right: 5px;
 }
 /*----------------------------------*/
 
@@ -271,7 +284,7 @@ body > main > nav:last-child li { /*index page*/
 
 
 /*restaurants and dishes*/
-#dishes > article > .edit_options, #restaurants > article > .edit_options {
+#restaurants > article > div.edit_options, #dishes > article > .edit_options {
     display: none;
 }
 
@@ -325,10 +338,6 @@ body > main > nav:last-child li { /*index page*/
 /* dish main page */
 #dishes > article > .composition > :nth-child(3) {
     margin-top: 1em;
-}
-
-#dishes > article form button > img {
-    display: none; /*TODO*/
 }
 
 #dishes > article > .composition{
@@ -428,3 +437,100 @@ div.subtotal {
 .quantity::before {
     content: '\25CF  ';
 }/*----------------------------------*/
+
+/*---user orders------*/
+#user_orders > article{
+    padding: 1em;
+    margin-top: 3em;
+    border: solid 3px var(--dark-bg-color);
+    border-radius: var(--default-border-radius);
+    background-color: var(--light-bg-color);
+}
+
+#user_orders > article img:first-of-type {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+#user_orders > article > a:nth-last-child(2),
+#user_orders > article > a:nth-last-child(1),
+#user_orders > article > div > div > a{
+    width: auto;
+    background-color: var(--dark-bg-color);
+    border-radius: var(--default-border-radius);
+    padding: 0.5em;
+    text-align: center;
+    font-weight: 500;
+}
+
+#user_orders > article > p:first-of-type {
+    text-align: right;
+}/*--------------------------------------*/
+
+
+/*------restaurant-orders----------------*/
+#restaurant_orders > article{
+    width: 100%;
+}
+
+#restaurant_orders > article > a:nth-child(2) > img {
+    width: 100%;
+    height: 300px;
+}
+
+#restaurant_orders > article > #orders > header > * {
+    text-align: left;
+}
+
+#restaurant_orders > article > #orders > article{
+    padding: 1.5em;
+    border: solid 3px var(--dark-bg-color);
+    border-radius: var(--default-border-radius);
+}
+
+#restaurant_orders > article > #orders > article > select {
+    width: min-content;
+}
+
+
+/*-------my-restaurants page*/
+#my_restaurants > article > header > *{
+    text-align: left;
+}
+
+a {
+    display: inline;
+    width: auto;
+}
+
+#my_restaurants > article img:first-of-type {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#my_restaurants > article > a:nth-last-child(1), #my_restaurants > article > a:nth-last-child(2) {
+    padding: 1em;
+    background-color: var(--dark-bg-color);
+    border-radius: var(--default-border-radius);
+}
+
+#my_restaurants > .new_restaurant {  /*add new restaurant option*/
+    margin: 0 auto;
+    text-align: center;
+    padding: 1.5em 3em;
+    background-color: var(--dark-bg-color);
+    border-radius: var(--default-border-radius);
+}
+#my_restaurants > article {
+    padding: 1em;
+    margin-top: 3em;
+    border: solid 3px var(--dark-bg-color);
+    border-radius: var(--default-border-radius);
+    background-color: var(--light-bg-color);
+}/*-----------------------------------------*/
+
+div.edit_options {
+    display: none;
+}

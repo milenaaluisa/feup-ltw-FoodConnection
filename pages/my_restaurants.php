@@ -16,9 +16,7 @@
 
     $my_restaurants = Restaurant::getUserRestaurants($db, intval($_SESSION['idUser']));
 
-    $css_files = array('my_restaurants.css');
-    
-    output_header($css_files);
+    output_header();
     output_my_restaurants_list($my_restaurants); ?>
     <?php output_footer();
 ?>

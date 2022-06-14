@@ -1,4 +1,8 @@
 @media (max-width: 70em) {
+    body > header img:first-of-type {
+        max-width: 275px;
+    }
+
     body > :not(footer) {
         margin: 0 1em;
     }
@@ -10,7 +14,11 @@
     
 }
 
-@media (max-width: 40em) { 
+@media (max-width: 50em) { 
+    body > header img:first-of-type {
+        max-width: 200px;
+    }
+
     /*categories*/
     body > nav ul {
         grid-template-columns: repeat(auto-fit, 9em);
@@ -23,9 +31,58 @@
     /*footer*/
     body > footer {
         padding: 0.5em;
+        flex-direction: column;
     }
 
     body > footer > div {
         column-gap: 0.5em;
+    }
+
+    #restaurants > article, #my_restaurants > article   {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #reviews > article {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #restaurants > article > .info, #my_restaurants > article > .info {
+        width: 100%;
+        align-items: left;
+    }
+
+    #restaurants > article > .info > *, #my_restaurants > article > .info > *{
+        margin-left: 2em;
+        margin-right: 2em;
+    }
+
+    #my_restaurants > article > a {
+        width: 100%;
+    }
+
+    #dishes {
+        grid-template-columns: repeat(auto-fit, 100%);
+    }
+    
+    #restaurants #dishes > article {
+        margin-left: 2em;
+        margin-right: 2em;
+    }
+
+    #user_orders > article, #orders > article, #restaurant_orders > article{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #user_orders > article > *, #orders > article > * , #restaurant_orders > article{
+        align-self: left;
+    }
+
+    #user_orders > article > div, #orders > article > div, #restaurant_orders > article > div {
+        width: 100%;
     }
 }

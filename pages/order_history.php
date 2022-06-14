@@ -16,9 +16,7 @@
 
     $my_orders = Order::getUserOrders($db, intval($_SESSION['idUser']));
 
-    $css_files = array('user_orders.css');
-
-    output_header($css_files);
+    output_header();
     output_user_orders_list($my_orders);
     output_footer();
 ?>

@@ -21,8 +21,7 @@
         $restaurant = Restaurant::getRestaurant($db, intval($_GET['id']));
         $restaurantOrders = Order::getRestaurantOrders($db, $restaurant);
 
-        $css_files = array('restaurant_orders.css');
-        output_header($css_files);
+        output_header();
 
         if (!empty($restaurantOrders)) {
             output_restaurant_orders_list($restaurantOrders, $restaurant);
