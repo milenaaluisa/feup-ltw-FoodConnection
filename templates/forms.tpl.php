@@ -109,12 +109,13 @@
                         <input type="text" name="address" placeholder="address" required="required">
                         <input type="text" name="city" placeholder="city" required="required">
                         <input type="text" name="zipCode" placeholder="zip code" required="required">
-                        <select name="categories[]" multiple>
-                            <option value="" disabled selected>category</option>
-                            <?php foreach ($categories as $category) { ?>
-                                <option value="<?=$category->idCategory?>"><?=$category->name?></option>
+                        <fieldset>
+                            <legend> Categories: </legend>
+                            <?php foreach ($categories as $category){ ?>
+                                <input type="checkbox" name="categories[]" value="<?=$category->idCategory?>" id="<?=$category->name?>">
+                                <label for="<?=$category->name?>"><?=$category->name?></label>
                             <?php } ?>
-                        </select>
+                        </fieldset>
                         <a href="my_restaurants.php">Cancel</a>
                         <button type="submit">Save</button>
                     </form>
@@ -178,19 +179,21 @@
                     <input type="text" name="name" placeholder="name" required="required">
                     <input type="number" name="price" placeholder="price" step = 0.01 required="required">
                     <input type="text" name="ingredients" placeholder="ingredients">
-                    <select name="allergens[]" multiple>
-                        <option value="" disabled selected>allergens</option>
+                    <fieldset>
+                            <legend> Allergens: </legend>
                             <?php foreach ($allergens as $allergen) { ?>
-                                <option value="<?=$allergen->idAllergen?>"><?=$allergen->name?></option>
+                                <input type="checkbox" name="allergens[]" value="<?=$allergen->idAllergen?>" id="<?=$allergen->name?>">
+                                <label for="<?=$allergen->name?>"><?=$allergen->name?></label>
                             <?php } ?>
-                    </select>
-
-                    <select name="categories[]" multiple>
-                            <option value="" disabled selected>category</option>
-                            <?php foreach ($categories as $category) { ?>
-                                <option value="<?=$category->idCategory?>"><?=$category->name?></option>
+                    </fieldset>
+                    
+                    <fieldset>
+                            <legend> Categories: </legend>
+                            <?php foreach ($categories as $category){ ?>
+                                <input type="checkbox" name="categories[]" value="<?=$category->idCategory?>" id="<?=$category->name?>">
+                                <label for="<?=$category->name?>"><?=$category->name?></label>
                             <?php } ?>
-                    </select>
+                    </fieldset>
 
                     <a href = "edit_restaurant.php?id=<?=$idRestaurant?>">Cancel</a>
                     <button type="submit">Save</button>

@@ -25,17 +25,17 @@
             $this->file = $file;
         }
 
-        static function getUserWithPassword (PDO $db, string $username, string $password) : ?User {
+        static function getUserWithUsername (PDO $db, string $username, string $password) : ?User {
 
             $stmt = $db->prepare('SELECT User.*, file
                                   FROM User
                                   LEFT JOIN Photo USING (idUser)
-                                  WHERE username = ?
-                                  AND password = ? ' );
+                                  WHERE username = ?' );
     
-            $stmt->execute(array(strtolower($username), md5($password)));
-    
-            if ($user =  $stmt->fetch()) {
+            $stmt->execute(array(strtolower($username)));
+            $user = $stmt->fetch();
+
+            if ($user && password_verify($password, $user['password'])) {
                 return new User(
                     intval($user['idUser']),
                     $user['name'],
@@ -83,7 +83,7 @@
             $stmt->execute(array($this->idUser));
 
             $password = $stmt->fetch();
-            return md5($password['password']);
+            return $password[0];
         }
 
 
@@ -100,7 +100,7 @@
             return false;
         }
 
-        public static function existsUserWithUsername (PDO $db, string $username) : bool {
+        static function existsUserWithUsername (PDO $db, string $username) : bool {
             $stmt = $db->prepare('SELECT User.*
                                   FROM User
                                   WHERE username = ?' );
@@ -113,17 +113,31 @@
             return false;
         }
 
-        function updateUserInfo (PDO $db, string $password) : bool{
-            if (strtolower($this->email) != $_SESSION['email'] && User::existsUserWithEmail($db, $this->email)) {
-                $_SESSION['message'] = 'Choose another email'; 
-                return false;
-            } 
+        static function existsUserWithPhoneNumber (PDO $db, int $phoneNum) : bool {
+            $stmt = $db->prepare('SELECT User.*
+                                  FROM User
+                                  WHERE phoneNum = ?' );
     
-            else if (strtolower($this->username) != $_SESSION['username'] && User::existsUserWithUsername($db, $this->username)){
-                $_SESSION['message'] = 'Choose another username'; 
-                return false;
+            $stmt->execute(array($phoneNum));
+    
+            if ($user =  $stmt->fetch()) {
+                return true;
             }
-    
+            return false;
+        }
+
+        function updateUserInfo (PDO $db, $password) : bool{
+            if (isset($password)) {
+                $options = ['cost' => 12];
+                $password = password_hash($password, PASSWORD_DEFAULT, $options);
+                echo "set       ";
+                echo $password;
+            }
+            else {
+                $password = $this->getPassword($db);
+                echo $password;
+            }
+            
             $stmt = $db->prepare('UPDATE User
                                     SET name = ?,
                                     email = ?,
@@ -135,31 +149,22 @@
                                     password = ?
                                     WHERE idUser = ?'
                                 );
-             $stmt->execute(array($this->name, strtolower($this->email), $this->phoneNum, $this->address, $this->zipCode, $this->city, strtolower($this->username), md5($password), $this->idUser));
+             $stmt->execute(array($this->name, strtolower($this->email), $this->phoneNum, $this->address, $this->zipCode, $this->city, strtolower($this->username), $password, $this->idUser));
     
             return true;
         }
 
         static function registerUser (PDO $db, string $name, string $email, int $phoneNum, string $address, string $zipCode, string $city, string $username, string $password) : int { 
-            if (User::existsUserWithEmail($db, $email)) {
-                $_SESSION['message'] = 'Choose another email'; 
-                return 0;
-            } 
-    
-            if (User::existsUserWithUsername($db, $username)){
-                $_SESSION['message'] = 'Choose another username'; 
-                return 0;
-            }
-    
+            $options = ['cost' => 12];
             $stmt = $db->prepare('INSERT INTO User(name, email, phoneNum, address, zipCode, city, username, password)
                                   VALUES(?, ?, ?, ?, ?, ?, ?, ?) ');
             
-            $stmt->execute(array($name, strtolower($email), $phoneNum, $address, $zipCode, $city, strtolower($username), md5($password)));
+            $stmt->execute(array($name, strtolower($email), $phoneNum, $address, $zipCode, $city, strtolower($username), password_hash($password, PASSWORD_DEFAULT, $options)));
     
             return intval($db->lastInsertId());
         }
 
-        static function canEditRestaurant(PDO $db, int $idRestaurant, int $idUser) { 
+        static function isRestaurantOwner(PDO $db, int $idRestaurant, int $idUser) { 
             $stmt = $db->prepare('SELECT *
                                   FROM Restaurant
                                   WHERE idRestaurant = ?

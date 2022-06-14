@@ -73,6 +73,8 @@
                                   VALUES (?, ?, ?)');
             $stmt->execute(array($comment, $owner, $idReview));
         }
+
+        
     }
 
 ?>

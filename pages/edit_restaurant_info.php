@@ -16,7 +16,7 @@
 
     $db = getDatabaseConnection();
 
-    if (User::canEditRestaurant($db, intval($_GET['id']), intval($_SESSION['idUser']))) {
+    if (User::isRestaurantOwner($db, intval($_GET['id']), intval($_SESSION['idUser']))) {
 
         $restaurant = Restaurant::getRestaurant($db, intval($_GET['id']));
 

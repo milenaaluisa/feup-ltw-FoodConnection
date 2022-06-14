@@ -7,9 +7,17 @@
     require_once('../database/connection.db.php');
     require_once('../database/dish.class.php');
     require_once('../database/photo.class.php');
+    require_once('../includes/input_validation.php');
+
+    if(!is_numeric($_POST['price'])) {
+        echo "invalid price";
+        die();
+    }
+    filterName($_POST['name']);
+    filterText($_POST['ingredients']);
 
     $db = getDatabaseConnection();
-
+    
     $dish = Dish::getDish($db, intval($_POST['idDish']));
 
     if ($dish) {
