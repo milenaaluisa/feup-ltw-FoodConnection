@@ -10,7 +10,9 @@
 
     $search = $_GET['search'];
 
-    $restaurants = Restaurant::getSearchedRestaurants($db, $search, 8);
+    $restaurant_count = Restaurant::getRestaurantNum($db);
+
+    $restaurants = Restaurant::getSearchedRestaurants($db, $search, $restaurant_count);
 
     echo json_encode($restaurants);
 ?>

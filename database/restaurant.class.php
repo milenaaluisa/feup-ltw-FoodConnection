@@ -234,5 +234,13 @@
             }
             return $restaurants;
         }
+
+        function getRestaurantNum (PDO $db) {
+            $stmt = $db->prepare('SELECT count(idRestaurant)
+                                  FROM Restaurant');
+            $stmt->execute(array());
+            $count = $stmt->fetch();
+            return intval($count[0]);
+        }
     } 
 ?>

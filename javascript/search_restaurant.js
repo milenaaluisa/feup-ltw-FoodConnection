@@ -26,8 +26,8 @@ if(searchRestaurant) {
             const img = document.createElement('img')
             img.src = '../images/restaurants/' + restaurant.file
 
-            img.appendChild(img_link)
-            article.appendChild(img)
+            img_link.appendChild(img)
+            article.appendChild(img_link)
 
             const span = document.createElement('span')
             if(restaurant.averagePrice <= 10) span.innerHTML = '€'
