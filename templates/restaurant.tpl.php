@@ -62,9 +62,8 @@
 
 <!-- TO COMPLETE falta saber ir buscar as orders de cada restaurante -->
 <?php
-    function output_restaurant_order(){
+    function output_user_cart(){
 
-        $db = getDatabaseConnection();
         $price = 0;
 
         foreach($_SESSION['cart'] as $id => $dish){
@@ -89,12 +88,6 @@
         return $price;
     } ?>
 
-<?php function output_order(){
-    if(sizeof($_SESSION['cart']) == 0 ){
-        return false;
-    }
-    return true;
-} ?>
 
 <?php
     function output_restaurant(Restaurant $restaurant, array $dishes = null, array $shifts = null, array $reviews = null, $output_order_form = False) { ?>
@@ -131,23 +124,23 @@
             }?>
             
             <section id="orders">
-            <header>
-                <h3>Your Order</h3>
-            </header>
+                <header>
+                    <h3>Your Order</h3>
+                </header>
 
-            <?php if(output_order() && $output_order_form) { ?>
-                <form action = "../actions/action_place_order.php" method="post">
-                    <input type="hidden" name="idRestaurant" value="<?=$restaurant->idRestaurant?>">
-                    <?php $price = output_restaurant_order(); ?>
-                    <textarea name="notes" placeholder="notes"></textarea>
-                    <div>
-                        <h2>Subtotal: </h2>
-                        <span class="total_price"><?=$price?></span>
-                    </div>
-                    <button type="submit" name="submit">Place Order</button>
-                    <button type="cancel" name="cancel">Cancel</button>
-                </form>
-            <?php } ?>
+                <?php if($_SESSION['cart'] > 0  && $output_order_form) { ?>
+                    <form action = "../actions/action_place_order.php" method="post">
+                        <input type="hidden" name="idRestaurant" value="<?=$restaurant->idRestaurant?>">
+                        <?php $price = output_user_cart(); ?>
+                        <textarea name="notes" placeholder="notes"></textarea>
+                        <div>
+                            <h2>Subtotal: </h2>
+                            <span class="price"><?=$price?></span>
+                        </div>
+                        <button type="submit" name="submit">Place Order</button>
+                        <button type="cancel" name="cancel">Cancel</button>
+                    </form>
+                <?php } ?>
             </section>
             <?php if(isset($reviews) && sizeof($reviews) > 0) {
                     output_restaurant_reviews_list($reviews);

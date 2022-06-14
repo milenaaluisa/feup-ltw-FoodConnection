@@ -12,7 +12,7 @@
 
     $idDish = intval($_GET['id']);	
     $quantity = intval($_POST['quantity']);
-    $price = intval($_POST['price']);
+    $price = $_POST['price'];
     $name = $_POST['name'];
 
     $dish = Dish::getDish($db, intval($idDish));
