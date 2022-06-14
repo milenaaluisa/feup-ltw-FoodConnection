@@ -17,15 +17,22 @@
 
 
 <?php
-    function output_restaurant_list(array $restaurants) { ?>
-        <section id="restaurants">
-            <header>
-                <h2>Restaurants</h2>
-            </header>
-            <?php foreach($restaurants as $restaurant) {
-                output_restaurant($restaurant);
-            } ?>
-        </section>                
+    function output_restaurant_list(array $restaurants, bool $all_restaurants) { ?>
+        <main>
+            <?php if($all_restaurants) { ?>
+                <form>
+                    <input type="text" placeholder="Search..." id="search_restaurant">
+                </form>
+            <?php } ?>
+            <section id="restaurants">
+                <header>
+                    <h1>Restaurants</h1>
+                </header>
+                <?php foreach($restaurants as $restaurant) {
+                    output_restaurant($restaurant);
+                } ?>
+            </section>
+        </main>                
 <?php } ?>
 
 

@@ -19,6 +19,7 @@
         <link href="../css/forms.css" rel="stylesheet">
         <link href="../css/responsive.css" rel="stylesheet">
         <script src="../javascript/script.js" defer></script>
+        <script src="../javascript/search_restaurant.js" defer></script>
         <?php if(isset ($css_files)) {
             foreach ($css_files as $css_file) {
                 $css_file = "../css/" . "$css_file"; ?>
@@ -34,13 +35,6 @@
                 if (isset($_SESSION['idUser'])) output_logout($_SESSION['name']);
                 else output_login();
             ?>
-
-            <div>
-                <form action="action_page.php">
-                    <img src="https://picsum.photos/600/300?city" alt="search icon">
-                    <input type="text" placeholder="Search..." name="search">
-                </form>
-            </div>
 
             <nav id="menu">
                 <input type="checkbox" id="hamburger">
