@@ -188,6 +188,17 @@
                                   WHERE idRestaurant = ? AND idUser = ?');
             $stmt -> execute(array($idRestaurant, $idUser));
         }
+
+        static function likeDish(PDO $db, int $idDish, int $idUser) {
+            $stmt = $db->prepare('INSERT INTO FavDish (idDish, idUser) VALUES (?, ?)');
+            $stmt -> execute(array($idDish, $idUser));
+        }
+
+        static function dislikeDish(PDO $db, int $idDish, int $idUser) {
+            $stmt = $db->prepare('DELETE FROM FavDish
+                                  WHERE idDish = ? AND idUser = ?');
+            $stmt -> execute(array($idDish, $idUser));
+        }
     }
 
 ?>

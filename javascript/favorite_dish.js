@@ -1,10 +1,10 @@
-function setFavoriteRestaurant() {
-    const likeButtons = document.querySelectorAll('#restaurants > article > i')
+function setFavoriteDish() {
+    const likeButtons = document.querySelectorAll('#dishes > article > i')
 
     likeButtons.forEach(function(likeButton, index){
         likeButton.addEventListener('click', function(f){
             
-            idRestaurant = likeButton.getAttribute('data-id');  
+            idDish = likeButton.getAttribute('data-id'); 
 
             if (likeButton.getAttribute('class') == "fa fa-heart-o") 
                 likeButton.className = "fa fa-heart";
@@ -12,7 +12,7 @@ function setFavoriteRestaurant() {
             likeButton.className = "fa fa-heart-o";
 
             let request = new XMLHttpRequest()
-            var url = "../api/api_like_restaurant.php?id=" + idRestaurant
+            var url = "../api/api_like_dish.php?id=" + idDish
 
             request.open("GET", url, true)
             request.send()   
@@ -20,4 +20,4 @@ function setFavoriteRestaurant() {
     })
 }
 
-setFavoriteRestaurant()
+setFavoriteDish()

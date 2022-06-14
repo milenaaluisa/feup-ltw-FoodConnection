@@ -18,12 +18,12 @@
     $user = User::getUser($db, intval($_SESSION['idUser']));
 
     if ($restaurant && $user) {
-        if(Restaurant::isUserFavourite($db, intval($_GET['id']),intval($_SESSION['idUser']))) {
+        if(Restaurant::isUserFavourite($db, intval($restaurant->idRestaurant),intval($_SESSION['idUser']))) {
             $user->dislikeRestaurant($db, intval($restaurant->idRestaurant), intval($_SESSION['idUser']));
         }
 
         else {
-            $user->likeRestaurant($db, intval($_GET['id']), intval($_SESSION['idUser']));
+            $user->likeRestaurant($db, intval($restaurant->idRestaurant), intval($_SESSION['idUser']));
         }
     }
     

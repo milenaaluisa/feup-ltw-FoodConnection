@@ -44,7 +44,12 @@
             <span class="price"><?= number_format($dish->price, 2) ?></span>
             <span class="rate"><?= $dish->averageRate ?></span>
 
-            <!---TODO: like button-->
+            <?php if ($dish->is_favourite) { ?>
+                <i class="fa fa-heart" data-id=<?=$dish->idDish?>></i>
+            <?php } else { ?>
+                <i class="fa fa-heart-o" data-id=<?=$dish->idDish?>></i>
+            <?php } ?>
+
             <div class = "edit_options">
                 <a href="edit_dish_info.php?id=<?=$dish->idDish?>">Edit Info</a>
             </div>
