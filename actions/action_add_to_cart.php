@@ -12,6 +12,8 @@
 
     $idDish = intval($_GET['id']);	
     $quantity = intval($_POST['quantity']);
+    $price = intval($_POST['price']);
+    $name = $_POST['name'];
 
     $dish = Dish::getDish($db, intval($idDish));
 
@@ -25,10 +27,12 @@
     }
 
     if(!isset($_SESSION['cart'][$idDish])) {
-        $_SESSION['cart'][$idDish] = 0;	
+        $_SESSION['cart'][$idDish]['quantity'] = 0;
+        $_SESSION['cart'][$idDish]['price'] = $price;
+        $_SESSION['cart'][$idDish]['name'] = $name;
     }
 
-    $_SESSION['cart'][$idDish] += $quantity;
+    $_SESSION['cart'][$idDish]['quantity'] += $quantity;
 
     header('Location: ../pages/restaurant.php?id='.$_POST['idRestaurant']);
 ?>

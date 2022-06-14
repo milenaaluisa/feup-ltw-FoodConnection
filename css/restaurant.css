@@ -44,17 +44,17 @@
     border-radius: 0px;
 }
 
-#restaurants > article > #orders > form  label,  
-#restaurants > article > #orders > form  textarea, 
-#restaurants > article > #orders > form  button {
+#restaurants > article > #orders > form > label,  
+#restaurants > article > #orders > form > textarea, 
+#restaurants > article > #orders > form > button {
     margin-top: 2em;
 }
 
-#restaurants > article > #orders > form  label::before {
+#restaurants > article > #orders > form > label::before {
     content: '\25CF';
 }
 
-#restaurants > article > #orders > form .price, #restaurants > article > #orders > form input {
+#restaurants > article > #orders > form > .price, #restaurants > article > #orders > form > input {
     width: 50%;
 }/*------------------------------------*/
 
@@ -102,7 +102,7 @@
 }
 
 #restaurants > article > #orders > form  div {
-    
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
 }/*----------------------------------*/

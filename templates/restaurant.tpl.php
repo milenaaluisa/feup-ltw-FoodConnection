@@ -66,24 +66,25 @@
 
         $db = getDatabaseConnection();
         $price = 0;
-        $id_aux = 0;
 
-        foreach($_SESSION['cart'] as $id => $quantity){
-            $id_aux ++;
-            $dishh = Dish::getDish($db, intval($id));
-            $price+= $quantity*$dishh->{'price'};?>
-            <div class="item" id=<?=$id_aux?>>
-                <label>
-                    <?= $dishh->{'name'}; ?>
-                </label>
-                <input type="number" name="quantity" id = <?=$id_aux?> value="<?=$quantity?>" min="1" step="1">
-
-                <span class="price" id = <?=$id_aux?> value ="<?=$dishh->{'price'}?>">
-                    <?= $quantity*$dishh->{'price'}; ?>
-                </span>
-                <button type="eliminate" name="eliminate" value="<?=$id?>">Eliminate</button>
-            </div>
-        <?php }
+        foreach($_SESSION['cart'] as $id => $dish){
+            $price+= $dish['quantity']*$dish['price']?>
+            
+            <label>
+                <?= $dish['name']?>
+            </label>
+            <span class="quantity"> 
+                <?=$dish['quantity']?>
+            </span>
+            <span class="price">
+                <?= $dish['quantity']*$dish['price']?>
+            </span>
+            <button type="eliminate" name="eliminate" value="<?=$id?>">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </button>
+        
+        <?php
+        }
 
         return $price;
     } ?>
