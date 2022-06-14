@@ -5,12 +5,15 @@
 
     require_once('../database/connection.db.php');
     require_once('../database/review.class.php');
+    require_once('../includes/input_validation.php');
 
     $db = getDatabaseConnection();
 
+    filterText($_POST['reply']);
+    
     $orderDate = time(); //date of the current day
     
-    if (isset($_POST['reply']) && !empty($_POST['reply'])) {
+    if (!empty($_POST['reply'])) {
         Review::replyReview ($db, $_POST['reply'], intval($_SESSION['idUser']), intval($_POST['idReview']));
     }
    

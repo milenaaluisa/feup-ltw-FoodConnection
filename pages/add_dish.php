@@ -17,7 +17,7 @@
 
     $db = getDatabaseConnection();
 
-    if (User::canEditRestaurant($db, intval($_GET['id']), intval($_SESSION['idUser']))) {
+    if (User::isRestaurantOwner($db, intval($_GET['id']), intval($_SESSION['idUser']))) {
         
         $allergens = Allergen::getAllAllergens($db);   
         $categories = Category::getAllCategories($db);
