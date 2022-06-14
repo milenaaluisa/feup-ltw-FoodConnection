@@ -20,8 +20,7 @@
         <main>
             <?php if($all_restaurants) { ?>
                 <form>
-                    <!---<img src="https://picsum.photos/600/300?city" alt="search icon"> --->
-                    <input type="text" placeholder="Search..." id="search_restaurant" name='search'>
+                    <input type="text" placeholder="Search..." id="search_restaurant">
                 </form>
             <?php } ?>
             <section id="restaurants">

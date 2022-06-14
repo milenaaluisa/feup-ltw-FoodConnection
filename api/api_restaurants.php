@@ -5,8 +5,6 @@
 
     require_once('../database/connection.db.php');
     require_once('../database/restaurant.class.php');
-    require_once('../pages/index.php');
-
 
     $db = getDatabaseConnection();
 

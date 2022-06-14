@@ -5,7 +5,7 @@ if(searchRestaurant) {
         const response = await fetch('../api/api_restaurants.php?search=' + this.value)
         const restaurants = await response.json();
 
-        const section = document.querySelector('#categories')
+        const section = document.querySelector('#restaurants')
         section.innerHTML = ''
 
         for(const restaurant of restaurants) {
@@ -24,12 +24,26 @@ if(searchRestaurant) {
             const img_link = document.createElement('a')
             img_link.href = 'restaurant.php?id=' + restaurant.idRestaurant
             const img = document.createElement('img')
-            img.src = '../images/restaurants' + restaurant.file
+            img.src = '../images/restaurants/' + restaurant.file
 
             img.appendChild(img_link)
             article.appendChild(img)
 
+            const span = document.createElement('span')
+            if(restaurant.averagePrice <= 10) span.innerHTML = '€'
+            else if(restaurant.averagePrice > 10 && restaurant.averagePrice > 10) span.innerHTML = '€€'
+            else span.innerHTML = '€€€'
+
+            article.appendChild(span)
+
             const rate_link = document.createElement('a')
+            rate_link.href = 'restaurant.php?id=' + restaurant.idRestaurant + '#reviews'
+            rate_link.innerHTML = restaurant.averageRate
+            const i = document.createElement('i')
+            i.className = 'fa fa-star'
+            i.style.color = '#f8cf66'
+            rate_link.appendChild(i)
+            
 
             article.appendChild(rate_link)
             
