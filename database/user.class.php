@@ -177,6 +177,17 @@
             $stmt -> execute(array($idDish, $idUser));
             return $stmt->fetch();
         }
+
+        static function likeRestaurant(PDO $db, int $idRestaurant, int $idUser) {
+            $stmt = $db->prepare('INSERT INTO FavRestaurant (idRestaurant, idUser) VALUES (?, ?)');
+            $stmt -> execute(array($idRestaurant, $idUser));
+        }
+
+        static function dislikeRestaurant(PDO $db, int $idRestaurant, int $idUser) {
+            $stmt = $db->prepare('DELETE FROM FavRestaurant 
+                                  WHERE idRestaurant = ? AND idUser = ?');
+            $stmt -> execute(array($idRestaurant, $idUser));
+        }
     }
 
 ?>

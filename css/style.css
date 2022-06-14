@@ -293,6 +293,10 @@ body > main > nav:last-child li { /*index page*/
     margin-right: 0.5em;
 }
 
+#restaurants > article > .rate + i, #dishes > article > .rate + i {
+    color: var(--like-button-color);
+}
+
 #restaurants > article > #reviews > article > div.reply_form {
     display: none;
 }

@@ -12,6 +12,7 @@
         <script src="https://kit.fontawesome.com/212cf37a16.js" crossorigin="anonymous"></script>
         <script src="../javascript/rate_stars.js" defer></script>
         <script src="../javascript/order_state.js" defer></script>
+        <script src="../javascript/favorite_restaurant.js" defer></script>
         <link href="../css/style.css" rel="stylesheet">
         <link href="../css/layout.css" rel="stylesheet">
         <link href="../css/forms.css" rel="stylesheet">
