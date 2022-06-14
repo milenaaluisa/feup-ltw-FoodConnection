@@ -1,4 +1,8 @@
 @media (max-width: 70em) {
+    body > header img:first-of-type {
+        max-width: 275px;
+    }
+
     body > :not(footer) {
         margin: 0 1em;
     }
@@ -11,6 +15,10 @@
 }
 
 @media (max-width: 50em) { 
+    body > header img:first-of-type {
+        max-width: 200px;
+    }
+
     /*categories*/
     body > nav ul {
         grid-template-columns: repeat(auto-fit, 9em);

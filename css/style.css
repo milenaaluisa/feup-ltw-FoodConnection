@@ -137,7 +137,7 @@ body > header {
 body > header img:first-of-type {
     width: auto;
     height: auto;
-    max-width: 350px;
+    max-width: 300px;
     margin: auto;
     display: grid;
 }
