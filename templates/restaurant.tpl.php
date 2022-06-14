@@ -121,27 +121,30 @@
             
             if(isset($dishes) && sizeof($dishes) > 0) {
                 output_dish_list($dishes);
-            }?>
+            }
             
-            <section id="orders">
-                <header>
-                    <h3>Your Order</h3>
-                </header>
+            if($output_order_form){?>
 
-                <?php if($_SESSION['cart'] > 0  && $output_order_form) { ?>
-                    <form action = "../actions/action_place_order.php" method="post">
-                        <input type="hidden" name="idRestaurant" value="<?=$restaurant->idRestaurant?>">
-                        <?php $price = output_user_cart(); ?>
-                        <textarea name="notes" placeholder="notes"></textarea>
-                        <div>
-                            <h2>Subtotal: </h2>
-                            <span class="price"><?=$price?></span>
-                        </div>
-                        <button type="submit" name="submit">Place Order</button>
-                        <button type="cancel" name="cancel">Cancel</button>
-                    </form>
-                <?php } ?>
-            </section>
+                <section id="orders">
+                    <header>
+                        <h3>Your Order</h3>
+                    </header>
+
+                    <?php if($_SESSION['cart'] > 0) { ?>
+                        <form action = "../actions/action_place_order.php" method="post">
+                            <input type="hidden" name="idRestaurant" value="<?=$restaurant->idRestaurant?>">
+                            <?php $price = output_user_cart(); ?>
+                            <textarea name="notes" placeholder="notes"></textarea>
+                            <div>
+                                <h2>Subtotal: </h2>
+                                <span class="price"><?=$price?></span>
+                            </div>
+                            <button type="submit" name="submit">Place Order</button>
+                            <button type="cancel" name="cancel">Cancel</button>
+                        </form>
+                    <?php } ?>
+                </section>
+            <?php }?>
             <?php if(isset($reviews) && sizeof($reviews) > 0) {
                     output_restaurant_reviews_list($reviews);
                 } ?>
