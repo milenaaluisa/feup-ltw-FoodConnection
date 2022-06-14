@@ -12,8 +12,9 @@
         public int $averageRate;
         public int $owner;
         public $file;
+        public bool $is_favourite;
 
-        public function __construct(int $idRestaurant, string $name, int $phoneNum, string $address, string $zipCode, string $city, int $owner, $file, float $averagePrice = 0, int $averageRate)
+        public function __construct(int $idRestaurant, string $name, int $phoneNum, string $address, string $zipCode, string $city, int $owner, $file, float $averagePrice = 0, int $averageRate, bool $is_favourite)
         {
             $this->idRestaurant = $idRestaurant;
             $this->name = $name;
@@ -25,6 +26,16 @@
             $this->file = $file;
             $this->averagePrice = $averagePrice;
             $this->averageRate = $averageRate;
+            $this->is_favourite = $is_favourite;
+        }
+
+        static function isUserFavourite(PDO $db, int $idRestaurant, int $idUser) : int{
+            $stmt = $db->prepare('SELECT *
+                                  FROM FavRestaurant 
+                                  WHERE FavRestaurant.idUser = ? AND FavRestaurant.idRestaurant = ?');
+            $stmt->execute(array($idUser, $idRestaurant));
+            if($stmt->fetch()) return 1;
+            return 0;
         }
 
         static function getAllRestaurants(PDO $db) : array {
@@ -36,6 +47,8 @@
             $restaurants = array();
 
             while ($restaurant = $stmt->fetch()) {
+                $is_favourite = Restaurant::isUserFavourite($db, intval($restaurant['idRestaurant']), intval($_SESSION['idUser']));
+
                 $restaurants[] = new Restaurant(
                     intval($restaurant['idRestaurant']), 
                     $restaurant['name'],
@@ -46,7 +59,8 @@
                     intval($restaurant['owner']),
                     $restaurant['file'],
                     floatval($restaurant['averagePrice']),
-                    intval($restaurant['averageRate'])
+                    intval($restaurant['averageRate']),
+                    boolval($is_favourite)
                 );
             }
             return $restaurants;
@@ -63,6 +77,8 @@
             $restaurants = array();
 
             while ($restaurant = $stmt->fetch()) {
+                $is_favourite = Restaurant::isUserFavourite($db, intval($restaurant['idRestaurant']), intval($_SESSION['idUser']));
+
                 $restaurants[] = new Restaurant(
                     intval($restaurant['idRestaurant']), 
                     $restaurant['name'],
@@ -73,7 +89,8 @@
                     intval($restaurant['owner']),
                     $restaurant['file'],
                     floatval($restaurant['averagePrice']),
-                    intval($restaurant['averageRate'])
+                    intval($restaurant['averageRate']),
+                    boolval($is_favourite)
                 );
             }
             return $restaurants;
@@ -86,6 +103,8 @@
                                   WHERE idRestaurant = ?');
             $stmt->execute(array($id));
             if ($restaurant = $stmt->fetch()) {
+                $is_favourite = Restaurant::isUserFavourite($db, intval($restaurant['idRestaurant']), intval($_SESSION['idUser']));
+                
                 return new Restaurant(
                         intval($restaurant['idRestaurant']), 
                         $restaurant['name'],
@@ -96,7 +115,8 @@
                         intval($restaurant['owner']),
                         $restaurant['file'],
                         floatval($restaurant['averagePrice']),
-                        intval($restaurant['averageRate'])
+                        intval($restaurant['averageRate']),
+                        boolval($is_favourite)
                 );
             }
             return null;
@@ -122,6 +142,8 @@
             $restaurants = array();
 
             while ($restaurant = $stmt->fetch()) {
+                $is_favourite = Restaurant::isUserFavourite($db, intval($restaurant['idRestaurant']), intval($_SESSION['idUser']));
+
                 $restaurants[] = new Restaurant(
                     intval($restaurant['idRestaurant']), 
                     $restaurant['name'],
@@ -132,7 +154,8 @@
                     intval($restaurant['owner']),
                     $restaurant['file'],
                     floatval($restaurant['averagePrice']),
-                    intval($restaurant['averageRate'])
+                    intval($restaurant['averageRate']),
+                    boolval($is_favourite)
                 );
             }
             return $restaurants;
@@ -159,7 +182,8 @@
                     intval($restaurant['owner']),
                     $restaurant['file'],
                     floatval($restaurant['averagePrice']),
-                    intval($restaurant['averageRate'])
+                    intval($restaurant['averageRate']),
+                    true
                 );
             }
             return $restaurants;

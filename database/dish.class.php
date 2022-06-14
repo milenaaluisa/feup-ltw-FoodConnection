@@ -11,7 +11,7 @@
         public int $idRestaurant;
         public $file;
 
-        public function __construct(int $idDish, string $name, float $price, int $idRestaurant, $ingredients, $file, string $priceHistory= ' ', int $averageRate= 0)
+        public function __construct(int $idDish, string $name, float $price, int $idRestaurant, $ingredients, $file, string $priceHistory= ' ', int $averageRate= 0, bool $is_favourite)
         {
             $this->idDish = $idDish;
             $this->name = $name;
@@ -21,6 +21,16 @@
             $this->averageRate = $averageRate;
             $this->idRestaurant = $idRestaurant;
             $this->file = $file;
+            $this->is_favourite = $is_favourite;
+        }
+
+        static function isUserFavouriteDish(PDO $db, int $idDish, int $idUser) : int{
+            $stmt = $db->prepare('SELECT *
+                                  FROM FavDish
+                                  WHERE FavDish.idUser = ? AND FavDish.idDish = ?');
+            $stmt->execute(array($idUser, $idDish));
+            if($stmt->fetch()) return 1;
+            return 0;
         }
 
         static function getDish(PDO $db, int $id) : ?Dish {
@@ -29,7 +39,8 @@
                                   LEFT JOIN Photo USING (idDish)
                                   WHERE Dish.idDish = ?');
             $stmt->execute(array($id));
-            if ($dish =  $stmt->fetch()) {
+            if ($dish = $stmt->fetch()) {
+                $is_favourite = Dish::isUserFavouriteDish($db, intval($dish['idDish']), intval($_SESSION['idUser']));
                 return new Dish(
                         intval($dish['idDish']), 
                         $dish['name'],
@@ -38,7 +49,8 @@
                         $dish['ingredients'],
                         $dish['file'],
                         $dish['priceHistory'],
-                        intval($dish['averageRate'])
+                        intval($dish['averageRate']),
+                        boolval($is_favourite)
                 );
             }
             return null;
@@ -54,6 +66,8 @@
             $dishes =  array();
 
             while ($dish = $stmt->fetch()) {
+                $is_favourite = Dish::isUserFavouriteDish($db, intval($dish['idDish']), intval($_SESSION['idUser']));
+
                 $dishes[] = new Dish(
                         intval($dish['idDish']), 
                         $dish['name'],
@@ -62,7 +76,8 @@
                         $dish['ingredients'],
                         $dish['file'],
                         $dish['priceHistory'],
-                        intval($dish['averageRate'])
+                        intval($dish['averageRate']),
+                        boolval($is_favourite)
                     );
             }
             return $dishes;
@@ -79,6 +94,7 @@
             $dishes =  array();
 
             while ($dish = $stmt->fetch()) {
+
                 $dishes[] = new Dish(
                     intval($dish['idDish']), 
                     $dish['name'],
@@ -87,7 +103,8 @@
                     $dish['ingredients'],
                     $dish['file'],
                     $dish['priceHistory'],
-                    intval($dish['averageRate'])
+                    intval($dish['averageRate']),
+                    true
                 );
             }
             return $dishes;
