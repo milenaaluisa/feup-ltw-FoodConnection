@@ -12,7 +12,6 @@
     require_once('../database/photo.class.php');
     require_once('../includes/input_validation.php');
 
-    $db = getDatabaseConnection();
 
     if (!validPhoneNumber($_POST['number'])) { 
         echo "Invalid number";
@@ -26,8 +25,10 @@
 
     //filter inserted name, city and address
     filterName($_POST['name']);
-    filterAddress($_POST['address']);
-    filterCity($_POST['city']);
+    filterText($_POST['address']);
+    filterText($_POST['city']);
+
+    $db = getDatabaseConnection();
 
     $idRestaurant = Restaurant::registerRestaurant ($db, $_POST['name'], intval($_POST['number']), $_POST['address'], $_POST['zipCode'], $_POST['city'], intval($_SESSION['idUser']));
 

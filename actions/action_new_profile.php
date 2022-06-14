@@ -42,8 +42,8 @@
 
     //filter inserted name, city and address
     filterName($_POST['name']);
-    filterAddress($_POST['address']);
-    filterCity($_POST['city']);
+    filterText($_POST['address']);
+    filterText($_POST['city']);
 
 
     //check if the inserted email/username/phone number matches is already associated to another user

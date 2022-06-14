@@ -12,40 +12,40 @@
     require_once('../database/photo.class.php');
     require_once('../includes/input_validation.php');
 
+    if (!validUsername( $_POST['username'])){
+        echo "Invalid username";
+        die();
+    }
+
+    if(!validEmail($_POST['email'])) {
+        echo "Invalid email";
+        die();
+    }
+
+    if (!validPhoneNumber($_POST['phoneNum'])) { 
+        echo "Invalid number";
+        die();
+    }
+
+    if ( !validZipCode($_POST['zipCode'])) {
+        echo "Invalid zip-code.";
+        die();
+    }
+
+    if (!empty($_POST['password']) && !validPassword($_POST['password'])) {
+        echo "Your password must have at least 8 characters.";
+        die();
+    } 
+
+    filterName($_POST['name']);
+    filterText($_POST['address']);
+    filterText($_POST['city']);
+
     $db = getDatabaseConnection();
 
     $user = User::getUser($db, intval($_SESSION['idUser']));
 
     if ($user) {
-        if (!validUsername( $_POST['username'])){
-            echo "Invalid username";
-            die();
-        }
-
-        if(!validEmail($_POST['email'])) {
-            echo "Invalid email";
-            die();
-        }
-
-        if (!validPhoneNumber($_POST['phoneNum'])) { 
-            echo "Invalid number";
-            die();
-        }
-
-        if ( !validZipCode($_POST['zipCode'])) {
-            echo "Invalid zip-code.";
-            die();
-        }
-
-        if (!empty($_POST['password']) && !validPassword($_POST['password'])) {
-            echo "Your password must have at least 8 characters.";
-            die();
-        } 
-
-        //filter inserted name, city and address
-        filterName($_POST['name']);
-        filterAddress($_POST['address']);
-        filterCity($_POST['city']);
 
         if ( $user-> email != strtolower($_POST['email']) &&  User::existsUserWithEmail($db, $_POST['email'])) {
             echo 'Choose another email'; 

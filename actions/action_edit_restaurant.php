@@ -17,25 +17,25 @@
 
     if (!User::isRestaurantOwner($db, intval($_POST['idRestaurant']), $_SESSION['idUser']))
         die(header('Location: ../pages/index.php'));
+    
+    if (!validPhoneNumber($_POST['number'])) { 
+        echo "Invalid number";
+        die();
+    }
+
+    if ( !validZipCode($_POST['zipCode'])) {
+        echo "Invalid zip-code.";
+        die();
+    }
+
+    //filter inserted name, city and address
+    filterName($_POST['name']);
+    filterText($_POST['address']);
+    filterText($_POST['city']);
 
     $restaurant = Restaurant::getRestaurant($db, intval($_POST['idRestaurant']));
     
     if ($restaurant) {
-        if (!validPhoneNumber($_POST['number'])) { 
-            echo "Invalid number";
-            die();
-        }
-    
-        if ( !validZipCode($_POST['zipCode'])) {
-            echo "Invalid zip-code.";
-            die();
-        }
-
-        //filter inserted name, city and address
-        filterName($_POST['name']);
-        filterAddress($_POST['address']);
-        filterCity($_POST['city']);
-
         $restaurant->name = $_POST['name'];
         $restaurant->phoneNum = intval($_POST['number']);
         $restaurant->address = $_POST['address'];

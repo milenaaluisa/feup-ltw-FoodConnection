@@ -30,16 +30,11 @@
 
     //remove special chars from name
     function filterName(string &$name) {
-        $name = preg_replace ("/[^a-zA-Z\s-]/", '', $name);
+        $name = preg_replace ("/[^a-zA-Z\s]/", '', $name);
     }
 
     //remove special chars from address
-    function filterAddress(string &$address) {
-        $address = preg_replace ("/[^a-zA-Z0-9\s-]/", '', $address);
-    }
-
-    //remove special chars from city
-    function filterCity(string &$city) {
-        $city = preg_replace ("/[^a-zA-Z\s-]/", '', $city);
+    function filterText(string &$text) {
+        $text = preg_replace ("/[^a-z.A-Z0-9\s]/", '', $text);
     }
 ?>

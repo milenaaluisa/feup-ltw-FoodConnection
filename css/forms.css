@@ -150,3 +150,25 @@ input:focus, button, textarea {
     transition: all 0.2s ease;
 }
 
+fieldset  input {
+    display: none;
+}
+
+fieldset{
+    background-color: var(--light-bg-color);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 8em);
+    column-gap: 0.3em;
+    justify-content: space-between;
+}
+
+fieldset  input + label::before {
+    font-family: "Font Awesome 5 Free"; 
+    margin-right: 0.5em;
+    content: '\f111';
+}
+
+fieldset input:checked + label::before {
+    font-family: "Font Awesome 5 Free"; 
+    content: '\f058';
+}
