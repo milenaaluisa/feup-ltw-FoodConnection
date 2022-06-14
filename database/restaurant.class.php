@@ -195,5 +195,44 @@
                                     WHERE idRestaurant = ?');
             $stmt->execute(array($this->name, $this->phoneNum, $this->address, $this->zipCode, $this->city, $this->idRestaurant));
         }
+
+        static function getSearchedRestaurants(PDO $db, string $search, int $count) {
+            if($search == '0'|| $search == '1' || $search == '2' || $search == '3' || $search == '4' || $search == '5') {
+                $rate = intval($search);
+                $stmt = $db->prepare('SELECT DISTINCT Restaurant.*, Photo.file
+                                      FROM Restaurant
+                                      JOIN Photo USING (idRestaurant)
+                                      WHERE averageRate = ?
+                                      LIMIT ?');
+                $stmt->execute(array($rate, $count));
+            }
+            else {
+                $stmt = $db->prepare('SELECT DISTINCT Restaurant.*, Photo.file
+                                    FROM Restaurant
+                                    JOIN Photo USING (idRestaurant)
+                                    JOIN Dish USING (idRestaurant)
+                                    WHERE lower(Restaurant.name) like ? OR
+                                    lower(Dish.name) like ?
+                                    LIMIT ?');
+                $stmt->execute(array('%' . strtolower($search) . '%', '%' . strtolower($search) . '%', $count));
+            }
+
+            $restaurants = array();
+            while ($restaurant = $stmt->fetch()) {
+                $restaurants[] = new Restaurant(
+                    intval($restaurant['idRestaurant']), 
+                    $restaurant['name'],
+                    intval($restaurant['phoneNum']),
+                    $restaurant['address'],
+                    $restaurant['zipCode'],
+                    $restaurant['city'],
+                    intval($restaurant['owner']),
+                    $restaurant['file'],
+                    floatval($restaurant['averagePrice']),
+                    intval($restaurant['averageRate'])
+                );
+            }
+            return $restaurants;
+        }
     } 
 ?>

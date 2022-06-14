@@ -16,8 +16,14 @@
 
 
 <?php
-    function output_restaurant_list(array $restaurants) { ?>
+    function output_restaurant_list(array $restaurants, bool $all_restaurants) { ?>
         <main>
+            <?php if($all_restaurants) { ?>
+                <form>
+                    <!---<img src="https://picsum.photos/600/300?city" alt="search icon"> --->
+                    <input type="text" placeholder="Search..." id="search_restaurant" name='search'>
+                </form>
+            <?php } ?>
             <section id="restaurants">
                 <header>
                     <h1>Restaurants</h1>
