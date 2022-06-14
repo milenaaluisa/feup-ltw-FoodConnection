@@ -26,7 +26,7 @@
         }
 
         static function getOrder (PDO $db, int $idFoodOrder) : ?Order {
-            $stmt = $db->prepare('SELECT FoodOrder.*, sum(quantity * price), Review.idReview, idRestaurant
+            $stmt = $db->prepare('SELECT FoodOrder.*, sum(quantity * price) as total, Review.idReview, idRestaurant
                                   FROM FoodOrder
                                   JOIN Selection USING (idFoodOrder)
                                   JOIN Dish USING (idDish)
