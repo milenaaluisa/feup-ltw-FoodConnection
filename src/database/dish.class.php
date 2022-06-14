@@ -150,6 +150,11 @@
                                     WHERE idDish = ?');
             $stmt->execute(array($this->name, $this->ingredients, $this->price, $this->idDish));
         }
+        
+        function deleteDish(PDO $db) {
+            $stmt = $db->prepare('DELETE FROM Dish WHERE idDish = ?');
+            $stmt->execute(array($this->idDish));
+        }
     }
     
 ?>

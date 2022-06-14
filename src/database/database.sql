@@ -109,7 +109,7 @@ CREATE TABLE RateDish
 (
     rate INT NOT NULL CHECK(rate >= 1 and rate <= 5),
     idFoodOrder INT NOT NULL REFERENCES FoodOrder(idFoodOrder),
-    idDish INT NOT NULL REFERENCES Dish(idDish),
+    idDish INT NOT NULL REFERENCES Dish(idDish) ON DELETE CASCADE,
     PRIMARY KEY (idFoodOrder, idDish)
 );
 
@@ -129,13 +129,13 @@ CREATE TABLE Photo
     idRestaurant INTEGER REFERENCES Restaurant(idRestaurant),
     idReview INT REFERENCES Review(idReview),
     idUser INT REFERENCES User(idUser),
-    idDish INT REFERENCES Dish(idDish)
+    idDish INT REFERENCES Dish(idDish) ON DELETE CASCADE
 );
 
 CREATE TABLE MenuDish 
 (
     idMenu INT NOT NULL REFERENCES Menu(idMenu),
-    idDish INT NOT NULL REFERENCES Dish(idDish),
+    idDish INT NOT NULL REFERENCES Dish(idDish) ON DELETE CASCADE,
     PRIMARY KEY (idMenu, idDish)
 );
 
@@ -147,7 +147,7 @@ CREATE TABLE Allergen
 
 CREATE TABLE DishAllergen
 (
-    idDish INT NOT NULL REFERENCES Dish(idDish),
+    idDish INT NOT NULL REFERENCES Dish(idDish) ON DELETE CASCADE,
     idAllergen INT NOT NULL REFERENCES Allergen(idAllergen),
     PRIMARY KEY(idDish, idAllergen)
 );
@@ -157,7 +157,7 @@ CREATE TABLE Selection
     quantity INT NOT NULL,
     extras VARCHAR, 
     idFoodOrder INT NOT NULL REFERENCES FoodOrder(idFoodOrder),
-    idDish INT NOT NULL REFERENCES Dish(idDish),
+    idDish INT NOT NULL REFERENCES Dish(idDish) ON DELETE CASCADE,
     PRIMARY KEY (idFoodOrder, idDish)
 );
 
@@ -177,13 +177,13 @@ CREATE TABLE FavRestaurant
 );
 
 CREATE TABLE FavDish(
-    idDish INT NOT NULL REFERENCES Dish(idDish),
+    idDish INT NOT NULL REFERENCES Dish(idDish) ON DELETE CASCADE,
     idUser INT NOT NULL REFERENCES User(idUser),
     PRIMARY KEY (idDish, idUser)
 );
 
 CREATE TABLE DishCategory(
-    idDish INT NOT NULL REFERENCES Dish(idDish), 
+    idDish INT NOT NULL REFERENCES Dish(idDish) ON DELETE CASCADE, 
     idCategory INT NOT NULL REFERENCES Category(idCategory),
     PRIMARY KEY(idDish, idCategory)
 );

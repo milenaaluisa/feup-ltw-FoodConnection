@@ -52,6 +52,8 @@
 
             <div class = "edit_options">
                 <a href="edit_dish_info.php?id=<?=$dish->idDish?>">Edit Info <i class="fa-regular fa-pen-to-square"></i></a>
+                <button data-id="<?= $dish->idDish ?>">Delete dish</button>
+
             </div>
             
             <?php if((isset($dish->ingredients) && !empty(trim($dish->ingredients))) || isset($allergens) && sizeof($allergens)>0) { ?>
