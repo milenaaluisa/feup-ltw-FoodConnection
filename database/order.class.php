@@ -141,5 +141,11 @@
             }
             return false;
         }
+
+        function changeState(PDO $db, string $state) {
+            $stmt = $db->prepare('UPDATE FoodOrder SET state = ? WHERE idFoodOrder = ?');
+
+            $stmt->execute(array($state, $this->idFoodOrder));
+        }
     }
 ?>
