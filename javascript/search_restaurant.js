@@ -34,8 +34,6 @@ if(searchRestaurant) {
             else if(restaurant.averagePrice > 10 && restaurant.averagePrice > 10) span.innerHTML = '€€'
             else span.innerHTML = '€€€'
 
-            article.appendChild(span)
-
             const rate_link = document.createElement('a')
             rate_link.href = 'restaurant.php?id=' + restaurant.idRestaurant + '#reviews'
             rate_link.innerHTML = restaurant.averageRate
@@ -46,6 +44,7 @@ if(searchRestaurant) {
             
 
             article.appendChild(rate_link)
+            article.appendChild(span)
             
             section.appendChild(article)
         }
