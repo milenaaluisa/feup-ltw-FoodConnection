@@ -284,7 +284,7 @@ body > main > nav:last-child li { /*index page*/
 
 
 /*restaurants and dishes*/
-#dishes > article > .edit_options, #restaurants > article > .edit_options {
+#restaurants > article > div.edit_options, #dishes > article > .edit_options {
     display: none;
 }
 
@@ -433,3 +433,100 @@ div.subtotal {
 .quantity::before {
     content: '\25CF  ';
 }/*----------------------------------*/
+
+/*---user orders------*/
+#user_orders > article{
+    padding: 1em;
+    margin-top: 3em;
+    border: solid 3px var(--dark-bg-color);
+    border-radius: var(--default-border-radius);
+    background-color: var(--light-bg-color);
+}
+
+#user_orders > article img:first-of-type {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+#user_orders > article > a:nth-last-child(2),
+#user_orders > article > a:nth-last-child(1),
+#user_orders > article > div > div > a{
+    width: auto;
+    background-color: var(--dark-bg-color);
+    border-radius: var(--default-border-radius);
+    padding: 0.5em;
+    text-align: center;
+    font-weight: 500;
+}
+
+#user_orders > article > p:first-of-type {
+    text-align: right;
+}/*--------------------------------------*/
+
+
+/*------restaurant-orders----------------*/
+#restaurant_orders > article{
+    width: 100%;
+}
+
+#restaurant_orders > article > a:nth-child(2) > img {
+    width: 100%;
+    height: 300px;
+}
+
+#restaurant_orders > article > #orders > header > * {
+    text-align: left;
+}
+
+#restaurant_orders > article > #orders > article{
+    padding: 1.5em;
+    border: solid 3px var(--dark-bg-color);
+    border-radius: var(--default-border-radius);
+}
+
+#restaurant_orders > article > #orders > article > select {
+    width: min-content;
+}
+
+
+/*-------my-restaurants page*/
+#my_restaurants > article > header > *{
+    text-align: left;
+}
+
+a {
+    display: inline;
+    width: auto;
+}
+
+#my_restaurants > article img:first-of-type {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#my_restaurants > article > a:nth-last-child(1), #my_restaurants > article > a:nth-last-child(2) {
+    padding: 1em;
+    background-color: var(--dark-bg-color);
+    border-radius: var(--default-border-radius);
+}
+
+#my_restaurants > .new_restaurant {  /*add new restaurant option*/
+    margin: 0 auto;
+    text-align: center;
+    padding: 1.5em 3em;
+    background-color: var(--dark-bg-color);
+    border-radius: var(--default-border-radius);
+}
+#my_restaurants > article {
+    padding: 1em;
+    margin-top: 3em;
+    border: solid 3px var(--dark-bg-color);
+    border-radius: var(--default-border-radius);
+    background-color: var(--light-bg-color);
+}/*-----------------------------------------*/
+
+div.edit_options {
+    display: none;
+}

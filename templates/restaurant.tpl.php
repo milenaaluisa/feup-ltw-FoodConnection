@@ -169,7 +169,7 @@
 
 <?php
     function output_my_restaurants_list(array $my_restaurants) { ?>
-        <section id="restaurants">
+        <section id="my_restaurants">
             <div class="new_restaurant">
                 <a href="add_restaurant.php">Add new restaurant</a>
             </div>

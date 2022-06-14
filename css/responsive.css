@@ -30,7 +30,7 @@
         column-gap: 0.5em;
     }
 
-    #restaurants > article  {
+    #restaurants > article, #my_restaurants > article   {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -42,43 +42,39 @@
         flex-direction: column;
     }
     
-    #restaurants > article > .info {
+    #restaurants > article > .info, #my_restaurants > article > .info {
         width: 100%;
         align-items: left;
     }
 
-    #restaurants > article > .info > * {
+    #restaurants > article > .info > *, #my_restaurants > article > .info > *{
         margin-left: 2em;
         margin-right: 2em;
     }
 
-    #restaurants > article > a {
+    #my_restaurants > article > a {
         width: 100%;
     }
 
-    #restaurants > article > .edit_options  > a{
-        display: block;
-        width: 100%;
-    }
     #dishes {
         grid-template-columns: repeat(auto-fit, 100%);
     }
     
-    #dishes > article {
+    #restaurants #dishes > article {
         margin-left: 2em;
         margin-right: 2em;
     }
 
-    #orders > article{
+    #user_orders > article, #orders > article, #restaurant_orders > article{
         display: flex;
         flex-direction: column;
     }
 
-    #orders > article > * {
+    #user_orders > article > *, #orders > article > * , #restaurant_orders > article{
         align-self: left;
     }
 
-    #orders > article > div {
+    #user_orders > article > div, #orders > article > div, #restaurant_orders > article > div {
         width: 100%;
     }
 }

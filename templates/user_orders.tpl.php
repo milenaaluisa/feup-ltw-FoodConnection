@@ -5,7 +5,7 @@
 
 <?php 
 function output_user_orders_list(array $my_orders) { ?>
-    <section id= "orders">
+    <section id= "user_orders">
         <header>
             <h1>Order History</h1>
         </header>
