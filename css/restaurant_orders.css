@@ -19,7 +19,12 @@
     padding: 1.5em;
     border: solid 3px var(--dark-bg-color);
     border-radius: var(--default-border-radius);
-}/*----------------------------------*/
+}
+
+#restaurants > article > #orders > article > select {
+    width: min-content;
+}
+/*----------------------------------*/
 
 
 /*---------------LAYOUT--------------*/
@@ -59,7 +64,7 @@
     grid-column: 1; grid-row: 1;
 }
 
-#restaurants > article > #orders > article > .state {
+#restaurants > article > #orders > article > select {
     grid-column: 1; grid-row: 3;
 }
 
@@ -69,12 +74,12 @@
     row-gap: 5px;
 }
 
-#restaurants > article > #orders > article > div > article {
+#restaurants > article > #orders > article > div > div {
     display: flex;
     flex-direction: row;
     gap: 10px;
 }
 
-#restaurants > article > #orders > article > div > article > :first-child {
+#restaurants > article > #orders > article > div > div > :first-child {
     flex-grow: 1;
 }/*-------------------------------------------*/

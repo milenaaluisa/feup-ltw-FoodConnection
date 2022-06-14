@@ -2,11 +2,9 @@
 
 <?php 
     function output_single_dish(Dish $dish, array $allergens) { ?>
-        <main>
-            <section id="dishes">
-                <?php output_dish($dish, $allergens); ?>
-            </section>
-        </main>
+        <div id="dishes">
+            <?php output_dish($dish, $allergens); ?>
+        </div>
     <?php } ?>
 
 <?php 
@@ -25,11 +23,11 @@
     function output_dish_photo (Dish $dish) { ?>
         <a href="dish.php?id=<?= $dish->idDish ?>">
             <?php if (isset($dish->file)) { ?>
-                <img src="..\images\dishes\<?= $dish->file ?>">
+                <img src="../images/dishes/<?= $dish->file ?>" alt="">
             <?php }
             
             else { ?>
-                <img src="..\images\no_photo.jpg">
+                <img src="../images/no_photo.jpg" alt="">
             <?php } ?>
         </a>
 <?php } ?>
@@ -70,8 +68,11 @@
                 </div>
             <?php } ?>
 
-                <form action="action_add_order_item.php" method="post">
-                    <input name="quantity" type="number" value="1" min="0" step="1">
+                <form action="../actions/action_add_to_cart.php?id=<?=$dish->idDish?>" method="post">
+                    <input type="hidden" name="idRestaurant" value="<?=$dish->idRestaurant?>">
+                    <input type="hidden" name="price" value="<?=$dish->price?>">
+                    <input type="hidden" name="name" value="<?=$dish->name?>"> 
+                    <input name="quantity" type="number" value="1" min="1" step="1">
                     <button type="submit">
                         Add to cart <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                     </button>

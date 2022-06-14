@@ -122,8 +122,6 @@ CREATE TABLE Review
     idFoodOrder INT NOT NULL REFERENCES FoodOrder(idFoodOrder)
 );
 
-
-
 CREATE TABLE Photo
 (
     idPhoto INTEGER PRIMARY KEY,
@@ -1483,23 +1481,23 @@ INSERT INTO FavDish (idUser, idDish) VALUES(7, 150);
 INSERT INTO FavDish (idUser, idDish) VALUES(8, 160);
 INSERT INTO FavDish (idUser, idDish) VALUES(8, 170);
 
-INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (1, 'received',1653004800, 1);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (1, 'delivered',1653004800, 1);
 INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (2, 'ready', 1653436800, 1);
 INSERT INTO FoodOrder (idFoodOrder, state, orderDate, notes, idUser) VALUES (3, 'preparing', 1652140800, 'Sem tomate', 1);
-INSERT INTO FoodOrder (idFoodOrder, state, orderDate, notes, idUser) VALUES (4, 'delivered', 1641513600, 'Sem milho', 1);
-INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (5, 'received', 1653004800, 1);
-INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (6, 'received', 1650412800, 2);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, notes, idUser) VALUES (4, 'received', 1641513600, 'Sem milho', 1);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (5, 'delivered', 1653004800, 1);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (6, 'delivered', 1650412800, 2);
 INSERT INTO FoodOrder (idFoodOrder, state, orderDate, notes, idUser) VALUES (7, 'preparing', 1652745600, 'Sem banana', 2);
 INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (8, 'ready', 1653004800, 2);
-INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (9, 'received', 1649030400, 3);
-INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (10, 'received', 1653004800, 3);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (9, 'delivered', 1649030400, 3);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (10, 'delivered', 1653004800, 3);
 INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (11, 'preparing', 1646092800, 4);
-INSERT INTO FoodOrder (idFoodOrder, state, orderDate, notes, idUser) VALUES (12, 'received', 1643760000, 'Sem avela', 5);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, notes, idUser) VALUES (12, 'delivered', 1643760000, 'Sem avela', 5);
 INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (13, 'preparing', 1644451200, 5);
-INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (14, 'delivered', 1652572800, 5);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (14, 'received', 1652572800, 5);
 INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (15, 'ready', 1652659200, 5);
-INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (16, 'delivered', 1641772800, 6);
-INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (17, 'received', 1649376000, 6);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (16, 'received', 1641772800, 6);
+INSERT INTO FoodOrder (idFoodOrder, state, orderDate, idUser) VALUES (17, 'delivered', 1649376000, 6);
 
 
 INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (1, 1, 116);
@@ -1557,34 +1555,15 @@ INSERT INTO Selection (quantity, idFoodOrder, idDish) VALUES (2, 17, 4);
 INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (4, 1, 116);
 INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 1, 115);
 
-INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (4, 2, 152);
-
-INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 3, 82);
-
-INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 4, 76);
-INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (3, 4, 75);
-
 INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (4, 5, 82);
 INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (4, 5, 80);
 
 INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 6, 4);
 
-INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (4, 7, 3);
-INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (2, 7, 6);
-
-INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (1, 8, 9);
-INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (2, 8, 8);
-
 INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 9, 8);
 INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (4, 9, 11);
 
 INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (4, 12, 53);
-
-INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 14, 140);
-INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 14, 143);
-
-INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (4, 15, 32);
-INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 15, 35);
 
 INSERT INTO RateDish (rate, idFoodOrder, idDish) VALUES (5, 17, 4);
 
@@ -1594,7 +1573,7 @@ INSERT INTO Review (idReview, comment, rate, reviewDate, idFoodOrder) values (2,
 INSERT INTO Review (idReview, comment, rate, reviewDate, idFoodOrder) values (3, "Devia ter a opcao de dar 0 estrela.", 1, 1651622400, 6); 
 INSERT INTO Review (idReview, comment, rate, reviewDate, idFoodOrder) values (4, "Melhor restaurante de comida mexicana no Porto!", 5, 1649635200, 5);
 INSERT INTO Review (idReview, comment, rate, reviewDate, idFoodOrder) values (5, "Comida caseira com boa qualidade. Recomendo.", 3, 1650326400, 12);
-INSERT INTO Review (idReview, rate, reviewDate, idFoodOrder) values (6, 3, 1641945600, 9);
+INSERT INTO Review (idReview, rate, reviewDate, idFoodOrder) values (6, 3, 1641945600, 14);
 
 
 INSERT INTO Reply (idReplay, comment, owner, idReview) VALUES (1, "Muito obtigado. Ler isto nos enche de alegria!", 2, 1);

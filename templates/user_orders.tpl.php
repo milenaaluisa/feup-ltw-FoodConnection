@@ -26,14 +26,14 @@ function output_user_order(Order $my_order) { ?>
  
         <?php output_restaurant_photo($my_order->restaurant); ?>
 
-        <?php output_order_items_list($my_order->items) ?>
+        <?php output_order_items_list($my_order->items, $my_order->state) ?>
         
         <p>Subtotal: </p>
         <span class="price"><?= number_format($my_order->total, 2)?></span>
         <span class="date"><?= date('d/m/y', $my_order->orderDate) ?></span>
         <span class="state"><?= $my_order->state ?></span>  
         
-        <?php if ($my_order->state === "received") { ?>
+        <?php if ($my_order->state === "delivered") { ?>
             <?php if ($my_order->rated === false) { ?>
                     <a href="rate_order.php?id=<?= $my_order->idFoodOrder ?>">Rate Order </a>  <!--TODO-->
             <?php } ?>
@@ -44,21 +44,24 @@ function output_user_order(Order $my_order) { ?>
 <?php } ?>
 
 
-<?php function output_order_items_list(array $items) { ?>
+<?php function output_order_items_list(array $items, string $orderState) { ?>
     <div>
         <?php foreach($items as $item) {
-            output_order_item($item);
+            output_order_item($item, $orderState);
         } ?>
     </div>
 <?php } ?>
 
 
 <?php 
-function output_order_item(array $item) { ?>
-    <article>
+function output_order_item(array $item, string $orderState) { ?>
+    <div>
         <p><span class="quantity"><?= $item['quantity'] ?></span> <?= $item['name'] ?> </p>
         <span class="price"><?= number_format($item['quantity'] * $item['price'], 2) ?></span>
-        <a href="rate_diSh.php?id=<?=$item['idDish']?>"> Rate dish </a>  <!--TODO-->
-    </article>
+        <?php 
+            if ($orderState === "delivered" && $item['rated'] === false) { ?>
+                <a href="rate_dish.php?id=<?=$item['idDish']?>&order=<?=$item['idFoodOrder']?>"> Rate dish </a>
+        <?php } ?>
+    </div>
 <?php } ?>
 
