@@ -3,7 +3,7 @@
 
 <?php 
     function output_header(array $css_files = null) { ?>
-        <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en-US">
     <head>
         <title>Food Connection</title>
@@ -21,7 +21,7 @@
             foreach ($css_files as $css_file) {
                 $css_file = "../css/" . "$css_file"; ?>
                 <link href= <?=$css_file?> rel="stylesheet">
-           <?php }
+        <?php }
         } ?>
     </head>
     <body>
