@@ -245,8 +245,8 @@ body > header > div:nth-child(3) input {
     text-align: right;
 }
 
-#menu ul li:not(:nth-child(1),:nth-child(2), :last-child){
-    border-bottom: 1px solid white;
+#menu ul li:not(:nth-child(1),:nth-child(2), :last-child):hover{
+    font-weight: bold;
 }
 
 #menu i {
