@@ -78,7 +78,7 @@
                 </label>
                 <input type="number" name="quantity" id = <?=$id_aux?> value="<?=$quantity?>" min="1" step="1">
 
-                <span class="price">
+                <span class="price" id = <?=$id_aux?> value ="<?=$dishh->{'price'}?>">
                     <?= $quantity*$dishh->{'price'}; ?>
                 </span>
                 <button type="eliminate" name="eliminate" value="<?=$id?>">Eliminate</button>
@@ -141,7 +141,7 @@
                     <textarea name="notes" placeholder="notes"></textarea>
                     <div>
                         <h2>Subtotal: </h2>
-                        <span class="price"><?=$price?></span>
+                        <span class="total_price"><?=$price?></span>
                     </div>
                     <button type="submit" name="submit">Place Order</button>
                     <button type="cancel" name="cancel">Cancel</button>

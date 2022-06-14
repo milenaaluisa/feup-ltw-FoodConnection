@@ -20,7 +20,6 @@
     function deleteDishCart($idDish){
         foreach($_SESSION['cart'] as $item => $value){
             if($idDish == $item){
-                echo 'entrei';
                 unset($_SESSION['cart'][$item]);
                 if(sizeof($_SESSION['cart']) == 0 ){
                     deleteCart();
@@ -32,7 +31,6 @@
     if(isset($_POST["eliminate"])){
 
         deleteDishCart($_POST['eliminate']);
-        echo $_POST['eliminate'];
 
         header('Location: ../pages/restaurant.php?id='.$_POST['idRestaurant']);
         exit(0);
