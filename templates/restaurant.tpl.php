@@ -61,7 +61,7 @@
         </section>
 <?php } ?>
 
-<!-- TO COMPLETE falta saber ir buscar as orders de cada restaurante -->
+
 <?php
     function output_user_cart(){
 
