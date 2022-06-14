@@ -147,5 +147,19 @@
 
             $stmt->execute(array($state, $this->idFoodOrder));
         }
+
+        static function newOrder(PDO $db, string $state, int $orderDate, string $notes, int $idUser){
+            $stmt = $db->prepare('INSERT INTO FoodOrder(state, orderDate, notes, idUser)
+                                  VALUES(?, ?, ?, ?)');
+            $stmt->execute(array($state, $orderDate, $notes, $idUser));
+
+            return $db->lastInsertId();
+        }
+
+        static function addOrderItem(PDO $db, $idFoodOrder, $idDish, $quantity){
+            $stmt = $db->prepare('INSERT INTO Selection(quantity, idFoodOrder, idDish) 
+                                  VALUES(?, ?, ?)');
+            $stmt->execute(array($quantity, $idFoodOrder, $idDish));
+        }
     }
 ?>

@@ -40,7 +40,7 @@
 
 #restaurants > article > #orders > form > div {
     border-top: dashed 2px #000;
-    margin-top: 4em;
+    margin-top: 2em;
     border-radius: 0px;
 }
 
@@ -54,7 +54,20 @@
     content: '\25CF';
 }
 
-#restaurants > article > #orders > form > .price, #restaurants > article > #orders > form > input {
+#restaurants > article > #orders > form > .quantity::before, #restaurants > article > #orders > form > .quantity::after{
+    content: none;
+}
+
+#restaurants > article > #orders > form > button[name="submit"]{
+    background-color: white;
+}
+
+#restaurants > article > #orders > form > button[name="eliminate"]{
+    padding: 0;
+    margin-top: 1em;
+}
+
+#restaurants > article > #orders > form > .price, #restaurants > article > #orders > form > .quantity {
     width: 50%;
 }/*------------------------------------*/
 
@@ -105,4 +118,12 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}/*----------------------------------*/
+}
+
+
+#restaurants > article > #orders > form > .quantity{
+    background-color: white;
+    text-align: center;
+}
+
+/*----------------------------------*/

@@ -68,8 +68,11 @@
                 </div>
             <?php } ?>
 
-                <form action="action_add_order_item.php" method="post">
-                    <input name="quantity" type="number" value="1" min="0" step="1">
+                <form action="../actions/action_add_to_cart.php?id=<?=$dish->idDish?>" method="post">
+                    <input type="hidden" name="idRestaurant" value="<?=$dish->idRestaurant?>">
+                    <input type="hidden" name="price" value="<?=$dish->price?>">
+                    <input type="hidden" name="name" value="<?=$dish->name?>"> 
+                    <input name="quantity" type="number" value="1" min="1" step="1">
                     <button type="submit">
                         Add to cart <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                     </button>

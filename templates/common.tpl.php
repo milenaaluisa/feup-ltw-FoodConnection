@@ -16,6 +16,7 @@
         <link href="../css/layout.css" rel="stylesheet">
         <link href="../css/forms.css" rel="stylesheet">
         <link href="../css/responsive.css" rel="stylesheet">
+        <script src="../javascript/script.js" defer></script>
         <?php if(isset ($css_files)) {
             foreach ($css_files as $css_file) {
                 $css_file = "../css/" . "$css_file"; ?>

@@ -1,7 +1,10 @@
 <?php 
     declare(strict_types = 1);
+
+    require_once('../database/connection.db.php');
     include_once('../templates/dish.tpl.php'); 
-    include_once('../templates/review.tpl.php'); 
+    include_once('../templates/review.tpl.php');
+    require_once('../database/dish.class.php');
 ?>
 
 
@@ -53,6 +56,34 @@
         </section>
 <?php } ?>
 
+<!-- TO COMPLETE falta saber ir buscar as orders de cada restaurante -->
+<?php
+    function output_user_cart(){
+
+        $price = 0;
+
+        foreach($_SESSION['cart'] as $id => $dish){
+            $price+= $dish['quantity']*$dish['price']?>
+            
+            <label>
+                <?= $dish['name']?>
+            </label>
+            <span class="quantity"> 
+                <?=$dish['quantity']?>
+            </span>
+            <span class="price">
+                <?= $dish['quantity']*$dish['price']?>
+            </span>
+            <button type="eliminate" name="eliminate" value="<?=$id?>">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </button>
+        
+        <?php
+        }
+
+        return $price;
+    } ?>
+
 
 <?php
     function output_restaurant(Restaurant $restaurant, array $dishes = null, array $shifts = null, array $reviews = null, $output_order_form = False) { ?>
@@ -87,21 +118,32 @@
             if(isset($dishes) && sizeof($dishes) > 0) {
                 output_dish_list($dishes);
             }
+            
+            if($output_order_form){?>
 
-            if($output_order_form === True) { ?>
                 <section id="orders">
                     <header>
                         <h3>Your Order</h3>
                     </header>
-                    <form action = "new_order.php" method="post">
-                        <button type="submit">Place Order</button>
-                    </form>
-                </section>
 
-                <?php if(isset($reviews) && sizeof($reviews) > 0) {
+                    <?php if($_SESSION['cart'] > 0) { ?>
+                        <form action = "../actions/action_place_order.php" method="post">
+                            <input type="hidden" name="idRestaurant" value="<?=$restaurant->idRestaurant?>">
+                            <?php $price = output_user_cart(); ?>
+                            <textarea name="notes" placeholder="notes"></textarea>
+                            <div>
+                                <h2>Subtotal: </h2>
+                                <span class="price"><?=$price?></span>
+                            </div>
+                            <button type="submit" name="submit">Place Order</button>
+                            <button type="cancel" name="cancel">Cancel</button>
+                        </form>
+                    <?php } ?>
+                </section>
+            <?php }?>
+            <?php if(isset($reviews) && sizeof($reviews) > 0) {
                     output_restaurant_reviews_list($reviews);
                 } ?>
-            <?php } ?>
         </article>
 <?php } ?>
 
