@@ -57,5 +57,11 @@
 }
 
 #dishes > article > .price {
-    grid-column: 1/3; grid-row: 3;
-}/*----------------------------------*/
+    grid-column: 1/2; grid-row: 3;
+}
+
+#dishes > article > i {
+    grid-column: 2/3; grid-row: 3;
+    padding: 0;
+}
+/*----------------------------------*/

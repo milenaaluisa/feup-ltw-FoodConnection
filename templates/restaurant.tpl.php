@@ -104,7 +104,11 @@
             
             <a class="rate" href= "restaurant.php?id=<?= $restaurant->idRestaurant ?>#reviews"><?= $restaurant->averageRate ?></a>
 
-            <!---<img id="fav_button" src="fav_button.jpg" alt=""> -->
+            <?php if ($restaurant->is_favourite) { ?>
+                <i class="fa fa-heart" data-id=<?=$restaurant->idRestaurant?>></i>
+            <?php } else { ?>
+                <i class="fa fa-heart-o" data-id=<?=$restaurant->idRestaurant?>></i>
+            <?php } ?>
 
             <div class = "edit_options">
                 <a href="edit_restaurant_info.php?id=<?= $restaurant->idRestaurant ?>">Edit Info</a>
