@@ -36,12 +36,6 @@
                 else output_login();
             ?>
 
-            <div>
-                <form action="action_page.php">
-                    <input type="text" placeholder="Search..." name="search">
-                </form>
-            </div>
-
             <nav id="menu">
                 <input type="checkbox" id="hamburger">
                 <label for="hamburger">
