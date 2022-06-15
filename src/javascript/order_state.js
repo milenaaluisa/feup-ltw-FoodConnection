@@ -1,5 +1,5 @@
 function changeOrderState() {
-    const states = document.querySelectorAll('#restaurants > article > #orders > article > select');
+    const states = document.querySelectorAll('#restaurant_orders > article > #orders > article > select');
 
     states.forEach(function(state, i) {
         idFoodOrder = state.getAttribute('data-id');
