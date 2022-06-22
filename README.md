@@ -11,7 +11,7 @@
 - [x] Add Dish Photo
 - [x] List Reviews
 - [x] Restaurant Owner Can Answer to Review
-- [ ] List Customer Orders
+- [x] List Customer Orders
 - [x] Change Order State
 - [x] Search Restaurants
 - [x] Order Dishes
@@ -36,4 +36,6 @@ dav_soares/mysecretpassword <br>
 
 ## Run
 Run the project with the following command using wsl:
+```bash
 php -S localhost:9000/src/pages/index.php
+```
