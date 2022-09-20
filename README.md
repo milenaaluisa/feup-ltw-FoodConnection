@@ -1,4 +1,4 @@
-# ltw-t09-g01
+# Food Connection - Food Ordering Website 
 
 > **2021/2022** - 2nd Year, 2nd Semester
 > 
@@ -60,8 +60,8 @@ Some suggested **additional requirements**. These requirements were a way of mak
 We could also create our own additional requirements.
 <br>
 
-## Features
 
+### Features
 - [x] Register
 - [x] Login/Logout
 - [x] Edit Profile
@@ -80,21 +80,24 @@ We could also create our own additional requirements.
 - [x] Mark Dish as Favourite
 - [x] Customer Can Leave a Review
 
-## Extra Features
-
+### Extra Features
 - [x] Customer can also rate ordered dishes
 - [x] Upload Restaurant, profile and review photo
 - [x] Edit Dish, Restaurant and Profile photo
 - [x] Restaurant Owner can remove dishes
 - [x] Add more information about dishes (allergens)
 
-## Credentials
+### Credentials
+|👤Username | 🔑Password|
+|---|---|
+|saradias| sara2004|
+|lluislima|informatica2020|
+|dav_soares|mysecretpassword|
+|brunaavazz1|safemodeon|
+|nicoleolive|oBoticario|
+|nunoamaro13|DontEvenTry2Hack!|
 
-saradias/sara2004 <br>
-lluislima/informatica2020 <br>
-dav_soares/mysecretpassword <br>
-
-## Instructions
+### Instructions
 This project needs `php-gd` to be installed:
 ```
 sudo apt-get install php-gd
