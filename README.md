@@ -94,8 +94,14 @@ saradias/sara2004 <br>
 lluislima/informatica2020 <br>
 dav_soares/mysecretpassword <br>
 
-## Run
-Run the project with the following command using wsl:
-```bash
+## Instructions
+This project needs `php-gd` to be installed:
+```
+sudo apt-get install php-gd
+```
+
+Start the project with the following command using wsl:
+
+```
 php -S localhost:9000/src/pages/index.php
 ```
