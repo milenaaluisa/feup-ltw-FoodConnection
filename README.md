@@ -17,7 +17,7 @@ The **purpose** of this project was to create a website where restaurants can li
 - Use Javascript to enhance the user experience (for example, using Ajax).
 <br>
 
-The minimum expected set of **requirements** was the following:
+The minimum expected **requirements** were the following:
 * **All users** should be able to (users can simultaneously be customers and restaurant owners):
     * Register a new account.
     * Login and Logout.
@@ -40,7 +40,7 @@ HTML, CSS, PHP, Javascript, Ajax/JSON, PDO/SQL (using sqlite).
 * Code should be organized and consistent.
 * Design doesn't need to be top-notch but should be clean and consistent throughout the site. It should also work on mobile devices.
 * Frameworks are not allowed.
-* Small helper libraries (e.g., displaying a gallery of pictures) might be allowed (talk with your practical class teacher).
+* Small helper libraries (e.g., displaying a gallery of pictures) might be allowed.
 <br>
 
 Some suggested **additional requirements**. These requirements were a way of making sure each project was unique and it was not necessary to implement all of them:
@@ -81,14 +81,15 @@ We could also create our own additional requirements.
 - [x] Customer Can Leave a Review
 
 ### Extra Features
-- [x] Customer can also rate ordered dishes
+- [x] Customer can rate ordered dishes
 - [x] Upload Restaurant, profile and review photo
-- [x] Edit Dish, Restaurant and Profile photo
+- [x] Edit Dish
+- [x] Edit Profile Photo
 - [x] Restaurant Owner can remove dishes
 - [x] Add more information about dishes (allergens)
 
 ### Credentials
-|👤Username | 🔑Password|
+|Username | Password|
 |---|---|
 |saradias| sara2004|
 |lluislima|informatica2020|
@@ -98,13 +99,15 @@ We could also create our own additional requirements.
 |nunoamaro13|DontEvenTry2Hack!|
 
 ### Instructions
-This project needs `php-gd` to be installed:
-```
+**Step 1:** Install `php-gd` :
+```bash
 sudo apt-get install php-gd
 ```
 
-Start the project with the following command using wsl:
+**Step 2:** Run the following command in the project's root directory:
 
+```bash
+php -S localhost:9000
 ```
-php -S localhost:9000/src/pages/index.php
-```
+
+**Step 3:** Access http://localhost:9000 in your browser.
